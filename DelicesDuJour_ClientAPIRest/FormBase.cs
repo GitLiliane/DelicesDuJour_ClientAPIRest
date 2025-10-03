@@ -1,0 +1,678 @@
+﻿using DelicesDuJour_ClientAPIRest.Domain.DTO;
+using DelicesDuJour_ClientAPIRest.Domain.DTO.CategorieDTO;
+using DelicesDuJour_ClientAPIRest.Services;
+using System.ComponentModel;
+using System.IdentityModel.Tokens.Jwt;
+using System.Windows.Forms;
+
+namespace DelicesDuJour_ClientAPIRest
+{
+    public partial class FormBase : Form
+    {
+        
+        List<TabPage> _tabPages = [];
+        IEnumerable<string> _roles = [];
+        BindingList<RecetteDTO> _recettes;
+        BindingList<CategorieDTO> _categories;
+        BindingList<RecetteDTO> _recettesByCategorie;
+        BindingList<CategorieDTO> _categoriesByRecette;
+        BindingList<RecetteCategorieRelationshipDTO> _recettesCategoriesRelations;
+
+        private readonly DeliceService _deliceService = DeliceService.Instance;
+
+        public FormBase()
+        {
+            InitializeComponent();
+
+        }
+
+        private async void FormBase_Load(object sender, EventArgs e)
+        {
+
+            InitializeBinding();
+
+            _tabPages = tabControl.TabPages.Cast<TabPage>().ToList();
+            txtHttp.Text = Properties.Settings.Default.Http;
+            txtIdentifiant.Text = Properties.Settings.Default.Identifiant;
+            TabPagesAuthorizations();
+
+
+        }
+
+        private void FormBase_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Http = txtHttp.Text;
+            Properties.Settings.Default.Identifiant = txtIdentifiant.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private async void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == tabLogin)
+            {
+                AcceptButton = btLogin;
+            }
+            else if (e.TabPage == tabRecettes)
+            {
+                await ActualiserRecettes();
+                AcceptButton = btTtesRecettes;
+            }
+            else if (e.TabPage == tabCategories)
+            {
+                await ActualiserCategories();
+                AcceptButton = btActualiserCategorie;
+            }
+            else if (e.TabPage == tabRecetteCategorie)
+            {
+                await ActualiserRecettes();
+                await ActualiserRecettesCategoriesRelations();
+            }
+            else if (e.TabPage == tabGestionRecette)
+            {
+                await ActualiserRecettes();
+            }
+
+        }
+        #region Login
+        private async void btLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                LoginDTO loginDTO = new()
+                {
+                    Username = txtIdentifiant.Text,
+                    Password = txtPassword.Text
+                };
+
+                
+                bool res = await _deliceService.Login(txtHttp.Text, loginDTO);
+
+                if (res)
+                {
+                    txtPassword.Text = string.Empty;
+
+                    _roles = _deliceService.GetRolesFromJwt();
+                    lblRoles.Text = string.Join(", ", _roles);
+
+                    TabPagesAuthorizations();
+                }
+                else
+                {
+                    // afficher : pb de connexion
+                }
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+
+            ActualiserRecettes();
+        }
+
+        private void btLogOut_Click(object sender, EventArgs e)
+        {
+            _deliceService.Logout();
+
+            _roles = [];
+            //_recettes.Clear();
+            //_authors.Clear();
+            //_authorsByIdBook.Clear();
+            //_authorsNotIdBook.Clear();
+
+            lblRoles.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+
+            TabPagesAuthorizations();
+        }
+
+        #endregion Fin Login
+
+        #region recettes
+
+        private async void btTtesRecettes_Click(object sender, EventArgs e)
+        {
+            ActualiserRecettes();
+            ChangeDgv();
+        }
+        private async void btEntree_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                // Attendre que les catégories soient récupérées
+                await ActualiserCategories();
+
+                // Étape 1 : trouver la catégorie "Entrée" dans _categories
+                var entreeCategorie = _categories
+                    .FirstOrDefault(c => string.Equals(c.nom, "Entrée", StringComparison.OrdinalIgnoreCase));
+
+                int idEntree = entreeCategorie.Id;
+
+                // Étape 2 : récupérer les recettes de cette catégorie via l’API
+                var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
+
+                // Étape 3 : vider et remplir la liste liée
+                _recettesByCategorie.Clear();
+                foreach (var recette in recettes)
+                {
+                    _recettesByCategorie.Add(recette);
+                }
+                ChangeDgvByCategorie();
+
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+        }
+
+        private async void btPlat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                // Attendre que les catégories soient récupérées
+                await ActualiserCategories();
+
+                // Étape 1 : trouver la catégorie "Entrée" dans _categories
+                var entreeCategorie = _categories
+                    .FirstOrDefault(c => string.Equals(c.nom, "Plat", StringComparison.OrdinalIgnoreCase));
+
+                if (entreeCategorie == null)
+                {
+                    MessageBox.Show("La catégorie 'Plat' n’existe pas.", "Erreur",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Étape 2 : récupérer les recettes de cette catégorie via l’API
+                int idEntree = entreeCategorie.Id;
+               
+                var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
+
+                //Étape 3 : vider et remplir la liste liée
+                _recettesByCategorie.Clear();
+                foreach (var recette in recettes)
+                {
+                    _recettesByCategorie.Add(recette);
+                }
+                ChangeDgvByCategorie();
+
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+        }
+
+        private async void btDessert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                // Attendre que les catégories soient récupérées
+                await ActualiserCategories();
+
+                // Étape 1 : trouver la catégorie "Entrée" dans _categories
+                var entreeCategorie = _categories
+                    .FirstOrDefault(c => string.Equals(c.nom, "Dessert", StringComparison.OrdinalIgnoreCase));
+
+                if (entreeCategorie == null)
+                {
+                    MessageBox.Show("La catégorie 'Dessert' n’existe pas.", "Erreur",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Étape 2 : récupérer les recettes de cette catégorie via l’API
+                int idEntree = entreeCategorie.Id;
+
+                var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
+
+                // Étape 3 : vider et remplir la liste liée
+                _recettesByCategorie.Clear();
+                foreach (var recette in recettes)
+                {
+                    _recettesByCategorie.Add(recette);
+                }
+                ChangeDgvByCategorie();
+
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+        }
+
+        private async void btSoupe_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                // Attendre que les catégories soient récupérées
+                await ActualiserCategories();
+
+                // Étape 1 : trouver la catégorie "Entrée" dans _categories
+                var entreeCategorie = _categories
+                    .FirstOrDefault(c => string.Equals(c.nom, "Soupe", StringComparison.OrdinalIgnoreCase));
+
+                if (entreeCategorie == null)
+                {
+                    MessageBox.Show("La catégorie 'Soupe' n’existe pas.", "Erreur",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Étape 2 : récupérer les recettes de cette catégorie via l’API
+                int idEntree = entreeCategorie.Id;
+
+                var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
+
+                // Étape 3 : vider et remplir la liste liée
+                _recettesByCategorie.Clear();
+                foreach (var recette in recettes)
+                {
+                    _recettesByCategorie.Add(recette);
+                }
+                ChangeDgvByCategorie();
+
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+        }
+
+        private void btDetailsRecette_Click(object sender, EventArgs e)
+        {
+            if (BSRecettes.Current is RecetteDTO currentRecette)
+            {
+                var formRecetteDetails = new FormRecetteDetails(currentRecette.Id);
+                formRecetteDetails.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une recette.",
+                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async Task ActualiserRecettes()
+        {
+            // Sauvegarde du current
+            RecetteDTO current = BSRecettes.Current as RecetteDTO;
+
+            // Remplissage de la liste
+            var result = await _deliceService.GetRecettesAsync();
+
+            _recettes.Clear();
+            foreach (RecetteDTO r in result)
+                _recettes.Add(r);
+
+            // On se repositionne sur le current
+            if (current is not null)
+                BSRecettes.Position = _recettes.IndexOf(_recettes.Where(r => r.Id == current.Id).FirstOrDefault());
+        }
+
+        #endregion Fin Recettes
+
+        #region Catégories
+
+        private async void btActualiserCategorie_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                await ActualiserCategories();
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private async void btAjouterCategorie_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                CreateCategorieDTO createDTO = new()
+                {
+                    nom = txtNomCategories.Text,
+
+                };
+
+                var res = await _deliceService.AddCategorieAsync(createDTO);
+
+                await ActualiserCategories();
+                BSCategories.Position = _categories.IndexOf(_categories.FirstOrDefault(b => b.Id == res.Id));
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private async void btModifierCategorie_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                CategorieDTO current = BSCategories.Current as CategorieDTO;
+
+                if (current is not null)
+                {
+                    UpdateCategorieDTO updateDTO = new()
+                    {
+                        nom = txtNomCategories.Text
+                    };
+
+                    var res = await _deliceService.UpdateCategorieAsync(updateDTO, current.Id);
+
+                    await ActualiserCategories();
+                }
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private async void btSupprimerCategorie_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                CategorieDTO current = BSCategories.Current as CategorieDTO;
+
+                if (current is not null)
+                {
+                    await _deliceService.DeleteCategorieAsync(current.Id);
+                    await ActualiserCategories();
+                }
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private async Task ActualiserCategories()
+        {
+            // Sauvegarde du current
+            CategorieDTO current = BSCategories.Current as CategorieDTO;
+
+            // Remplissage de la liste
+            var res = await _deliceService.GetCategoriesAsync();
+
+            _categories.Clear();
+            foreach (CategorieDTO b in res)
+                _categories.Add(b);
+
+            // On se repositionne sur le current
+            if (current is not null)
+                BSCategories.Position = _categories.IndexOf(_categories.Where(b => b.Id == current.Id).FirstOrDefault());
+        }
+
+
+
+        #endregion Fin Categories
+
+
+        #region Relation Recettes Catégories
+
+        private async void btGetRecByCat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                // Les catégories sont récupérées
+                await ActualiserCategories();
+
+                // Étape 1 : trouver la catégorie "Entrée" dans _categories
+                var idCat = int.TryParse(txtIdCategorie.Text, out int id);
+
+                var nomCat = txtNomCategorie.Text;
+
+                var catId = _categories.FirstOrDefault(c => c.Id == id);
+
+                var catNom = _categories.FirstOrDefault(c => c.nom == nomCat);
+
+                int recette = 0;
+
+
+                if (catId is not null)
+                {
+                    recette = catId.Id;
+                }
+                else if (catNom is not null)
+                {
+                    recette = catNom.Id;
+                }
+
+
+                // Étape 2 : récupérer les recettes de cette catégorie via l’API
+                var recettes = await _deliceService.GetRecettesByIdCategorieAsync(recette);
+                
+
+                // Étape 3 : vider et remplir la liste liée
+                _recettesByCategorie.Clear();
+                foreach (var r in recettes)
+                {
+                    _recettesByCategorie.Add(r);
+                }
+                ChangeDgvRByC();
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+        }
+
+        private async void btGetCatByRec_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                // Les recettes sont récupérées                
+                await ActualiserRecettes();
+
+                // Étape 1 : trouver les catégories dans _recettess
+                var idRec = int.TryParse(txtIdrecette.Text, out int id);
+
+                var nomRec = txtNomRecette.Text;
+
+                var recId = _recettes.FirstOrDefault(c => c.Id == id);
+
+                var recNom = _recettes.FirstOrDefault(c => c.nom == nomRec);
+
+                int categorie = 0;
+
+
+                if (recId is not null)
+                {
+                    categorie = recId.Id;
+                }
+                else if (recNom is not null)
+                {
+                    categorie = recNom.Id;
+                }
+
+
+                // Étape 2 : récupérer les recettes de cette catégorie via l’API
+                var categories = await _deliceService.GetCategoriesByIdRecette(categorie);
+
+                // Étape 3 : vider et remplir la liste liée
+                _categoriesByRecette.Clear();
+                foreach (var c in categories)
+                {
+                    _categoriesByRecette.Add(c);
+                }
+                ChangeDgvByR();
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+
+            }
+        }
+
+        private async void btAjouterRelationRecCat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                await ActualiserRecettesCategoriesRelations();
+
+                int idRecette = int.Parse(txtRelationIdRecette.Text);
+                int idCategorie = int.Parse(txtRelationIdCategorie.Text);
+
+                await _deliceService.AddRelationRecetteCategorieAsync(idCategorie, idRecette);
+
+                await ActualiserRecettesCategoriesRelations();
+                BSRecettesCategoriesRelations.Position = _recettesCategoriesRelations.IndexOf(_recettesCategoriesRelations.FirstOrDefault(r => r.idRecette == idRecette));
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private async void btSupprimerRelationRecCat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                int idRecette = int.Parse(txtRelationIdRecette.Text);
+                int idCategorie = int.Parse(txtRelationIdCategorie.Text);
+
+
+                await _deliceService.DeleteRelationRecetteCategorieAsync(idCategorie, idRecette);
+
+                await ActualiserRecettesCategoriesRelations();
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+        private async Task ActualiserRecettesCategoriesRelations()
+        {
+            // Sauvegarde du current
+            RecetteCategorieRelationshipDTO current = BSRecettesCategoriesRelations.Current as RecetteCategorieRelationshipDTO;
+
+            // Remplissage de la liste
+            var res = await _deliceService.GetRecetteCategorieRelationshipsAsync();
+
+            _recettesCategoriesRelations.Clear();
+            foreach (RecetteCategorieRelationshipDTO r in res)
+                _recettesCategoriesRelations.Add(r);
+
+            // On se repositionne sur le current
+            if (current is not null)
+                BSRecettesCategoriesRelations.Position = _recettesCategoriesRelations.IndexOf(_recettesCategoriesRelations.Where(r => r.idRecette == current.idRecette).FirstOrDefault());
+        }
+        #endregion Fin Relation Recettes Catégories
+        private void TabPagesAuthorizations()
+        {
+            //LogOut
+            if (!_deliceService.IsConnected())
+            {
+                // Parcourt les onglets et retire tous sauf Login
+                foreach (TabPage tab in _tabPages)
+                {
+                    if (tab == tabLogin)
+                        continue;
+
+                    tabControl.TabPages.Remove(tab);
+                }
+
+            }
+            else // LogIn
+            {
+                foreach (TabPage tab in _tabPages)
+                {
+                    if (!tabControl.TabPages.Contains(tab))
+                    {
+                        if (tab != tabRecettes && !_roles.Contains("Administrateur"))
+                            continue;
+
+                        tabControl.TabPages.Add(tab);
+                    }
+                }
+            }
+        }
+
+        private void InitializeBinding()
+        {
+            _recettes = new();
+            BSRecettes.DataSource = _recettes;
+            dgvRecettes.DataSource = BSRecettes;
+
+            _categories = new();
+            BSCategories.DataSource = _categories;
+            dgvCategories.DataSource = BSCategories;
+            txtNomCategories.DataBindings.Add("Text", BSCategories, "nom", false, DataSourceUpdateMode.Never);
+
+            _recettesByCategorie = new();
+            BSRecettesByCategorie.DataSource = _recettesByCategorie;
+
+
+            _categoriesByRecette = new();
+            BSCategoriesByRecette.DataSource = _categoriesByRecette;
+
+
+            _recettesCategoriesRelations = new();
+            BSRecettesCategoriesRelations.DataSource = _recettesCategoriesRelations;
+            dgvRelationsRecCat.DataSource = _recettesCategoriesRelations;
+
+            dgvGestionRecette.DataSource = BSRecettes;
+
+        }
+      
+        private void ChangeDgvRByC()
+        {
+            dgvGetRecCat.DataSource = BSRecettesByCategorie;
+        }
+        private void ChangeDgvByR()
+        {
+            dgvGetRecCat.DataSource = BSCategoriesByRecette;
+        }
+        private void ChangeDgvByCategorie()
+        {
+            dgvRecettes.DataSource = BSRecettesByCategorie;
+        }
+        private void ChangeDgv()
+        {
+            dgvRecettes.DataSource = BSRecettes;
+        }
+        
+
+       
+    }
+}

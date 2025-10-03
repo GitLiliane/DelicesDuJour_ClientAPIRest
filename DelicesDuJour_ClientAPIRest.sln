@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelicesDuJour_ClientAPIRest", "DelicesDuJour_ClientAPIRest\DelicesDuJour_ClientAPIRest.csproj", "{C557283B-9E39-499F-ADC1-E7DDDAF440DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C557283B-9E39-499F-ADC1-E7DDDAF440DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C557283B-9E39-499F-ADC1-E7DDDAF440DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C557283B-9E39-499F-ADC1-E7DDDAF440DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C557283B-9E39-499F-ADC1-E7DDDAF440DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {052B40D2-A59D-4F74-89AF-8BB7332D0E67}
+	EndGlobalSection
+EndGlobal

@@ -21,6 +21,7 @@ internal partial class FormRecetteDetails : Form
 
         try
         {
+
             var res = await _deliceService.GetRecetteByIdAsync(idRecette);
 
             if (res != null)
@@ -52,11 +53,16 @@ internal partial class FormRecetteDetails : Form
                 {
                     txtListeEtapesAfficherRecette.Text = "Aucune étape trouvée.";
                 }
+
+                txtdifficulteAfficherRecette.Text = res.difficulte.ToString();
+
             }
         }
+
         finally
         {
             Cursor = Cursors.Default;
+
         }
     }
 

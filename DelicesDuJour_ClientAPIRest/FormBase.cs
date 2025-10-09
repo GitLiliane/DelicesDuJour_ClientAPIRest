@@ -11,7 +11,7 @@ namespace DelicesDuJour_ClientAPIRest
 {
     public partial class FormBase : Form
     {
-
+        
         List<TabPage> _tabPages = [];
         IEnumerable<string> _roles = [];
         BindingList<RecetteDTO> _recettes;
@@ -90,7 +90,7 @@ namespace DelicesDuJour_ClientAPIRest
                 clbCategories.DataSource = _categories;
                 clbCategories.DisplayMember = "nom";
                 clbCategories.Refresh();
-            }
+        }
 
         }
         #region Login
@@ -106,7 +106,7 @@ namespace DelicesDuJour_ClientAPIRest
                     Password = txtPassword.Text
                 };
 
-
+                
                 bool res = await _deliceService.Login(txtHttp.Text, loginDTO);
 
                 if (res)
@@ -215,7 +215,7 @@ namespace DelicesDuJour_ClientAPIRest
 
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 int idEntree = entreeCategorie.Id;
-
+               
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
 
                 //Étape 3 : vider et remplir la liste liée
@@ -496,7 +496,7 @@ namespace DelicesDuJour_ClientAPIRest
 
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(recette);
-
+                
 
                 // Étape 3 : vider et remplir la liste liée
                 _recettesByCategorie.Clear();
@@ -770,7 +770,7 @@ namespace DelicesDuJour_ClientAPIRest
             dgvEtapeAjouter.DataSource = _etapes;
 
         }
-
+      
         private void ChangeDgvRByC()
         {
             dgvGetRecCat.DataSource = BSRecettesByCategorie;
@@ -787,7 +787,8 @@ namespace DelicesDuJour_ClientAPIRest
         {
             dgvRecettes.DataSource = BSRecettes;
         }
-
         
+
+       
     }
 }

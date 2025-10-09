@@ -290,6 +290,7 @@
         private Label label3;
         private TextBox txtdifficulteAfficherRecette;
         private GroupBox groupBox1;
+        private TextBox textBox1;
         private GroupBox groupBox2;
         private TextBox txtNomAfficherRecette;
         private BindingSource BSRecetteById;

@@ -141,6 +141,7 @@
             label18 = new Label();
             label19 = new Label();
             txtNumeroEtapeAjouter = new TextBox();
+            textBox2 = new TextBox();
             groupBox1 = new GroupBox();
             txtTexteEtapeAjouter = new TextBox();
             btEtapeAjouter = new Button();
@@ -416,6 +417,7 @@
             btLogin.TabIndex = 0;
             btLogin.Text = "Login";
             btLogin.UseVisualStyleBackColor = true;
+            btLogin.Click += btLogin_Click;
             // 
             // btLogOut
             // 
@@ -428,6 +430,7 @@
             btLogOut.TabIndex = 1;
             btLogOut.Text = "Logout";
             btLogOut.UseVisualStyleBackColor = true;
+            btLogOut.Click += btLogOut_Click;
             // 
             // tableLayoutPanel32
             // 
@@ -1601,6 +1604,7 @@
             tableLayoutPanel29.Controls.Add(label18, 0, 0);
             tableLayoutPanel29.Controls.Add(label19, 0, 1);
             tableLayoutPanel29.Controls.Add(txtNumeroEtapeAjouter, 1, 0);
+            tableLayoutPanel29.Controls.Add(textBox2, 1, 1);
             tableLayoutPanel29.Location = new Point(3, 3);
             tableLayoutPanel29.Name = "tableLayoutPanel29";
             tableLayoutPanel29.RowCount = 2;
@@ -1641,6 +1645,14 @@
             txtNumeroEtapeAjouter.Name = "txtNumeroEtapeAjouter";
             txtNumeroEtapeAjouter.Size = new Size(131, 34);
             txtNumeroEtapeAjouter.TabIndex = 2;
+            // 
+            // textBox2
+            // 
+            textBox2.Dock = DockStyle.Fill;
+            textBox2.Location = new Point(95, 38);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(133, 34);
+            textBox2.TabIndex = 3;
             // 
             // groupBox1
             // 
@@ -1810,6 +1822,17 @@
         private TabControl tabControl;
         private TabPage tabLogin;
         private TabPage tabRecettes;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private TextBox txtHttp;
+        private TextBox txtIdentifiant;
+        private TextBox txtPassword;
+        private Label lblRoles;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button btLogin;
+        private Button btLogOut;
         private TableLayoutPanel tableLayoutPanel3;
         private DataGridView dgvRecettes;
         private GroupBox gbxCategories;
@@ -1818,6 +1841,7 @@
         private Button btPlat;
         private Button btDessert;
         private Button btSoupe;
+        private BindingSource BSRecettes;
         private Button btDetailsRecette;
         private Button btTtesRecettes;
         private TabPage tabCategories;
@@ -1828,9 +1852,12 @@
         private Button btAjouterCategorie;
         private Button btModifierCategorie;
         private Button btSupprimerCategorie;
+        private BindingSource BSCategories;
         private TableLayoutPanel tableLayoutPanel5;
         private TextBox txtNomCategories;
         private Label label4;
+        private BindingSource BSRecettesByCategorie;
+        private Button btTtesRecettes;
         private TabPage tabRecetteCategorie;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
@@ -1844,9 +1871,15 @@
         private TextBox txtNomRecette;
         private TableLayoutPanel tableLayoutPanel9;
         private Label label8;
+        private DataGridView dgvGetRecCat;
+        private BindingSource BSCategoriesByRecette;
+        private TableLayoutPanel tableLayoutPanel8;
+        private TableLayoutPanel tableLayoutPanel9;
         private TextBox txtIdCategorie;
         private Label label7;
         private TextBox txtNomCategorie;
+        private TextBox txtIdrecette;
+        private TextBox txtNomRecette;
         private TableLayoutPanel tableLayoutPanel10;
         private TableLayoutPanel tableLayoutPanel11;
         private TableLayoutPanel tableLayoutPanel12;
@@ -1854,12 +1887,16 @@
         private Label label9;
         private TextBox txtRelationIdCategorie;
         private TableLayoutPanel tableLayoutPanel14;
+        private Label label9;
         private Label label10;
         private TextBox txtRelationIdRecette;
         private FlowLayoutPanel flowLayoutPanel4;
         private Button btAjouterRelationRecCat;
         private Button btSupprimerRelationRecCat;
+        private TextBox txtRelationIdCategorie;
+        private TextBox txtRelationIdRecette;
         private DataGridView dgvRelationsRecCat;
+        private BindingSource BSRecettesCategoriesRelations;
         private TabPage tabGestionRecette;
         private TableLayoutPanel tableLayoutPanel15;
         private DataGridView dgvGestionRecette;
@@ -1882,6 +1919,10 @@
         private Label label14;
         private ListBox listBoxDifficulte;
         private TableLayoutPanel tableLayoutPanel22;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
         private Label label15;
         private CheckedListBox clbCategories;
         private GroupBox gbxIngredients;
@@ -1894,6 +1935,8 @@
         private Label label17;
         private TextBox txtQuantiteIngredientAjouter;
         private Button btAjouterIngredient;
+        private TextBox txtNomIngredientAjouter;
+        private TextBox txtQuantiteIngredientAjouter;
         private DataGridView dgvIngredientAjouter;
         private GroupBox gbxEtapesAjouter;
         private TableLayoutPanel tableLayoutPanel27;

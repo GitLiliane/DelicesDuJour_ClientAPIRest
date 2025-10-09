@@ -268,7 +268,7 @@
             tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 21.82285F));
             tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 78.17715F));
             tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Absolute, 168F));
-            tableLayoutPanel30.Size = new Size(1372, 971);
+            tableLayoutPanel30.Size = new Size(1378, 971);
             tableLayoutPanel30.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -296,7 +296,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
-            tableLayoutPanel2.Size = new Size(1091, 621);
+            tableLayoutPanel2.Size = new Size(1096, 621);
             tableLayoutPanel2.TabIndex = 1;
             // 
             // label1
@@ -306,7 +306,7 @@
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(321, 93);
+            label1.Size = new Size(322, 93);
             label1.TabIndex = 0;
             label1.Text = "Adresse de l'API :";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -318,7 +318,7 @@
             label2.Font = new Font("Segoe UI", 18F);
             label2.Location = new Point(3, 93);
             label2.Name = "label2";
-            label2.Size = new Size(321, 93);
+            label2.Size = new Size(322, 93);
             label2.TabIndex = 1;
             label2.Text = "Identifiant :";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -331,7 +331,7 @@
             label3.Location = new Point(4, 186);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(319, 93);
+            label3.Size = new Size(320, 93);
             label3.TabIndex = 2;
             label3.Text = "Mot de passe :";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -339,41 +339,41 @@
             // txtHttp
             // 
             txtHttp.Dock = DockStyle.Fill;
-            txtHttp.Location = new Point(331, 4);
+            txtHttp.Location = new Point(332, 4);
             txtHttp.Margin = new Padding(4);
             txtHttp.Multiline = true;
             txtHttp.Name = "txtHttp";
-            txtHttp.Size = new Size(482, 85);
+            txtHttp.Size = new Size(485, 85);
             txtHttp.TabIndex = 3;
             // 
             // txtIdentifiant
             // 
             txtIdentifiant.Dock = DockStyle.Fill;
-            txtIdentifiant.Location = new Point(331, 97);
+            txtIdentifiant.Location = new Point(332, 97);
             txtIdentifiant.Margin = new Padding(4);
             txtIdentifiant.Multiline = true;
             txtIdentifiant.Name = "txtIdentifiant";
-            txtIdentifiant.Size = new Size(482, 85);
+            txtIdentifiant.Size = new Size(485, 85);
             txtIdentifiant.TabIndex = 4;
             // 
             // txtPassword
             // 
             txtPassword.Dock = DockStyle.Fill;
-            txtPassword.Location = new Point(331, 190);
+            txtPassword.Location = new Point(332, 190);
             txtPassword.Margin = new Padding(4);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(482, 85);
+            txtPassword.Size = new Size(485, 85);
             txtPassword.TabIndex = 5;
             // 
             // lblRoles
             // 
             lblRoles.AutoSize = true;
             lblRoles.Dock = DockStyle.Fill;
-            lblRoles.Location = new Point(821, 93);
+            lblRoles.Location = new Point(825, 93);
             lblRoles.Margin = new Padding(4, 0, 4, 0);
             lblRoles.Name = "lblRoles";
-            lblRoles.Size = new Size(266, 93);
+            lblRoles.Size = new Size(267, 93);
             lblRoles.TabIndex = 6;
             // 
             // tableLayoutPanel31
@@ -385,13 +385,13 @@
             tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
             tableLayoutPanel31.Controls.Add(flowLayoutPanel1, 1, 1);
             tableLayoutPanel31.Dock = DockStyle.Fill;
-            tableLayoutPanel31.Location = new Point(330, 282);
+            tableLayoutPanel31.Location = new Point(331, 282);
             tableLayoutPanel31.Name = "tableLayoutPanel31";
             tableLayoutPanel31.RowCount = 3;
             tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
             tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 94F));
             tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel31.Size = new Size(484, 336);
+            tableLayoutPanel31.Size = new Size(487, 336);
             tableLayoutPanel31.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -403,7 +403,7 @@
             flowLayoutPanel1.Location = new Point(18, 14);
             flowLayoutPanel1.Margin = new Padding(4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(446, 307);
+            flowLayoutPanel1.Size = new Size(449, 307);
             flowLayoutPanel1.TabIndex = 8;
             // 
             // btLogin
@@ -440,13 +440,13 @@
             tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel32.Controls.Add(pictureBox1, 1, 1);
             tableLayoutPanel32.Dock = DockStyle.Fill;
-            tableLayoutPanel32.Location = new Point(820, 282);
+            tableLayoutPanel32.Location = new Point(824, 282);
             tableLayoutPanel32.Name = "tableLayoutPanel32";
             tableLayoutPanel32.RowCount = 3;
             tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
             tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 28F));
-            tableLayoutPanel32.Size = new Size(268, 336);
+            tableLayoutPanel32.Size = new Size(269, 336);
             tableLayoutPanel32.TabIndex = 7;
             // 
             // pictureBox1
@@ -455,7 +455,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(29, 43);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(208, 195);
+            pictureBox1.Size = new Size(209, 195);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -1649,7 +1649,7 @@
             // textBox2
             // 
             textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(95, 38);
+            textBox2.Location = new Point(95, 37);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(133, 34);
             textBox2.TabIndex = 3;
@@ -1841,7 +1841,7 @@
         private Button btPlat;
         private Button btDessert;
         private Button btSoupe;
-        private BindingSource BSRecettes;
+  
         private Button btDetailsRecette;
         private Button btTtesRecettes;
         private TabPage tabCategories;
@@ -1852,12 +1852,11 @@
         private Button btAjouterCategorie;
         private Button btModifierCategorie;
         private Button btSupprimerCategorie;
-        private BindingSource BSCategories;
+       
         private TableLayoutPanel tableLayoutPanel5;
         private TextBox txtNomCategories;
         private Label label4;
-        private BindingSource BSRecettesByCategorie;
-        private Button btTtesRecettes;
+   
         private TabPage tabRecetteCategorie;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
@@ -1871,15 +1870,11 @@
         private TextBox txtNomRecette;
         private TableLayoutPanel tableLayoutPanel9;
         private Label label8;
-        private DataGridView dgvGetRecCat;
-        private BindingSource BSCategoriesByRecette;
-        private TableLayoutPanel tableLayoutPanel8;
-        private TableLayoutPanel tableLayoutPanel9;
+   
         private TextBox txtIdCategorie;
         private Label label7;
         private TextBox txtNomCategorie;
-        private TextBox txtIdrecette;
-        private TextBox txtNomRecette;
+
         private TableLayoutPanel tableLayoutPanel10;
         private TableLayoutPanel tableLayoutPanel11;
         private TableLayoutPanel tableLayoutPanel12;
@@ -1887,16 +1882,16 @@
         private Label label9;
         private TextBox txtRelationIdCategorie;
         private TableLayoutPanel tableLayoutPanel14;
-        private Label label9;
+        
         private Label label10;
         private TextBox txtRelationIdRecette;
+        private TextBox textBox2;
         private FlowLayoutPanel flowLayoutPanel4;
         private Button btAjouterRelationRecCat;
         private Button btSupprimerRelationRecCat;
-        private TextBox txtRelationIdCategorie;
-        private TextBox txtRelationIdRecette;
+       
         private DataGridView dgvRelationsRecCat;
-        private BindingSource BSRecettesCategoriesRelations;
+       
         private TabPage tabGestionRecette;
         private TableLayoutPanel tableLayoutPanel15;
         private DataGridView dgvGestionRecette;
@@ -1919,10 +1914,7 @@
         private Label label14;
         private ListBox listBoxDifficulte;
         private TableLayoutPanel tableLayoutPanel22;
-        private Label label11;
-        private Label label12;
-        private Label label13;
-        private Label label14;
+    
         private Label label15;
         private CheckedListBox clbCategories;
         private GroupBox gbxIngredients;
@@ -1935,8 +1927,8 @@
         private Label label17;
         private TextBox txtQuantiteIngredientAjouter;
         private Button btAjouterIngredient;
-        private TextBox txtNomIngredientAjouter;
-        private TextBox txtQuantiteIngredientAjouter;
+
+        
         private DataGridView dgvIngredientAjouter;
         private GroupBox gbxEtapesAjouter;
         private TableLayoutPanel tableLayoutPanel27;
@@ -1950,18 +1942,10 @@
         private TextBox txtTexteEtapeAjouter;
         private Button btEtapeAjouter;
         private DataGridView dgvEtapeAjouter;
-        private TableLayoutPanel tableLayoutPanel2;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private TextBox txtHttp;
-        private TextBox txtIdentifiant;
-        private TextBox txtPassword;
-        private Label lblRoles;
+        
+     
         private TableLayoutPanel tableLayoutPanel31;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Button btLogin;
-        private Button btLogOut;
+
         private TableLayoutPanel tableLayoutPanel32;
         private PictureBox pictureBox1;
     }

@@ -2,6 +2,7 @@
 using DelicesDuJour_ClientAPIRest.Domain.DTO.CategorieDTOS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,21 @@ namespace DelicesDuJour_ClientAPIRest.Domain.DTOS
     internal class RecetteDTO
     {
         public int Id { get; set; }
+
+        [DisplayName("Nom de la recette")]
         public string nom { get; set; }
 
         [DataType(DataType.Time)]
+        [DisplayName("Temps de préparation")]
         public TimeSpan temps_preparation { get; set; }
 
 
         [DataType(DataType.Time)]
+        [DisplayName("Temps de cuisson")]
         public TimeSpan temps_cuisson { get; set; }
 
         [Range(1, 3)]
+        [DisplayName("Difficulté")]
         public int difficulte { get; set; }
         public List<EtapeDTO>? etapes { get; set; } = new List<EtapeDTO>();
         public List<IngredientDTO>? ingredients { get; set; } = new List<IngredientDTO>();

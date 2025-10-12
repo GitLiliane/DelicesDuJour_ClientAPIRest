@@ -6,12 +6,15 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Windows.Forms;
+using DelicesDuJour_ClientAPIRest.ControlUtilisateur;
+using ReaLTaiizor.Controls;
+using TabPage = System.Windows.Forms.TabPage;
 
 namespace DelicesDuJour_ClientAPIRest
 {
     public partial class FormBase : Form
     {
-        
+
         List<TabPage> _tabPages = [];
         IEnumerable<string> _roles = [];
         BindingList<RecetteDTO> _recettes;
@@ -24,9 +27,14 @@ namespace DelicesDuJour_ClientAPIRest
 
         private readonly DeliceService _deliceService = DeliceService.Instance;
 
+
         public FormBase()
         {
             InitializeComponent();
+
+            // Active les boutons natifs
+            metroControlBox1.MinimizeBox = true;
+            metroControlBox1.MaximizeBox = true;
 
         }
 
@@ -40,11 +48,20 @@ namespace DelicesDuJour_ClientAPIRest
             txtIdentifiant.Text = Properties.Settings.Default.Identifiant;
             TabPagesAuthorizations();
 
+            tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl.DrawItem += tabControl_DrawItem;
+            tabControl.MouseMove += tabControl_MouseMove;
+            tabControl.MouseLeave += tabControl_MouseLeave;
+
 
         }
         private void FormBase_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult res = MessageBox.Show("Confirmez-vous la fermeture de l'application ?", "Fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (res == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void FormBase_FormClosed(object sender, FormClosedEventArgs e)
@@ -52,6 +69,8 @@ namespace DelicesDuJour_ClientAPIRest
             Properties.Settings.Default.Http = txtHttp.Text;
             Properties.Settings.Default.Identifiant = txtIdentifiant.Text;
             Properties.Settings.Default.Save();
+
+            btLogOut.PerformLayout();
         }
 
         private async void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
@@ -78,21 +97,89 @@ namespace DelicesDuJour_ClientAPIRest
             else if (e.TabPage == tabGestionRecette)
             {
                 await ActualiserRecettes();
-            }
-
-            if (e.TabPage == tabGestionRecette)
-            {
-                var res = await _deliceService.GetCategoriesAsync();
-
-                _categories.Clear();
-                foreach (CategorieDTO c in res)
-                    _categories.Add(c);
+                await ActualiserCategories();
                 clbCategories.DataSource = _categories;
                 clbCategories.DisplayMember = "nom";
                 clbCategories.Refresh();
+            }
         }
 
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (TabPage page in tabControl.TabPages)
+            {
+                // Couleur par défaut pour les non-sélectionnées
+                page.BackColor = Color.FromArgb(251, 249, 233);
+                page.ForeColor = Color.FromArgb(33, 34, 69);
+            }
+
+            // Couleur spéciale pour l’onglet actif
+            TabPage selectedPage = tabControl.SelectedTab;
+            selectedPage.BackColor = Color.FromArgb(251, 249, 233);
+            selectedPage.ForeColor = Color.FromArgb(33, 34, 69);
         }
+
+        // Ajoute ce code dans ton FormBase.cs
+
+        private int _hoveredIndex = -1;
+
+        private void tabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl.TabPages[e.Index];
+            Rectangle rect = e.Bounds;
+
+            bool isSelected = (e.Index == tabControl.SelectedIndex);
+            bool isHovered = (e.Index == _hoveredIndex);
+
+
+            Color selectedColor = Color.FromArgb(53, 155, 255);
+            Color hoverColor = Color.FromArgb(189, 183, 107);
+            Color normalColor = Color.FromArgb(75, 73, 67);
+
+            Color textColor = Color.White;
+
+            Color backColor = isSelected
+                ? selectedColor
+                : isHovered
+                    ? hoverColor
+                    : normalColor;
+
+            // Fond de l’onglet
+            using (SolidBrush brush = new(backColor))
+                e.Graphics.FillRectangle(brush, rect);
+
+            // Texte centré
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                new Font("Segoe UI", 12, FontStyle.Bold),
+                rect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+        }
+
+        private void tabControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i < tabControl.TabCount; i++)
+            {
+                if (tabControl.GetTabRect(i).Contains(e.Location))
+                {
+                    _hoveredIndex = i;
+                    tabControl.Invalidate();
+                    return;
+                }
+            }
+            _hoveredIndex = -1;
+            tabControl.Invalidate();
+        }
+
+        private void tabControl_MouseLeave(object sender, EventArgs e)
+        {
+            _hoveredIndex = -1;
+            tabControl.Invalidate();
+        }
+
         #region Login
         private async void btLogin_Click(object sender, EventArgs e)
         {
@@ -106,7 +193,7 @@ namespace DelicesDuJour_ClientAPIRest
                     Password = txtPassword.Text
                 };
 
-                
+
                 bool res = await _deliceService.Login(txtHttp.Text, loginDTO);
 
                 if (res)
@@ -117,13 +204,14 @@ namespace DelicesDuJour_ClientAPIRest
                     lblRoles.Text = string.Join(", ", _roles);
 
                     TabPagesAuthorizations();
+
+                    tabLogin.Parent = null;
+                    tabControl.SelectedTab = tabRecettes;
                 }
                 else
                 {
-                    // afficher : pb de connexion
+                    MessageBox.Show("Problème de connexion");
                 }
-
-                //tabRecettes.Lo
             }
             finally
             {
@@ -131,6 +219,11 @@ namespace DelicesDuJour_ClientAPIRest
             }
 
             ActualiserRecettes();
+        }
+
+        private void TabControl_VisibleChanged(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void btLogOut_Click(object sender, EventArgs e)
@@ -215,7 +308,7 @@ namespace DelicesDuJour_ClientAPIRest
 
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 int idEntree = entreeCategorie.Id;
-               
+
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
 
                 //Étape 3 : vider et remplir la liste liée
@@ -496,7 +589,7 @@ namespace DelicesDuJour_ClientAPIRest
 
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(recette);
-                
+
 
                 // Étape 3 : vider et remplir la liste liée
                 _recettesByCategorie.Clear();
@@ -512,6 +605,16 @@ namespace DelicesDuJour_ClientAPIRest
                 Cursor = Cursors.Default;
 
             }
+        }
+
+        private void btGetRecByCat_MouseMove(object sender, MouseEventArgs e)
+        {
+            btGetRecByCat.ForeColor = Color.FromArgb(182, 204, 254);
+        }
+
+        private void btGetRecByCat_MouseLeave(object sender, EventArgs e)
+        {
+            btGetRecByCat.ForeColor = Color.WhiteSmoke;
         }
 
         private async void btGetCatByRec_Click(object sender, EventArgs e)
@@ -562,6 +665,17 @@ namespace DelicesDuJour_ClientAPIRest
 
             }
         }
+
+        private void btGetCatByRec_MouseHover(object sender, EventArgs e)
+        {
+            btGetCatByRec.ForeColor = Color.FromArgb(182, 204, 254);
+        }
+
+        private void btGetCatByRec_MouseLeave(object sender, EventArgs e)
+        {
+            btGetCatByRec.ForeColor = Color.WhiteSmoke;
+        }
+
 
         private async void btAjouterRelationRecCat_Click(object sender, EventArgs e)
         {
@@ -633,9 +747,11 @@ namespace DelicesDuJour_ClientAPIRest
             // Ajout à la liste liée au DataGridView
             _ingredients.Add(createIngredientDTO);
 
+            dgvIngredientAjouter.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             // Optionnel : vider les champs après ajout
             txtNomIngredientAjouter.Clear();
-            txtQuantiteIngredientAjouter.Clear();
+            txtQuantiteIngredientAjouter.Clear();            
         }
 
         private void btEtapeAjouter_Click(object sender, EventArgs e)
@@ -654,6 +770,7 @@ namespace DelicesDuJour_ClientAPIRest
             txtTitreEtapeAjouter.Clear();
             txtTexteEtapeAjouter.Clear();
 
+            dgvEtapeAjouter.Columns["Titre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
         private async void btAjouterRecette_Click(object sender, EventArgs e)
         {
@@ -741,19 +858,32 @@ namespace DelicesDuJour_ClientAPIRest
             BSRecettes.DataSource = _recettes;
             dgvRecettes.DataSource = BSRecettes;
 
+            dgvRecettes.Columns[0].Visible = false;
+            dgvRecettes.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvRecettes.EnableHeadersVisualStyles = false;
+            dgvRecettes.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            dgvRecettes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvRecettes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvRecettes.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvRecettes.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
             _categories = new();
             BSCategories.DataSource = _categories;
             dgvCategories.DataSource = BSCategories;
             txtNomCategories.DataBindings.Add("Text", BSCategories, "nom", false, DataSourceUpdateMode.Never);
 
-
-
             _recettesByCategorie = new();
             BSRecettesByCategorie.DataSource = _recettesByCategorie;
 
-
             _categoriesByRecette = new();
             BSCategoriesByRecette.DataSource = _categoriesByRecette;
+
+            dgvCategories.EnableHeadersVisualStyles = false;
+            dgvCategories.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            dgvCategories.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvCategories.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvCategories.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvCategories.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
 
 
@@ -761,23 +891,67 @@ namespace DelicesDuJour_ClientAPIRest
             BSRecettesCategoriesRelations.DataSource = _recettesCategoriesRelations;
             dgvRelationsRecCat.DataSource = _recettesCategoriesRelations;
 
+            dgvRelationsRecCat.EnableHeadersVisualStyles = false;
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
             dgvGestionRecette.DataSource = BSRecettes;
+            dgvGestionRecette.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvGestionRecette.EnableHeadersVisualStyles = false;
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
             dgvIngredientAjouter.AutoGenerateColumns = true;
             dgvIngredientAjouter.DataSource = _ingredients;
+                        
+            dgvIngredientAjouter.EnableHeadersVisualStyles = false;
+            dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
             dgvEtapeAjouter.AutoGenerateColumns = true;
             dgvEtapeAjouter.DataSource = _etapes;
+            
+            dgvEtapeAjouter.EnableHeadersVisualStyles = false;
+            dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
 
         }
-      
+
         private void ChangeDgvRByC()
         {
             dgvGetRecCat.DataSource = BSRecettesByCategorie;
+
+            dgvGetRecCat.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvGetRecCat.EnableHeadersVisualStyles = false;
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
         }
         private void ChangeDgvByR()
         {
             dgvGetRecCat.DataSource = BSCategoriesByRecette;
+
+            dgvGetRecCat.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvGetRecCat.EnableHeadersVisualStyles = false;
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(42, 124, 204);
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
         }
         private void ChangeDgvByCategorie()
         {
@@ -786,9 +960,9 @@ namespace DelicesDuJour_ClientAPIRest
         private void ChangeDgv()
         {
             dgvRecettes.DataSource = BSRecettes;
-        }
-        
 
-       
+        }
+
+
     }
 }

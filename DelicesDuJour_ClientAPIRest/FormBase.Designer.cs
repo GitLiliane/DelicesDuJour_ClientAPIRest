@@ -1,4 +1,6 @@
-﻿namespace DelicesDuJour_ClientAPIRest
+﻿using DelicesDuJour_ClientAPIRest.ControlUtilisateur;
+
+namespace DelicesDuJour_ClientAPIRest
 {
     partial class FormBase
     {
@@ -30,24 +32,53 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBase));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            BSRecettes = new BindingSource(components);
+            BSCategories = new BindingSource(components);
+            BSRecettesByCategorie = new BindingSource(components);
+            BSCategoriesByRecette = new BindingSource(components);
+            BSRecettesCategoriesRelations = new BindingSource(components);
+            dungeonForm1 = new ReaLTaiizor.Forms.DungeonForm();
+            metroControlBox1 = new ReaLTaiizor.Controls.MetroControlBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             tabControl = new TabControl();
             tabLogin = new TabPage();
             tableLayoutPanel30 = new TableLayoutPanel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            txtHttp = new TextBox();
-            txtIdentifiant = new TextBox();
-            txtPassword = new TextBox();
-            lblRoles = new Label();
-            tableLayoutPanel31 = new TableLayoutPanel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            btLogin = new Button();
-            btLogOut = new Button();
             tableLayoutPanel32 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel34 = new TableLayoutPanel();
+            tableLayoutPanel35 = new TableLayoutPanel();
+            tableLayoutPanel36 = new TableLayoutPanel();
+            txtPassword = new TextBox();
+            label3 = new Label();
+            txtIdentifiant = new TextBox();
+            label2 = new Label();
+            txtHttp = new TextBox();
+            label1 = new Label();
+            tableLayoutPanel31 = new TableLayoutPanel();
+            crEaTiiOn_LightSeperator1 = new CBH.Controls.CrEaTiiOn_LightSeperator();
+            tableLayoutPanel33 = new TableLayoutPanel();
+            btLogOut = new Button();
+            btLogin = new Button();
+            tableLayoutPanel37 = new TableLayoutPanel();
+            lblRoles = new Label();
+            label20 = new Label();
             tabRecettes = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             dgvRecettes = new DataGridView();
@@ -88,6 +119,7 @@
             txtNomCategorie = new TextBox();
             tableLayoutPanel10 = new TableLayoutPanel();
             tableLayoutPanel11 = new TableLayoutPanel();
+            crEaTiiOn_LightSeperator2 = new CBH.Controls.CrEaTiiOn_LightSeperator();
             tableLayoutPanel12 = new TableLayoutPanel();
             tableLayoutPanel13 = new TableLayoutPanel();
             label9 = new Label();
@@ -95,7 +127,7 @@
             tableLayoutPanel14 = new TableLayoutPanel();
             label10 = new Label();
             txtRelationIdRecette = new TextBox();
-            flowLayoutPanel4 = new FlowLayoutPanel();
+            tableLayoutPanel38 = new TableLayoutPanel();
             btAjouterRelationRecCat = new Button();
             btSupprimerRelationRecCat = new Button();
             dgvRelationsRecCat = new DataGridView();
@@ -109,8 +141,12 @@
             btSupprimerRecette = new Button();
             tableLayoutPanel17 = new TableLayoutPanel();
             tableLayoutPanel18 = new TableLayoutPanel();
-            label11 = new Label();
+            label21 = new Label();
             txtTitreRecette = new TextBox();
+            textBox1 = new TextBox();
+            label11 = new Label();
+            tableLayoutPanel40 = new TableLayoutPanel();
+            spaceSeparatorVertical1 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
             tableLayoutPanel19 = new TableLayoutPanel();
             dtpTempsPreparation = new DateTimePicker();
             label12 = new Label();
@@ -132,7 +168,10 @@
             tableLayoutPanel26 = new TableLayoutPanel();
             label17 = new Label();
             txtQuantiteIngredientAjouter = new TextBox();
-            btAjouterIngredient = new Button();
+            tableLayoutPanel39 = new TableLayoutPanel();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            spaceSeparatorVertical2 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
             dgvIngredientAjouter = new DataGridView();
             gbxEtapesAjouter = new GroupBox();
             tableLayoutPanel27 = new TableLayoutPanel();
@@ -141,26 +180,35 @@
             label18 = new Label();
             label19 = new Label();
             txtNumeroEtapeAjouter = new TextBox();
-            textBox2 = new TextBox();
+            txtTitreEtapeAjouter = new TextBox();
             groupBox1 = new GroupBox();
             txtTexteEtapeAjouter = new TextBox();
-            btEtapeAjouter = new Button();
+            tableLayoutPanel41 = new TableLayoutPanel();
+            spaceSeparatorVertical3 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            crEaTiiOn_LightSeperator3 = new CBH.Controls.CrEaTiiOn_LightSeperator();
+            crEaTiiOn_LightSeperator4 = new CBH.Controls.CrEaTiiOn_LightSeperator();
             dgvEtapeAjouter = new DataGridView();
-            txtTitreEtapeAjouter = new TextBox();
-            BSRecettes = new BindingSource(components);
-            BSCategories = new BindingSource(components);
-            BSRecettesByCategorie = new BindingSource(components);
-            BSCategoriesByRecette = new BindingSource(components);
-            BSRecettesCategoriesRelations = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)BSRecettes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BSCategories).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BSRecettesByCategorie).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BSCategoriesByRecette).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BSRecettesCategoriesRelations).BeginInit();
+            dungeonForm1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tabControl.SuspendLayout();
             tabLogin.SuspendLayout();
             tableLayoutPanel30.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanel31.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             tableLayoutPanel32.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel34.SuspendLayout();
+            tableLayoutPanel35.SuspendLayout();
+            tableLayoutPanel36.SuspendLayout();
+            tableLayoutPanel31.SuspendLayout();
+            tableLayoutPanel33.SuspendLayout();
+            tableLayoutPanel37.SuspendLayout();
             tabRecettes.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecettes).BeginInit();
@@ -182,7 +230,7 @@
             tableLayoutPanel12.SuspendLayout();
             tableLayoutPanel13.SuspendLayout();
             tableLayoutPanel14.SuspendLayout();
-            flowLayoutPanel4.SuspendLayout();
+            tableLayoutPanel38.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRelationsRecCat).BeginInit();
             tabGestionRecette.SuspendLayout();
             tableLayoutPanel15.SuspendLayout();
@@ -191,6 +239,7 @@
             flowLayoutPanel5.SuspendLayout();
             tableLayoutPanel17.SuspendLayout();
             tableLayoutPanel18.SuspendLayout();
+            tableLayoutPanel40.SuspendLayout();
             tableLayoutPanel19.SuspendLayout();
             tableLayoutPanel20.SuspendLayout();
             tableLayoutPanel21.SuspendLayout();
@@ -200,32 +249,88 @@
             tableLayoutPanel24.SuspendLayout();
             tableLayoutPanel25.SuspendLayout();
             tableLayoutPanel26.SuspendLayout();
+            tableLayoutPanel39.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvIngredientAjouter).BeginInit();
             gbxEtapesAjouter.SuspendLayout();
             tableLayoutPanel27.SuspendLayout();
             tableLayoutPanel28.SuspendLayout();
             tableLayoutPanel29.SuspendLayout();
             groupBox1.SuspendLayout();
+            tableLayoutPanel41.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvEtapeAjouter).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)BSRecettes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)BSCategories).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)BSRecettesByCategorie).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)BSCategoriesByRecette).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)BSRecettesCategoriesRelations).BeginInit();
             SuspendLayout();
+            // 
+            // dungeonForm1
+            // 
+            dungeonForm1.BackColor = Color.FromArgb(96, 91, 86);
+            dungeonForm1.BorderColor = Color.FromArgb(38, 38, 38);
+            dungeonForm1.Controls.Add(metroControlBox1);
+            dungeonForm1.Controls.Add(tableLayoutPanel1);
+            dungeonForm1.Dock = DockStyle.Fill;
+            dungeonForm1.FillEdgeColorA = Color.FromArgb(69, 68, 63);
+            dungeonForm1.FillEdgeColorB = Color.FromArgb(69, 68, 63);
+            dungeonForm1.Font = new Font("Segoe UI", 9F);
+            dungeonForm1.FooterEdgeColor = Color.FromArgb(69, 68, 63);
+            dungeonForm1.ForeColor = Color.LemonChiffon;
+            dungeonForm1.HeaderEdgeColorA = Color.FromArgb(87, 85, 77);
+            dungeonForm1.HeaderEdgeColorB = Color.FromArgb(69, 68, 63);
+            dungeonForm1.Location = new Point(0, 0);
+            dungeonForm1.Name = "dungeonForm1";
+            dungeonForm1.Padding = new Padding(20, 56, 20, 16);
+            dungeonForm1.RoundCorners = true;
+            dungeonForm1.Sizable = true;
+            dungeonForm1.Size = new Size(1400, 900);
+            dungeonForm1.SmartBounds = true;
+            dungeonForm1.StartPosition = FormStartPosition.CenterScreen;
+            dungeonForm1.TabIndex = 0;
+            dungeonForm1.Text = "Délices du jour";
+            dungeonForm1.TitleColor = Color.FromArgb(223, 219, 210);
+            // 
+            // metroControlBox1
+            // 
+            metroControlBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            metroControlBox1.CloseHoverBackColor = Color.FromArgb(183, 40, 40);
+            metroControlBox1.CloseHoverForeColor = Color.White;
+            metroControlBox1.CloseNormalForeColor = Color.Gray;
+            metroControlBox1.DefaultLocation = ReaLTaiizor.Enum.Metro.LocationType.Normal;
+            metroControlBox1.DisabledForeColor = Color.DimGray;
+            metroControlBox1.IsDerivedStyle = true;
+            metroControlBox1.Location = new Point(1280, 8);
+            metroControlBox1.MaximizeBox = true;
+            metroControlBox1.MaximizeHoverBackColor = Color.FromArgb(238, 238, 238);
+            metroControlBox1.MaximizeHoverForeColor = Color.Gray;
+            metroControlBox1.MaximizeNormalForeColor = Color.Gray;
+            metroControlBox1.MinimizeBox = true;
+            metroControlBox1.MinimizeHoverBackColor = Color.FromArgb(238, 238, 238);
+            metroControlBox1.MinimizeHoverForeColor = Color.Gray;
+            metroControlBox1.MinimizeNormalForeColor = Color.Gray;
+            metroControlBox1.Name = "metroControlBox1";
+            metroControlBox1.Size = new Size(100, 25);
+            metroControlBox1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            metroControlBox1.StyleManager = null;
+            metroControlBox1.TabIndex = 2;
+            metroControlBox1.Text = "metroControlBox1";
+            metroControlBox1.ThemeAuthor = "Taiizor";
+            metroControlBox1.ThemeName = "MetroLight";
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.BackColor = Color.FromArgb(96, 91, 86);
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(tabControl, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.ForeColor = Color.FromArgb(33, 34, 69);
+            tableLayoutPanel1.Location = new Point(20, 56);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1382, 853);
-            tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.Size = new Size(1360, 828);
+            tableLayoutPanel1.TabIndex = 1;
             // 
             // tabControl
             // 
@@ -235,69 +340,200 @@
             tabControl.Controls.Add(tabRecetteCategorie);
             tabControl.Controls.Add(tabGestionRecette);
             tabControl.Dock = DockStyle.Fill;
+            tabControl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabControl.Location = new Point(3, 3);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(1376, 847);
+            tabControl.Size = new Size(1354, 822);
             tabControl.TabIndex = 0;
+            tabControl.DrawItem += tabControl_DrawItem;
+            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
             tabControl.Selecting += tabControl_Selecting;
+            tabControl.MouseMove += tabControl_MouseMove;
             // 
             // tabLogin
             // 
+            tabLogin.BackColor = Color.Ivory;
             tabLogin.Controls.Add(tableLayoutPanel30);
+            tabLogin.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tabLogin.ForeColor = Color.Black;
             tabLogin.Location = new Point(4, 37);
             tabLogin.Name = "tabLogin";
             tabLogin.Padding = new Padding(3);
-            tabLogin.Size = new Size(1368, 806);
+            tabLogin.Size = new Size(1346, 781);
             tabLogin.TabIndex = 0;
-            tabLogin.Text = "Login";
-            tabLogin.UseVisualStyleBackColor = true;
+            tabLogin.Text = "   Login  ";
             // 
             // tableLayoutPanel30
             // 
-            tableLayoutPanel30.Anchor = AnchorStyles.None;
             tableLayoutPanel30.AutoSize = true;
             tableLayoutPanel30.ColumnCount = 3;
-            tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
-            tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            tableLayoutPanel30.Controls.Add(tableLayoutPanel32, 0, 2);
             tableLayoutPanel30.Controls.Add(tableLayoutPanel2, 1, 1);
+            tableLayoutPanel30.Controls.Add(label20, 1, 2);
+            tableLayoutPanel30.Dock = DockStyle.Fill;
             tableLayoutPanel30.Location = new Point(3, 3);
             tableLayoutPanel30.Name = "tableLayoutPanel30";
             tableLayoutPanel30.RowCount = 3;
-            tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 21.82285F));
-            tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 78.17715F));
-            tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Absolute, 168F));
-            tableLayoutPanel30.Size = new Size(1378, 971);
+            tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel30.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            tableLayoutPanel30.Size = new Size(1340, 775);
             tableLayoutPanel30.TabIndex = 1;
+            // 
+            // tableLayoutPanel32
+            // 
+            tableLayoutPanel32.ColumnCount = 3;
+            tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.454102F));
+            tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80.51235F));
+            tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.0335464F));
+            tableLayoutPanel32.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel32.Dock = DockStyle.Fill;
+            tableLayoutPanel32.Location = new Point(3, 506);
+            tableLayoutPanel32.Name = "tableLayoutPanel32";
+            tableLayoutPanel32.RowCount = 1;
+            tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel32.Size = new Size(329, 266);
+            tableLayoutPanel32.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(34, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(258, 260);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.AutoSize = true;
             tableLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.Controls.Add(label1, 0, 0);
-            tableLayoutPanel2.Controls.Add(label2, 0, 1);
-            tableLayoutPanel2.Controls.Add(label3, 0, 2);
-            tableLayoutPanel2.Controls.Add(txtHttp, 1, 0);
-            tableLayoutPanel2.Controls.Add(txtIdentifiant, 1, 1);
-            tableLayoutPanel2.Controls.Add(txtPassword, 1, 2);
-            tableLayoutPanel2.Controls.Add(lblRoles, 2, 1);
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel31, 1, 3);
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel32, 2, 3);
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel34, 0, 0);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel37, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(140, 178);
+            tableLayoutPanel2.ImeMode = ImeMode.Off;
+            tableLayoutPanel2.Location = new Point(338, 41);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 4;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
-            tableLayoutPanel2.Size = new Size(1096, 621);
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(932, 459);
             tableLayoutPanel2.TabIndex = 1;
+            tableLayoutPanel2.TabStop = true;
+            // 
+            // tableLayoutPanel34
+            // 
+            tableLayoutPanel34.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+            tableLayoutPanel34.ColumnCount = 1;
+            tableLayoutPanel34.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel34.Controls.Add(tableLayoutPanel35, 0, 0);
+            tableLayoutPanel34.Dock = DockStyle.Fill;
+            tableLayoutPanel34.Location = new Point(3, 3);
+            tableLayoutPanel34.Name = "tableLayoutPanel34";
+            tableLayoutPanel34.RowCount = 1;
+            tableLayoutPanel34.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel34.Size = new Size(739, 453);
+            tableLayoutPanel34.TabIndex = 0;
+            // 
+            // tableLayoutPanel35
+            // 
+            tableLayoutPanel35.ColumnCount = 1;
+            tableLayoutPanel35.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel35.Controls.Add(tableLayoutPanel36, 0, 0);
+            tableLayoutPanel35.Controls.Add(tableLayoutPanel31, 0, 1);
+            tableLayoutPanel35.Dock = DockStyle.Fill;
+            tableLayoutPanel35.Location = new Point(6, 6);
+            tableLayoutPanel35.Name = "tableLayoutPanel35";
+            tableLayoutPanel35.RowCount = 2;
+            tableLayoutPanel35.RowStyles.Add(new RowStyle(SizeType.Percent, 40.9090919F));
+            tableLayoutPanel35.RowStyles.Add(new RowStyle(SizeType.Percent, 59.0909081F));
+            tableLayoutPanel35.Size = new Size(727, 441);
+            tableLayoutPanel35.TabIndex = 0;
+            // 
+            // tableLayoutPanel36
+            // 
+            tableLayoutPanel36.ColumnCount = 2;
+            tableLayoutPanel36.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanel36.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutPanel36.Controls.Add(txtPassword, 1, 2);
+            tableLayoutPanel36.Controls.Add(label3, 0, 2);
+            tableLayoutPanel36.Controls.Add(txtIdentifiant, 1, 1);
+            tableLayoutPanel36.Controls.Add(label2, 0, 1);
+            tableLayoutPanel36.Controls.Add(txtHttp, 1, 0);
+            tableLayoutPanel36.Controls.Add(label1, 0, 0);
+            tableLayoutPanel36.Dock = DockStyle.Fill;
+            tableLayoutPanel36.Location = new Point(3, 3);
+            tableLayoutPanel36.Name = "tableLayoutPanel36";
+            tableLayoutPanel36.RowCount = 3;
+            tableLayoutPanel36.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel36.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel36.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel36.Size = new Size(721, 174);
+            tableLayoutPanel36.TabIndex = 0;
+            // 
+            // txtPassword
+            // 
+            txtPassword.Dock = DockStyle.Fill;
+            txtPassword.Location = new Point(291, 119);
+            txtPassword.Multiline = true;
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(427, 52);
+            txtPassword.TabIndex = 29;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Dock = DockStyle.Fill;
+            label3.Font = new Font("Segoe UI", 18F);
+            label3.Location = new Point(4, 116);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(280, 58);
+            label3.TabIndex = 28;
+            label3.Text = "Mot de passe :";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtIdentifiant
+            // 
+            txtIdentifiant.BorderStyle = BorderStyle.None;
+            txtIdentifiant.Dock = DockStyle.Fill;
+            txtIdentifiant.Location = new Point(292, 62);
+            txtIdentifiant.Margin = new Padding(4);
+            txtIdentifiant.Multiline = true;
+            txtIdentifiant.Name = "txtIdentifiant";
+            txtIdentifiant.Size = new Size(425, 50);
+            txtIdentifiant.TabIndex = 27;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Segoe UI", 18F);
+            label2.Location = new Point(3, 58);
+            label2.Name = "label2";
+            label2.Size = new Size(282, 58);
+            label2.TabIndex = 26;
+            label2.Text = "Identifiant :";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtHttp
+            // 
+            txtHttp.BorderStyle = BorderStyle.None;
+            txtHttp.Dock = DockStyle.Fill;
+            txtHttp.Location = new Point(292, 4);
+            txtHttp.Margin = new Padding(4);
+            txtHttp.Multiline = true;
+            txtHttp.Name = "txtHttp";
+            txtHttp.Size = new Size(425, 50);
+            txtHttp.TabIndex = 25;
             // 
             // label1
             // 
@@ -306,169 +542,145 @@
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(322, 93);
-            label1.TabIndex = 0;
+            label1.Size = new Size(282, 58);
+            label1.TabIndex = 24;
             label1.Text = "Adresse de l'API :";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // tableLayoutPanel31
             // 
-            label2.AutoSize = true;
-            label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Segoe UI", 18F);
-            label2.Location = new Point(3, 93);
-            label2.Name = "label2";
-            label2.Size = new Size(322, 93);
-            label2.TabIndex = 1;
-            label2.Text = "Identifiant :";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            tableLayoutPanel31.ColumnCount = 1;
+            tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel31.Controls.Add(crEaTiiOn_LightSeperator1, 0, 1);
+            tableLayoutPanel31.Controls.Add(tableLayoutPanel33, 0, 2);
+            tableLayoutPanel31.Dock = DockStyle.Fill;
+            tableLayoutPanel31.Location = new Point(3, 183);
+            tableLayoutPanel31.Name = "tableLayoutPanel31";
+            tableLayoutPanel31.RowCount = 3;
+            tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            tableLayoutPanel31.Size = new Size(721, 255);
+            tableLayoutPanel31.TabIndex = 1;
             // 
-            // label3
+            // crEaTiiOn_LightSeperator1
             // 
-            label3.AutoSize = true;
-            label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Segoe UI", 18F);
-            label3.Location = new Point(4, 186);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(320, 93);
-            label3.TabIndex = 2;
-            label3.Text = "Mot de passe :";
-            label3.TextAlign = ContentAlignment.MiddleLeft;
+            crEaTiiOn_LightSeperator1.Dock = DockStyle.Fill;
+            crEaTiiOn_LightSeperator1.ImeMode = ImeMode.HangulFull;
+            crEaTiiOn_LightSeperator1.LineColor = Color.Silver;
+            crEaTiiOn_LightSeperator1.Location = new Point(3, 28);
+            crEaTiiOn_LightSeperator1.Name = "crEaTiiOn_LightSeperator1";
+            crEaTiiOn_LightSeperator1.Size = new Size(715, 19);
+            crEaTiiOn_LightSeperator1.TabIndex = 0;
+            crEaTiiOn_LightSeperator1.Text = "crEaTiiOn_LightSeperator1";
             // 
-            // txtHttp
+            // tableLayoutPanel33
             // 
-            txtHttp.Dock = DockStyle.Fill;
-            txtHttp.Location = new Point(332, 4);
-            txtHttp.Margin = new Padding(4);
-            txtHttp.Multiline = true;
-            txtHttp.Name = "txtHttp";
-            txtHttp.Size = new Size(485, 85);
-            txtHttp.TabIndex = 3;
+            tableLayoutPanel33.AutoSize = true;
+            tableLayoutPanel33.ColumnCount = 3;
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49F));
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49F));
+            tableLayoutPanel33.Controls.Add(btLogOut, 2, 0);
+            tableLayoutPanel33.Controls.Add(btLogin, 0, 0);
+            tableLayoutPanel33.Dock = DockStyle.Fill;
+            tableLayoutPanel33.Location = new Point(3, 53);
+            tableLayoutPanel33.Name = "tableLayoutPanel33";
+            tableLayoutPanel33.RowCount = 1;
+            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel33.Size = new Size(715, 199);
+            tableLayoutPanel33.TabIndex = 15;
             // 
-            // txtIdentifiant
+            // btLogOut
             // 
-            txtIdentifiant.Dock = DockStyle.Fill;
-            txtIdentifiant.Location = new Point(332, 97);
-            txtIdentifiant.Margin = new Padding(4);
-            txtIdentifiant.Multiline = true;
-            txtIdentifiant.Name = "txtIdentifiant";
-            txtIdentifiant.Size = new Size(485, 85);
-            txtIdentifiant.TabIndex = 4;
+            btLogOut.Anchor = AnchorStyles.Top;
+            btLogOut.AutoSize = true;
+            btLogOut.BackColor = Color.FromArgb(57, 55, 32);
+            btLogOut.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btLogOut.FlatAppearance.BorderSize = 3;
+            btLogOut.FlatAppearance.MouseDownBackColor = Color.LightSkyBlue;
+            btLogOut.FlatAppearance.MouseOverBackColor = Color.LightSkyBlue;
+            btLogOut.FlatStyle = FlatStyle.Flat;
+            btLogOut.ForeColor = Color.AliceBlue;
+            btLogOut.Image = (Image)resources.GetObject("btLogOut.Image");
+            btLogOut.Location = new Point(434, 50);
+            btLogOut.Margin = new Padding(0, 50, 0, 0);
+            btLogOut.Name = "btLogOut";
+            btLogOut.Size = new Size(210, 80);
+            btLogOut.TabIndex = 14;
+            btLogOut.Text = "  Logout";
+            btLogOut.TextAlign = ContentAlignment.MiddleLeft;
+            btLogOut.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btLogOut.UseVisualStyleBackColor = false;
+            btLogOut.Click += btLogOut_Click;
             // 
-            // txtPassword
+            // btLogin
             // 
-            txtPassword.Dock = DockStyle.Fill;
-            txtPassword.Location = new Point(332, 190);
-            txtPassword.Margin = new Padding(4);
-            txtPassword.Multiline = true;
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(485, 85);
-            txtPassword.TabIndex = 5;
+            btLogin.Anchor = AnchorStyles.Top;
+            btLogin.AutoSize = true;
+            btLogin.BackColor = Color.FromArgb(57, 55, 32);
+            btLogin.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btLogin.FlatAppearance.BorderSize = 3;
+            btLogin.FlatAppearance.MouseDownBackColor = Color.LightSkyBlue;
+            btLogin.FlatAppearance.MouseOverBackColor = Color.LightSkyBlue;
+            btLogin.FlatStyle = FlatStyle.Flat;
+            btLogin.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btLogin.ForeColor = Color.White;
+            btLogin.Image = (Image)resources.GetObject("btLogin.Image");
+            btLogin.ImageAlign = ContentAlignment.MiddleLeft;
+            btLogin.Location = new Point(75, 50);
+            btLogin.Margin = new Padding(10, 50, 0, 0);
+            btLogin.Name = "btLogin";
+            btLogin.Size = new Size(210, 80);
+            btLogin.TabIndex = 13;
+            btLogin.Text = "Login";
+            btLogin.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btLogin.UseVisualStyleBackColor = false;
+            btLogin.Click += btLogin_Click;
+            // 
+            // tableLayoutPanel37
+            // 
+            tableLayoutPanel37.ColumnCount = 1;
+            tableLayoutPanel37.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel37.Controls.Add(lblRoles, 0, 1);
+            tableLayoutPanel37.Dock = DockStyle.Fill;
+            tableLayoutPanel37.Location = new Point(748, 3);
+            tableLayoutPanel37.Name = "tableLayoutPanel37";
+            tableLayoutPanel37.RowCount = 3;
+            tableLayoutPanel37.RowStyles.Add(new RowStyle(SizeType.Percent, 52.88889F));
+            tableLayoutPanel37.RowStyles.Add(new RowStyle(SizeType.Percent, 47.11111F));
+            tableLayoutPanel37.RowStyles.Add(new RowStyle(SizeType.Absolute, 421F));
+            tableLayoutPanel37.Size = new Size(181, 453);
+            tableLayoutPanel37.TabIndex = 1;
             // 
             // lblRoles
             // 
             lblRoles.AutoSize = true;
             lblRoles.Dock = DockStyle.Fill;
-            lblRoles.Location = new Point(825, 93);
+            lblRoles.Location = new Point(4, 16);
             lblRoles.Margin = new Padding(4, 0, 4, 0);
             lblRoles.Name = "lblRoles";
-            lblRoles.Size = new Size(267, 93);
-            lblRoles.TabIndex = 6;
+            lblRoles.Size = new Size(173, 15);
+            lblRoles.TabIndex = 19;
             // 
-            // tableLayoutPanel31
+            // label20
             // 
-            tableLayoutPanel31.AutoSize = true;
-            tableLayoutPanel31.ColumnCount = 3;
-            tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
-            tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 94F));
-            tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
-            tableLayoutPanel31.Controls.Add(flowLayoutPanel1, 1, 1);
-            tableLayoutPanel31.Dock = DockStyle.Fill;
-            tableLayoutPanel31.Location = new Point(331, 282);
-            tableLayoutPanel31.Name = "tableLayoutPanel31";
-            tableLayoutPanel31.RowCount = 3;
-            tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 94F));
-            tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel31.Size = new Size(487, 336);
-            tableLayoutPanel31.TabIndex = 2;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.Controls.Add(btLogin);
-            flowLayoutPanel1.Controls.Add(btLogOut);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(18, 14);
-            flowLayoutPanel1.Margin = new Padding(4);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(449, 307);
-            flowLayoutPanel1.TabIndex = 8;
-            // 
-            // btLogin
-            // 
-            btLogin.Anchor = AnchorStyles.None;
-            btLogin.AutoSize = true;
-            btLogin.Location = new Point(41, 100);
-            btLogin.Margin = new Padding(41, 100, 4, 4);
-            btLogin.Name = "btLogin";
-            btLogin.Size = new Size(150, 50);
-            btLogin.TabIndex = 0;
-            btLogin.Text = "Login";
-            btLogin.UseVisualStyleBackColor = true;
-            btLogin.Click += btLogin_Click;
-            // 
-            // btLogOut
-            // 
-            btLogOut.Anchor = AnchorStyles.None;
-            btLogOut.AutoSize = true;
-            btLogOut.Location = new Point(236, 100);
-            btLogOut.Margin = new Padding(41, 100, 4, 4);
-            btLogOut.Name = "btLogOut";
-            btLogOut.Size = new Size(150, 50);
-            btLogOut.TabIndex = 1;
-            btLogOut.Text = "Logout";
-            btLogOut.UseVisualStyleBackColor = true;
-            btLogOut.Click += btLogOut_Click;
-            // 
-            // tableLayoutPanel32
-            // 
-            tableLayoutPanel32.ColumnCount = 3;
-            tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
-            tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel32.Controls.Add(pictureBox1, 1, 1);
-            tableLayoutPanel32.Dock = DockStyle.Fill;
-            tableLayoutPanel32.Location = new Point(824, 282);
-            tableLayoutPanel32.Name = "tableLayoutPanel32";
-            tableLayoutPanel32.RowCount = 3;
-            tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
-            tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-            tableLayoutPanel32.RowStyles.Add(new RowStyle(SizeType.Percent, 28F));
-            tableLayoutPanel32.Size = new Size(269, 336);
-            tableLayoutPanel32.TabIndex = 7;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(29, 43);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(209, 195);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            label20.AutoSize = true;
+            label20.Location = new Point(338, 503);
+            label20.Name = "label20";
+            label20.Size = new Size(0, 38);
+            label20.TabIndex = 9;
             // 
             // tabRecettes
             // 
             tabRecettes.Controls.Add(tableLayoutPanel3);
-            tabRecettes.Location = new Point(4, 29);
+            tabRecettes.Location = new Point(4, 37);
             tabRecettes.Name = "tabRecettes";
             tabRecettes.Padding = new Padding(3);
-            tabRecettes.Size = new Size(1368, 814);
+            tabRecettes.Size = new Size(1346, 781);
             tabRecettes.TabIndex = 1;
-            tabRecettes.Text = "Recettes";
+            tabRecettes.Text = "   Recettes   ";
             tabRecettes.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
@@ -487,17 +699,46 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel3.Size = new Size(1362, 808);
+            tableLayoutPanel3.Size = new Size(1340, 775);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // dgvRecettes
             // 
+            dgvRecettes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRecettes.BackgroundColor = Color.White;
+            dgvRecettes.BorderStyle = BorderStyle.None;
+            dgvRecettes.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Padding = new Padding(3, 0, 0, 0);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvRecettes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvRecettes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvRecettes.DefaultCellStyle = dataGridViewCellStyle2;
             dgvRecettes.Dock = DockStyle.Fill;
             dgvRecettes.Location = new Point(3, 3);
             dgvRecettes.Name = "dgvRecettes";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvRecettes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvRecettes.RowHeadersWidth = 51;
-            dgvRecettes.Size = new Size(1356, 519);
+            dgvRecettes.Size = new Size(1334, 497);
             dgvRecettes.TabIndex = 0;
             // 
             // gbxCategories
@@ -505,9 +746,10 @@
             gbxCategories.Controls.Add(flowLayoutPanel2);
             gbxCategories.Dock = DockStyle.Fill;
             gbxCategories.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbxCategories.Location = new Point(3, 528);
+            gbxCategories.ForeColor = Color.FromArgb(72, 71, 66);
+            gbxCategories.Location = new Point(3, 506);
             gbxCategories.Name = "gbxCategories";
-            gbxCategories.Size = new Size(1356, 115);
+            gbxCategories.Size = new Size(1334, 110);
             gbxCategories.TabIndex = 1;
             gbxCategories.TabStop = false;
             gbxCategories.Text = "Catégories";
@@ -521,92 +763,144 @@
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.Location = new Point(3, 34);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(1350, 78);
+            flowLayoutPanel2.Size = new Size(1328, 73);
             flowLayoutPanel2.TabIndex = 0;
             // 
             // btEntree
             // 
-            btEntree.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btEntree.Location = new Point(70, 5);
-            btEntree.Margin = new Padding(70, 5, 3, 3);
+            btEntree.BackColor = Color.FromArgb(72, 71, 66);
+            btEntree.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btEntree.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btEntree.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btEntree.FlatStyle = FlatStyle.Flat;
+            btEntree.Font = new Font("Segoe Print", 18F, FontStyle.Bold);
+            btEntree.ForeColor = Color.White;
+            btEntree.Image = (Image)resources.GetObject("btEntree.Image");
+            btEntree.Location = new Point(88, 4);
+            btEntree.Margin = new Padding(88, 4, 4, 4);
             btEntree.Name = "btEntree";
-            btEntree.Size = new Size(200, 50);
+            btEntree.Size = new Size(220, 65);
             btEntree.TabIndex = 0;
             btEntree.Text = "Entrées";
-            btEntree.UseVisualStyleBackColor = true;
+            btEntree.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btEntree.UseVisualStyleBackColor = false;
             btEntree.Click += btEntree_Click;
             // 
             // btPlat
             // 
-            btPlat.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btPlat.Location = new Point(369, 7);
-            btPlat.Margin = new Padding(96, 7, 4, 4);
+            btPlat.BackColor = Color.FromArgb(72, 71, 66);
+            btPlat.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btPlat.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btPlat.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btPlat.FlatStyle = FlatStyle.Flat;
+            btPlat.Font = new Font("Segoe Print", 18F, FontStyle.Bold);
+            btPlat.ForeColor = Color.White;
+            btPlat.Image = (Image)resources.GetObject("btPlat.Image");
+            btPlat.Location = new Point(400, 4);
+            btPlat.Margin = new Padding(88, 4, 4, 4);
             btPlat.Name = "btPlat";
-            btPlat.Size = new Size(275, 70);
+            btPlat.Size = new Size(220, 65);
             btPlat.TabIndex = 1;
-            btPlat.Text = "Plats";
-            btPlat.UseVisualStyleBackColor = true;
+            btPlat.Text = " Plats";
+            btPlat.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btPlat.UseVisualStyleBackColor = false;
             btPlat.Click += btPlat_Click;
             // 
             // btDessert
             // 
-            btDessert.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btDessert.Location = new Point(744, 7);
-            btDessert.Margin = new Padding(96, 7, 4, 4);
+            btDessert.BackColor = Color.FromArgb(72, 71, 66);
+            btDessert.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btDessert.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btDessert.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btDessert.FlatStyle = FlatStyle.Flat;
+            btDessert.Font = new Font("Segoe Print", 18F, FontStyle.Bold);
+            btDessert.ForeColor = Color.White;
+            btDessert.Image = (Image)resources.GetObject("btDessert.Image");
+            btDessert.ImageAlign = ContentAlignment.MiddleLeft;
+            btDessert.Location = new Point(712, 4);
+            btDessert.Margin = new Padding(88, 4, 4, 4);
             btDessert.Name = "btDessert";
-            btDessert.Size = new Size(275, 70);
+            btDessert.Size = new Size(220, 65);
             btDessert.TabIndex = 2;
             btDessert.Text = "Desserts";
-            btDessert.UseVisualStyleBackColor = true;
+            btDessert.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btDessert.UseVisualStyleBackColor = false;
             btDessert.Click += btDessert_Click;
             // 
             // btSoupe
             // 
-            btSoupe.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btSoupe.Location = new Point(96, 88);
-            btSoupe.Margin = new Padding(96, 7, 4, 4);
+            btSoupe.BackColor = Color.FromArgb(72, 71, 66);
+            btSoupe.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btSoupe.FlatAppearance.BorderSize = 0;
+            btSoupe.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btSoupe.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btSoupe.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btSoupe.FlatStyle = FlatStyle.Flat;
+            btSoupe.Font = new Font("Segoe Print", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btSoupe.ForeColor = Color.White;
+            btSoupe.Image = (Image)resources.GetObject("btSoupe.Image");
+            btSoupe.Location = new Point(1024, 4);
+            btSoupe.Margin = new Padding(88, 4, 4, 4);
             btSoupe.Name = "btSoupe";
-            btSoupe.Size = new Size(275, 70);
+            btSoupe.Size = new Size(220, 65);
             btSoupe.TabIndex = 3;
             btSoupe.Text = "Soupes";
-            btSoupe.UseVisualStyleBackColor = true;
+            btSoupe.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btSoupe.UseVisualStyleBackColor = false;
             btSoupe.Click += btSoupe_Click;
             // 
             // btDetailsRecette
             // 
+            btDetailsRecette.BackColor = Color.FromArgb(79, 117, 155);
             btDetailsRecette.Dock = DockStyle.Fill;
+            btDetailsRecette.FlatAppearance.BorderColor = Color.FromArgb(190, 220, 254);
+            btDetailsRecette.FlatAppearance.BorderSize = 3;
+            btDetailsRecette.FlatAppearance.CheckedBackColor = Color.FromArgb(177, 188, 220);
+            btDetailsRecette.FlatAppearance.MouseDownBackColor = Color.FromArgb(182, 204, 254);
+            btDetailsRecette.FlatAppearance.MouseOverBackColor = Color.FromArgb(182, 204, 254);
+            btDetailsRecette.FlatStyle = FlatStyle.Flat;
             btDetailsRecette.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btDetailsRecette.Location = new Point(4, 730);
+            btDetailsRecette.ForeColor = Color.White;
+            btDetailsRecette.Location = new Point(4, 700);
             btDetailsRecette.Margin = new Padding(4);
             btDetailsRecette.Name = "btDetailsRecette";
-            btDetailsRecette.Size = new Size(1354, 74);
+            btDetailsRecette.Size = new Size(1332, 71);
             btDetailsRecette.TabIndex = 2;
             btDetailsRecette.Text = "Détails de la recette";
-            btDetailsRecette.UseVisualStyleBackColor = true;
+            btDetailsRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btDetailsRecette.UseVisualStyleBackColor = false;
             btDetailsRecette.Click += btDetailsRecette_Click;
             // 
             // btTtesRecettes
             // 
+            btTtesRecettes.BackColor = Color.FromArgb(79, 117, 155);
             btTtesRecettes.Dock = DockStyle.Fill;
+            btTtesRecettes.FlatAppearance.BorderColor = Color.FromArgb(190, 220, 254);
+            btTtesRecettes.FlatAppearance.BorderSize = 3;
+            btTtesRecettes.FlatAppearance.CheckedBackColor = Color.FromArgb(177, 188, 220);
+            btTtesRecettes.FlatAppearance.MouseDownBackColor = Color.FromArgb(182, 204, 254);
+            btTtesRecettes.FlatAppearance.MouseOverBackColor = Color.FromArgb(182, 204, 254);
+            btTtesRecettes.FlatStyle = FlatStyle.Flat;
             btTtesRecettes.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btTtesRecettes.Location = new Point(4, 650);
+            btTtesRecettes.ForeColor = Color.White;
+            btTtesRecettes.Location = new Point(4, 623);
             btTtesRecettes.Margin = new Padding(4);
             btTtesRecettes.Name = "btTtesRecettes";
-            btTtesRecettes.Size = new Size(1354, 72);
+            btTtesRecettes.Size = new Size(1332, 69);
             btTtesRecettes.TabIndex = 3;
             btTtesRecettes.Text = "Voir toutes les recettes";
-            btTtesRecettes.UseVisualStyleBackColor = true;
+            btTtesRecettes.UseVisualStyleBackColor = false;
             btTtesRecettes.Click += btTtesRecettes_Click;
             // 
             // tabCategories
             // 
             tabCategories.Controls.Add(tableLayoutPanel4);
-            tabCategories.Location = new Point(4, 29);
+            tabCategories.Location = new Point(4, 37);
             tabCategories.Name = "tabCategories";
             tabCategories.Padding = new Padding(3);
-            tabCategories.Size = new Size(1368, 814);
+            tabCategories.Size = new Size(1346, 781);
             tabCategories.TabIndex = 2;
-            tabCategories.Text = "Catégories";
+            tabCategories.Text = "   Catégories   ";
             tabCategories.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
@@ -623,17 +917,44 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 74F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel4.Size = new Size(1362, 808);
+            tableLayoutPanel4.Size = new Size(1340, 775);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // dgvCategories
             // 
+            dgvCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCategories.BackgroundColor = Color.White;
+            dgvCategories.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvCategories.DefaultCellStyle = dataGridViewCellStyle5;
             dgvCategories.Dock = DockStyle.Fill;
             dgvCategories.Location = new Point(3, 3);
             dgvCategories.Name = "dgvCategories";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvCategories.RowHeadersWidth = 51;
-            dgvCategories.Size = new Size(1356, 591);
+            dgvCategories.Size = new Size(1334, 567);
             dgvCategories.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -643,57 +964,93 @@
             flowLayoutPanel3.Controls.Add(btModifierCategorie);
             flowLayoutPanel3.Controls.Add(btSupprimerCategorie);
             flowLayoutPanel3.Dock = DockStyle.Fill;
-            flowLayoutPanel3.Location = new Point(3, 648);
+            flowLayoutPanel3.Location = new Point(3, 622);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(1356, 157);
+            flowLayoutPanel3.Size = new Size(1334, 150);
             flowLayoutPanel3.TabIndex = 1;
             // 
             // btActualiserCategorie
             // 
-            btActualiserCategorie.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btActualiserCategorie.Location = new Point(103, 42);
-            btActualiserCategorie.Margin = new Padding(103, 42, 4, 4);
+            btActualiserCategorie.BackColor = Color.White;
+            btActualiserCategorie.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btActualiserCategorie.FlatAppearance.BorderSize = 2;
+            btActualiserCategorie.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btActualiserCategorie.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btActualiserCategorie.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btActualiserCategorie.FlatStyle = FlatStyle.Flat;
+            btActualiserCategorie.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            btActualiserCategorie.Image = (Image)resources.GetObject("btActualiserCategorie.Image");
+            btActualiserCategorie.Location = new Point(90, 42);
+            btActualiserCategorie.Margin = new Padding(90, 42, 4, 4);
             btActualiserCategorie.Name = "btActualiserCategorie";
-            btActualiserCategorie.Size = new Size(275, 98);
+            btActualiserCategorie.Size = new Size(220, 70);
             btActualiserCategorie.TabIndex = 0;
-            btActualiserCategorie.Text = "Actualiser";
-            btActualiserCategorie.UseVisualStyleBackColor = true;
+            btActualiserCategorie.Text = "  Actualiser";
+            btActualiserCategorie.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btActualiserCategorie.UseVisualStyleBackColor = false;
             btActualiserCategorie.Click += btActualiserCategorie_Click;
             // 
             // btAjouterCategorie
             // 
-            btAjouterCategorie.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btAjouterCategorie.Location = new Point(485, 42);
-            btAjouterCategorie.Margin = new Padding(103, 42, 4, 4);
+            btAjouterCategorie.BackColor = Color.White;
+            btAjouterCategorie.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btAjouterCategorie.FlatAppearance.BorderSize = 2;
+            btAjouterCategorie.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btAjouterCategorie.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btAjouterCategorie.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btAjouterCategorie.FlatStyle = FlatStyle.Flat;
+            btAjouterCategorie.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            btAjouterCategorie.Image = (Image)resources.GetObject("btAjouterCategorie.Image");
+            btAjouterCategorie.Location = new Point(404, 42);
+            btAjouterCategorie.Margin = new Padding(90, 42, 4, 4);
             btAjouterCategorie.Name = "btAjouterCategorie";
-            btAjouterCategorie.Size = new Size(275, 98);
+            btAjouterCategorie.Size = new Size(220, 70);
             btAjouterCategorie.TabIndex = 1;
-            btAjouterCategorie.Text = "Ajouter";
-            btAjouterCategorie.UseVisualStyleBackColor = true;
+            btAjouterCategorie.Text = "  Ajouter";
+            btAjouterCategorie.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btAjouterCategorie.UseVisualStyleBackColor = false;
             btAjouterCategorie.Click += btAjouterCategorie_Click;
             // 
             // btModifierCategorie
             // 
-            btModifierCategorie.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btModifierCategorie.Location = new Point(867, 42);
-            btModifierCategorie.Margin = new Padding(103, 42, 4, 4);
+            btModifierCategorie.BackColor = Color.White;
+            btModifierCategorie.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btModifierCategorie.FlatAppearance.BorderSize = 2;
+            btModifierCategorie.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btModifierCategorie.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btModifierCategorie.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btModifierCategorie.FlatStyle = FlatStyle.Flat;
+            btModifierCategorie.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            btModifierCategorie.Image = (Image)resources.GetObject("btModifierCategorie.Image");
+            btModifierCategorie.Location = new Point(718, 42);
+            btModifierCategorie.Margin = new Padding(90, 42, 4, 4);
             btModifierCategorie.Name = "btModifierCategorie";
-            btModifierCategorie.Size = new Size(275, 98);
+            btModifierCategorie.Size = new Size(220, 70);
             btModifierCategorie.TabIndex = 2;
-            btModifierCategorie.Text = "Modifier";
-            btModifierCategorie.UseVisualStyleBackColor = true;
+            btModifierCategorie.Text = "  Modifier";
+            btModifierCategorie.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btModifierCategorie.UseVisualStyleBackColor = false;
             btModifierCategorie.Click += btModifierCategorie_Click;
             // 
             // btSupprimerCategorie
             // 
-            btSupprimerCategorie.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            btSupprimerCategorie.Location = new Point(103, 186);
-            btSupprimerCategorie.Margin = new Padding(103, 42, 4, 4);
+            btSupprimerCategorie.BackColor = Color.White;
+            btSupprimerCategorie.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
+            btSupprimerCategorie.FlatAppearance.BorderSize = 2;
+            btSupprimerCategorie.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 212, 97);
+            btSupprimerCategorie.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 212, 97);
+            btSupprimerCategorie.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 212, 97);
+            btSupprimerCategorie.FlatStyle = FlatStyle.Flat;
+            btSupprimerCategorie.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            btSupprimerCategorie.Image = (Image)resources.GetObject("btSupprimerCategorie.Image");
+            btSupprimerCategorie.Location = new Point(1032, 42);
+            btSupprimerCategorie.Margin = new Padding(90, 42, 4, 4);
             btSupprimerCategorie.Name = "btSupprimerCategorie";
-            btSupprimerCategorie.Size = new Size(275, 98);
+            btSupprimerCategorie.Size = new Size(220, 70);
             btSupprimerCategorie.TabIndex = 3;
-            btSupprimerCategorie.Text = "Supprimer";
-            btSupprimerCategorie.UseVisualStyleBackColor = true;
+            btSupprimerCategorie.Text = "  Supprimer";
+            btSupprimerCategorie.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btSupprimerCategorie.UseVisualStyleBackColor = false;
             btSupprimerCategorie.Click += btSupprimerCategorie_Click;
             // 
             // tableLayoutPanel5
@@ -704,43 +1061,44 @@
             tableLayoutPanel5.Controls.Add(txtNomCategories, 1, 0);
             tableLayoutPanel5.Controls.Add(label4, 0, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(3, 600);
+            tableLayoutPanel5.Location = new Point(3, 576);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Size = new Size(1356, 42);
+            tableLayoutPanel5.Size = new Size(1334, 40);
             tableLayoutPanel5.TabIndex = 2;
             // 
             // txtNomCategories
             // 
             txtNomCategories.Dock = DockStyle.Fill;
-            txtNomCategories.Location = new Point(138, 3);
+            txtNomCategories.Location = new Point(136, 3);
             txtNomCategories.Name = "txtNomCategories";
-            txtNomCategories.Size = new Size(1215, 34);
+            txtNomCategories.Size = new Size(1195, 34);
             txtNomCategories.TabIndex = 0;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Dock = DockStyle.Fill;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(9, 14, 43);
             label4.Location = new Point(4, 0);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(127, 42);
+            label4.Size = new Size(125, 40);
             label4.TabIndex = 1;
-            label4.Text = "Nom : ";
+            label4.Text = "  Nom : ";
             label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tabRecetteCategorie
             // 
             tabRecetteCategorie.Controls.Add(tableLayoutPanel6);
-            tabRecetteCategorie.Location = new Point(4, 29);
+            tabRecetteCategorie.Location = new Point(4, 37);
             tabRecetteCategorie.Name = "tabRecetteCategorie";
             tabRecetteCategorie.Padding = new Padding(3);
-            tabRecetteCategorie.Size = new Size(1368, 814);
+            tabRecetteCategorie.Size = new Size(1346, 781);
             tabRecetteCategorie.TabIndex = 3;
-            tabRecetteCategorie.Text = "Gestion Recette/Catégorie";
+            tabRecetteCategorie.Text = "   Gestion Recette/Catégorie   ";
             tabRecetteCategorie.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel6
@@ -755,7 +1113,7 @@
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(1362, 808);
+            tableLayoutPanel6.Size = new Size(1340, 775);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // tableLayoutPanel7
@@ -771,50 +1129,95 @@
             tableLayoutPanel7.Location = new Point(3, 3);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 5;
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 58F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 11F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 11F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel7.Size = new Size(538, 802);
+            tableLayoutPanel7.Size = new Size(530, 769);
             tableLayoutPanel7.TabIndex = 0;
             // 
             // dgvGetRecCat
             // 
-            dgvGetRecCat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvGetRecCat.BackgroundColor = Color.White;
+            dgvGetRecCat.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dgvGetRecCat.ColumnHeadersHeight = 37;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvGetRecCat.DefaultCellStyle = dataGridViewCellStyle8;
             dgvGetRecCat.Dock = DockStyle.Fill;
             dgvGetRecCat.Location = new Point(3, 3);
             dgvGetRecCat.Name = "dgvGetRecCat";
-            dgvGetRecCat.RowHeadersWidth = 51;
-            dgvGetRecCat.Size = new Size(532, 475);
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvGetRecCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dgvGetRecCat.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvGetRecCat.Size = new Size(524, 440);
             dgvGetRecCat.TabIndex = 2;
             // 
             // btGetCatByRec
             // 
+            btGetCatByRec.BackColor = Color.FromArgb(251, 249, 233);
             btGetCatByRec.Dock = DockStyle.Fill;
+            btGetCatByRec.FlatAppearance.BorderSize = 0;
+            btGetCatByRec.FlatAppearance.MouseDownBackColor = Color.FromArgb(251, 249, 233);
+            btGetCatByRec.FlatAppearance.MouseOverBackColor = Color.FromArgb(251, 249, 233);
+            btGetCatByRec.FlatStyle = FlatStyle.Flat;
             btGetCatByRec.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btGetCatByRec.Location = new Point(4, 725);
+            btGetCatByRec.ForeColor = Color.WhiteSmoke;
+            btGetCatByRec.Image = (Image)resources.GetObject("btGetCatByRec.Image");
+            btGetCatByRec.Location = new Point(4, 694);
             btGetCatByRec.Margin = new Padding(4);
             btGetCatByRec.Name = "btGetCatByRec";
-            btGetCatByRec.Size = new Size(530, 73);
+            btGetCatByRec.Size = new Size(522, 71);
             btGetCatByRec.TabIndex = 1;
             btGetCatByRec.Text = "Catégories par recette";
-            btGetCatByRec.UseVisualStyleBackColor = true;
+            btGetCatByRec.UseVisualStyleBackColor = false;
             btGetCatByRec.Click += btGetCatByRec_Click;
+            btGetCatByRec.MouseLeave += btGetCatByRec_MouseLeave;
+            btGetCatByRec.MouseHover += btGetCatByRec_MouseHover;
             // 
             // btGetRecByCat
             // 
+            btGetRecByCat.AutoEllipsis = true;
+            btGetRecByCat.BackColor = Color.FromArgb(251, 249, 233);
+            btGetRecByCat.BackgroundImageLayout = ImageLayout.None;
             btGetRecByCat.Dock = DockStyle.Fill;
+            btGetRecByCat.FlatAppearance.BorderSize = 0;
+            btGetRecByCat.FlatAppearance.MouseDownBackColor = Color.FromArgb(251, 249, 233);
+            btGetRecByCat.FlatAppearance.MouseOverBackColor = Color.FromArgb(251, 249, 233);
+            btGetRecByCat.FlatStyle = FlatStyle.Flat;
             btGetRecByCat.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btGetRecByCat.Location = new Point(4, 565);
+            btGetRecByCat.ForeColor = Color.FloralWhite;
+            btGetRecByCat.Image = (Image)resources.GetObject("btGetRecByCat.Image");
+            btGetRecByCat.Location = new Point(4, 534);
             btGetRecByCat.Margin = new Padding(4);
             btGetRecByCat.Name = "btGetRecByCat";
-            btGetRecByCat.Size = new Size(530, 72);
+            btGetRecByCat.Size = new Size(522, 68);
             btGetRecByCat.TabIndex = 0;
             btGetRecByCat.Text = "Recettes par catégorie";
-            btGetRecByCat.UseVisualStyleBackColor = true;
+            btGetRecByCat.UseVisualStyleBackColor = false;
             btGetRecByCat.Click += btGetRecByCat_Click;
+            btGetRecByCat.MouseLeave += btGetRecByCat_MouseLeave;
+            btGetRecByCat.MouseMove += btGetRecByCat_MouseMove;
             // 
             // tableLayoutPanel8
             // 
@@ -826,23 +1229,23 @@
             tableLayoutPanel8.Controls.Add(txtIdrecette, 1, 0);
             tableLayoutPanel8.Controls.Add(txtNomRecette, 1, 1);
             tableLayoutPanel8.Dock = DockStyle.Fill;
-            tableLayoutPanel8.Location = new Point(3, 644);
+            tableLayoutPanel8.Location = new Point(3, 609);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
             tableLayoutPanel8.RowCount = 2;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel8.Size = new Size(532, 74);
+            tableLayoutPanel8.Size = new Size(524, 78);
             tableLayoutPanel8.TabIndex = 3;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Dock = DockStyle.Fill;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(4, 37);
+            label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(4, 39);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(178, 37);
+            label6.Size = new Size(175, 39);
             label6.TabIndex = 1;
             label6.Text = "Nom recette :";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -851,31 +1254,33 @@
             // 
             label5.AutoSize = true;
             label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(4, 0);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(178, 37);
+            label5.Size = new Size(175, 39);
             label5.TabIndex = 0;
             label5.Text = "id recette :";
             label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtIdrecette
             // 
+            txtIdrecette.BorderStyle = BorderStyle.None;
             txtIdrecette.Dock = DockStyle.Fill;
-            txtIdrecette.Location = new Point(190, 4);
+            txtIdrecette.Location = new Point(187, 4);
             txtIdrecette.Margin = new Padding(4);
             txtIdrecette.Name = "txtIdrecette";
-            txtIdrecette.Size = new Size(338, 34);
+            txtIdrecette.Size = new Size(333, 27);
             txtIdrecette.TabIndex = 2;
             // 
             // txtNomRecette
             // 
+            txtNomRecette.BorderStyle = BorderStyle.None;
             txtNomRecette.Dock = DockStyle.Fill;
-            txtNomRecette.Location = new Point(190, 41);
+            txtNomRecette.Location = new Point(187, 43);
             txtNomRecette.Margin = new Padding(4);
             txtNomRecette.Name = "txtNomRecette";
-            txtNomRecette.Size = new Size(338, 34);
+            txtNomRecette.Size = new Size(333, 27);
             txtNomRecette.TabIndex = 3;
             // 
             // tableLayoutPanel9
@@ -888,52 +1293,54 @@
             tableLayoutPanel9.Controls.Add(label7, 0, 0);
             tableLayoutPanel9.Controls.Add(txtNomCategorie, 1, 1);
             tableLayoutPanel9.Dock = DockStyle.Fill;
-            tableLayoutPanel9.Location = new Point(3, 484);
+            tableLayoutPanel9.Location = new Point(3, 449);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 2;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel9.Size = new Size(532, 74);
+            tableLayoutPanel9.Size = new Size(524, 78);
             tableLayoutPanel9.TabIndex = 4;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Dock = DockStyle.Fill;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(3, 37);
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(3, 39);
             label8.Name = "label8";
-            label8.Size = new Size(180, 37);
+            label8.Size = new Size(177, 39);
             label8.TabIndex = 3;
             label8.Text = "Nom catégorie :";
             label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtIdCategorie
             // 
+            txtIdCategorie.BorderStyle = BorderStyle.None;
             txtIdCategorie.Dock = DockStyle.Fill;
-            txtIdCategorie.Location = new Point(189, 3);
+            txtIdCategorie.Location = new Point(186, 3);
             txtIdCategorie.Name = "txtIdCategorie";
-            txtIdCategorie.Size = new Size(340, 34);
+            txtIdCategorie.Size = new Size(335, 27);
             txtIdCategorie.TabIndex = 4;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.Location = new Point(3, 0);
             label7.Name = "label7";
-            label7.Size = new Size(180, 37);
+            label7.Size = new Size(177, 39);
             label7.TabIndex = 2;
             label7.Text = "id catégorie :";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtNomCategorie
             // 
+            txtNomCategorie.BorderStyle = BorderStyle.None;
             txtNomCategorie.Dock = DockStyle.Fill;
-            txtNomCategorie.Location = new Point(189, 40);
+            txtNomCategorie.Location = new Point(186, 42);
             txtNomCategorie.Name = "txtNomCategorie";
-            txtNomCategorie.Size = new Size(340, 34);
+            txtNomCategorie.Size = new Size(335, 27);
             txtNomCategorie.TabIndex = 5;
             // 
             // tableLayoutPanel10
@@ -943,28 +1350,40 @@
             tableLayoutPanel10.Controls.Add(tableLayoutPanel11, 0, 1);
             tableLayoutPanel10.Controls.Add(dgvRelationsRecCat, 0, 0);
             tableLayoutPanel10.Dock = DockStyle.Fill;
-            tableLayoutPanel10.Location = new Point(547, 3);
+            tableLayoutPanel10.Location = new Point(539, 3);
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 2;
-            tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel10.Size = new Size(812, 802);
+            tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
+            tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel10.Size = new Size(798, 769);
             tableLayoutPanel10.TabIndex = 1;
             // 
             // tableLayoutPanel11
             // 
             tableLayoutPanel11.ColumnCount = 1;
-            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel11.Controls.Add(crEaTiiOn_LightSeperator2, 0, 1);
             tableLayoutPanel11.Controls.Add(tableLayoutPanel12, 0, 0);
-            tableLayoutPanel11.Controls.Add(flowLayoutPanel4, 0, 1);
+            tableLayoutPanel11.Controls.Add(tableLayoutPanel38, 0, 2);
             tableLayoutPanel11.Dock = DockStyle.Fill;
-            tableLayoutPanel11.Location = new Point(3, 644);
+            tableLayoutPanel11.Location = new Point(3, 579);
             tableLayoutPanel11.Name = "tableLayoutPanel11";
-            tableLayoutPanel11.RowCount = 2;
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel11.Size = new Size(806, 155);
+            tableLayoutPanel11.RowCount = 3;
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 36F));
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 4F));
+            tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel11.Size = new Size(792, 187);
             tableLayoutPanel11.TabIndex = 0;
+            // 
+            // crEaTiiOn_LightSeperator2
+            // 
+            crEaTiiOn_LightSeperator2.Dock = DockStyle.Fill;
+            crEaTiiOn_LightSeperator2.LineColor = Color.Silver;
+            crEaTiiOn_LightSeperator2.Location = new Point(3, 70);
+            crEaTiiOn_LightSeperator2.Name = "crEaTiiOn_LightSeperator2";
+            crEaTiiOn_LightSeperator2.Size = new Size(786, 1);
+            crEaTiiOn_LightSeperator2.TabIndex = 4;
+            crEaTiiOn_LightSeperator2.Text = "crEaTiiOn_LightSeperator2";
             // 
             // tableLayoutPanel12
             // 
@@ -977,8 +1396,9 @@
             tableLayoutPanel12.Location = new Point(3, 3);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 1;
-            tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel12.Size = new Size(800, 71);
+            tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel12.Size = new Size(786, 61);
             tableLayoutPanel12.TabIndex = 0;
             // 
             // tableLayoutPanel13
@@ -993,28 +1413,29 @@
             tableLayoutPanel13.Name = "tableLayoutPanel13";
             tableLayoutPanel13.RowCount = 1;
             tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel13.Size = new Size(394, 65);
+            tableLayoutPanel13.Size = new Size(387, 55);
             tableLayoutPanel13.TabIndex = 0;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Dock = DockStyle.Fill;
-            label9.Font = new Font("Segoe UI", 18F);
+            label9.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.Location = new Point(3, 0);
             label9.Name = "label9";
-            label9.Size = new Size(269, 65);
+            label9.Size = new Size(264, 55);
             label9.TabIndex = 0;
             label9.Text = "id Catégorie :";
             label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtRelationIdCategorie
             // 
+            txtRelationIdCategorie.BorderStyle = BorderStyle.None;
             txtRelationIdCategorie.Dock = DockStyle.Fill;
-            txtRelationIdCategorie.Location = new Point(278, 3);
+            txtRelationIdCategorie.Location = new Point(273, 3);
             txtRelationIdCategorie.Multiline = true;
             txtRelationIdCategorie.Name = "txtRelationIdCategorie";
-            txtRelationIdCategorie.Size = new Size(113, 59);
+            txtRelationIdCategorie.Size = new Size(111, 49);
             txtRelationIdCategorie.TabIndex = 1;
             // 
             // tableLayoutPanel14
@@ -1025,76 +1446,127 @@
             tableLayoutPanel14.Controls.Add(label10, 0, 0);
             tableLayoutPanel14.Controls.Add(txtRelationIdRecette, 1, 0);
             tableLayoutPanel14.Dock = DockStyle.Fill;
-            tableLayoutPanel14.Location = new Point(403, 3);
+            tableLayoutPanel14.Location = new Point(396, 3);
             tableLayoutPanel14.Name = "tableLayoutPanel14";
             tableLayoutPanel14.RowCount = 1;
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel14.Size = new Size(394, 65);
+            tableLayoutPanel14.Size = new Size(387, 55);
             tableLayoutPanel14.TabIndex = 1;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Dock = DockStyle.Fill;
-            label10.Font = new Font("Segoe UI", 18F);
+            label10.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.Location = new Point(3, 0);
             label10.Name = "label10";
-            label10.Size = new Size(269, 65);
+            label10.Size = new Size(264, 55);
             label10.TabIndex = 0;
             label10.Text = "id Recette :";
             label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtRelationIdRecette
             // 
+            txtRelationIdRecette.BorderStyle = BorderStyle.None;
             txtRelationIdRecette.Dock = DockStyle.Fill;
-            txtRelationIdRecette.Location = new Point(278, 3);
+            txtRelationIdRecette.Location = new Point(273, 3);
             txtRelationIdRecette.Multiline = true;
             txtRelationIdRecette.Name = "txtRelationIdRecette";
-            txtRelationIdRecette.Size = new Size(113, 59);
+            txtRelationIdRecette.Size = new Size(111, 49);
             txtRelationIdRecette.TabIndex = 1;
             // 
-            // flowLayoutPanel4
+            // tableLayoutPanel38
             // 
-            flowLayoutPanel4.Controls.Add(btAjouterRelationRecCat);
-            flowLayoutPanel4.Controls.Add(btSupprimerRelationRecCat);
-            flowLayoutPanel4.Dock = DockStyle.Fill;
-            flowLayoutPanel4.Location = new Point(3, 80);
-            flowLayoutPanel4.Name = "flowLayoutPanel4";
-            flowLayoutPanel4.Size = new Size(800, 72);
-            flowLayoutPanel4.TabIndex = 1;
+            tableLayoutPanel38.ColumnCount = 2;
+            tableLayoutPanel38.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel38.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel38.Controls.Add(btAjouterRelationRecCat, 0, 0);
+            tableLayoutPanel38.Controls.Add(btSupprimerRelationRecCat, 1, 0);
+            tableLayoutPanel38.Dock = DockStyle.Fill;
+            tableLayoutPanel38.Location = new Point(3, 77);
+            tableLayoutPanel38.Name = "tableLayoutPanel38";
+            tableLayoutPanel38.RowCount = 1;
+            tableLayoutPanel38.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel38.Size = new Size(786, 107);
+            tableLayoutPanel38.TabIndex = 2;
             // 
             // btAjouterRelationRecCat
             // 
-            btAjouterRelationRecCat.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btAjouterRelationRecCat.Location = new Point(90, 5);
-            btAjouterRelationRecCat.Margin = new Padding(90, 5, 3, 3);
+            btAjouterRelationRecCat.Anchor = AnchorStyles.None;
+            btAjouterRelationRecCat.BackColor = Color.FromArgb(53, 155, 255);
+            btAjouterRelationRecCat.FlatAppearance.BorderColor = Color.WhiteSmoke;
+            btAjouterRelationRecCat.FlatAppearance.BorderSize = 2;
+            btAjouterRelationRecCat.FlatAppearance.MouseDownBackColor = Color.FromArgb(182, 204, 254);
+            btAjouterRelationRecCat.FlatAppearance.MouseOverBackColor = Color.FromArgb(182, 204, 254);
+            btAjouterRelationRecCat.FlatStyle = FlatStyle.Flat;
+            btAjouterRelationRecCat.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btAjouterRelationRecCat.ForeColor = Color.White;
+            btAjouterRelationRecCat.Image = (Image)resources.GetObject("btAjouterRelationRecCat.Image");
+            btAjouterRelationRecCat.Location = new Point(71, 22);
+            btAjouterRelationRecCat.Margin = new Padding(3, 5, 3, 3);
             btAjouterRelationRecCat.Name = "btAjouterRelationRecCat";
-            btAjouterRelationRecCat.Size = new Size(200, 50);
-            btAjouterRelationRecCat.TabIndex = 0;
-            btAjouterRelationRecCat.Text = "Ajouter";
-            btAjouterRelationRecCat.UseVisualStyleBackColor = true;
-            btAjouterRelationRecCat.Click += btAjouterRelationRecCat_Click;
+            btAjouterRelationRecCat.Size = new Size(250, 65);
+            btAjouterRelationRecCat.TabIndex = 2;
+            btAjouterRelationRecCat.Text = "   Ajouter";
+            btAjouterRelationRecCat.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btAjouterRelationRecCat.UseVisualStyleBackColor = false;
             // 
             // btSupprimerRelationRecCat
             // 
-            btSupprimerRelationRecCat.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btSupprimerRelationRecCat.Location = new Point(383, 5);
-            btSupprimerRelationRecCat.Margin = new Padding(90, 5, 3, 3);
+            btSupprimerRelationRecCat.Anchor = AnchorStyles.None;
+            btSupprimerRelationRecCat.BackColor = Color.FromArgb(53, 155, 255);
+            btSupprimerRelationRecCat.FlatAppearance.BorderColor = Color.WhiteSmoke;
+            btSupprimerRelationRecCat.FlatAppearance.BorderSize = 2;
+            btSupprimerRelationRecCat.FlatAppearance.MouseDownBackColor = Color.FromArgb(182, 204, 254);
+            btSupprimerRelationRecCat.FlatAppearance.MouseOverBackColor = Color.FromArgb(182, 204, 254);
+            btSupprimerRelationRecCat.FlatStyle = FlatStyle.Flat;
+            btSupprimerRelationRecCat.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btSupprimerRelationRecCat.ForeColor = Color.White;
+            btSupprimerRelationRecCat.Image = (Image)resources.GetObject("btSupprimerRelationRecCat.Image");
+            btSupprimerRelationRecCat.Location = new Point(464, 22);
+            btSupprimerRelationRecCat.Margin = new Padding(3, 5, 3, 3);
             btSupprimerRelationRecCat.Name = "btSupprimerRelationRecCat";
-            btSupprimerRelationRecCat.Size = new Size(200, 50);
-            btSupprimerRelationRecCat.TabIndex = 1;
-            btSupprimerRelationRecCat.Text = "Supprimer";
-            btSupprimerRelationRecCat.UseVisualStyleBackColor = true;
-            btSupprimerRelationRecCat.Click += btSupprimerRelationRecCat_Click;
+            btSupprimerRelationRecCat.Size = new Size(250, 65);
+            btSupprimerRelationRecCat.TabIndex = 3;
+            btSupprimerRelationRecCat.Text = "  Supprimer";
+            btSupprimerRelationRecCat.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btSupprimerRelationRecCat.UseVisualStyleBackColor = false;
             // 
             // dgvRelationsRecCat
             // 
+            dgvRelationsRecCat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRelationsRecCat.BackgroundColor = Color.White;
+            dgvRelationsRecCat.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Control;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgvRelationsRecCat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dgvRelationsRecCat.DefaultCellStyle = dataGridViewCellStyle11;
             dgvRelationsRecCat.Dock = DockStyle.Fill;
             dgvRelationsRecCat.Location = new Point(3, 3);
             dgvRelationsRecCat.Name = "dgvRelationsRecCat";
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Control;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvRelationsRecCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgvRelationsRecCat.RowHeadersWidth = 51;
-            dgvRelationsRecCat.Size = new Size(806, 635);
+            dgvRelationsRecCat.Size = new Size(792, 570);
             dgvRelationsRecCat.TabIndex = 1;
             // 
             // tabGestionRecette
@@ -1103,9 +1575,9 @@
             tabGestionRecette.Location = new Point(4, 37);
             tabGestionRecette.Name = "tabGestionRecette";
             tabGestionRecette.Padding = new Padding(3);
-            tabGestionRecette.Size = new Size(1368, 806);
+            tabGestionRecette.Size = new Size(1346, 781);
             tabGestionRecette.TabIndex = 4;
-            tabGestionRecette.Text = "Gestion Recette";
+            tabGestionRecette.Text = "   Gestion Recette   ";
             tabGestionRecette.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel15
@@ -1121,17 +1593,44 @@
             tableLayoutPanel15.Name = "tableLayoutPanel15";
             tableLayoutPanel15.RowCount = 1;
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel15.Size = new Size(1362, 800);
+            tableLayoutPanel15.Size = new Size(1340, 775);
             tableLayoutPanel15.TabIndex = 0;
             // 
             // dgvGestionRecette
             // 
-            dgvGestionRecette.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvGestionRecette.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvGestionRecette.BackgroundColor = Color.White;
+            dgvGestionRecette.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dgvGestionRecette.ColumnHeadersHeight = 37;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle14.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dgvGestionRecette.DefaultCellStyle = dataGridViewCellStyle14;
             dgvGestionRecette.Dock = DockStyle.Fill;
             dgvGestionRecette.Location = new Point(3, 3);
             dgvGestionRecette.Name = "dgvGestionRecette";
-            dgvGestionRecette.RowHeadersWidth = 51;
-            dgvGestionRecette.Size = new Size(402, 794);
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgvGestionRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dgvGestionRecette.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvGestionRecette.Size = new Size(396, 769);
             dgvGestionRecette.TabIndex = 0;
             // 
             // tableLayoutPanel16
@@ -1141,12 +1640,12 @@
             tableLayoutPanel16.Controls.Add(flowLayoutPanel5, 0, 1);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel17, 0, 0);
             tableLayoutPanel16.Dock = DockStyle.Fill;
-            tableLayoutPanel16.Location = new Point(411, 3);
+            tableLayoutPanel16.Location = new Point(405, 3);
             tableLayoutPanel16.Name = "tableLayoutPanel16";
             tableLayoutPanel16.RowCount = 2;
-            tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 92F));
-            tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            tableLayoutPanel16.Size = new Size(948, 794);
+            tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel16.Size = new Size(932, 769);
             tableLayoutPanel16.TabIndex = 1;
             // 
             // flowLayoutPanel5
@@ -1155,44 +1654,70 @@
             flowLayoutPanel5.Controls.Add(btModifierRecette);
             flowLayoutPanel5.Controls.Add(btSupprimerRecette);
             flowLayoutPanel5.Dock = DockStyle.Fill;
-            flowLayoutPanel5.Location = new Point(3, 733);
+            flowLayoutPanel5.Location = new Point(3, 695);
             flowLayoutPanel5.Name = "flowLayoutPanel5";
-            flowLayoutPanel5.Size = new Size(942, 58);
+            flowLayoutPanel5.Size = new Size(926, 71);
             flowLayoutPanel5.TabIndex = 0;
             // 
             // btAjouterRecette
             // 
+            btAjouterRecette.BackColor = Color.FromArgb(57, 55, 32);
+            btAjouterRecette.FlatAppearance.BorderColor = Color.FromArgb(145, 203, 62);
+            btAjouterRecette.FlatAppearance.BorderSize = 2;
+            btAjouterRecette.FlatAppearance.MouseDownBackColor = Color.FromArgb(149, 149, 97);
+            btAjouterRecette.FlatAppearance.MouseOverBackColor = Color.FromArgb(149, 149, 97);
+            btAjouterRecette.FlatStyle = FlatStyle.Flat;
             btAjouterRecette.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            btAjouterRecette.Location = new Point(89, 14);
-            btAjouterRecette.Margin = new Padding(89, 14, 4, 4);
+            btAjouterRecette.ForeColor = Color.White;
+            btAjouterRecette.Image = (Image)resources.GetObject("btAjouterRecette.Image");
+            btAjouterRecette.Location = new Point(80, 10);
+            btAjouterRecette.Margin = new Padding(80, 10, 4, 4);
             btAjouterRecette.Name = "btAjouterRecette";
-            btAjouterRecette.Size = new Size(248, 63);
+            btAjouterRecette.Size = new Size(200, 50);
             btAjouterRecette.TabIndex = 0;
-            btAjouterRecette.Text = "Ajouter";
-            btAjouterRecette.UseVisualStyleBackColor = true;
-            btAjouterRecette.Click += btAjouterRecette_Click;
+            btAjouterRecette.Text = "  Ajouter";
+            btAjouterRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btAjouterRecette.UseVisualStyleBackColor = false;
             // 
             // btModifierRecette
             // 
+            btModifierRecette.BackColor = Color.FromArgb(57, 55, 32);
+            btModifierRecette.FlatAppearance.BorderColor = Color.FromArgb(145, 203, 62);
+            btModifierRecette.FlatAppearance.BorderSize = 2;
+            btModifierRecette.FlatAppearance.MouseDownBackColor = Color.FromArgb(149, 149, 97);
+            btModifierRecette.FlatAppearance.MouseOverBackColor = Color.FromArgb(149, 149, 97);
+            btModifierRecette.FlatStyle = FlatStyle.Flat;
             btModifierRecette.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            btModifierRecette.Location = new Point(430, 14);
-            btModifierRecette.Margin = new Padding(89, 14, 4, 4);
+            btModifierRecette.ForeColor = Color.White;
+            btModifierRecette.Image = (Image)resources.GetObject("btModifierRecette.Image");
+            btModifierRecette.Location = new Point(364, 10);
+            btModifierRecette.Margin = new Padding(80, 10, 4, 4);
             btModifierRecette.Name = "btModifierRecette";
-            btModifierRecette.Size = new Size(248, 63);
+            btModifierRecette.Size = new Size(200, 50);
             btModifierRecette.TabIndex = 1;
-            btModifierRecette.Text = "Modifier";
-            btModifierRecette.UseVisualStyleBackColor = true;
+            btModifierRecette.Text = "  Modifier";
+            btModifierRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btModifierRecette.UseVisualStyleBackColor = false;
             // 
             // btSupprimerRecette
             // 
+            btSupprimerRecette.BackColor = Color.FromArgb(57, 55, 32);
+            btSupprimerRecette.FlatAppearance.BorderColor = Color.FromArgb(145, 203, 62);
+            btSupprimerRecette.FlatAppearance.BorderSize = 2;
+            btSupprimerRecette.FlatAppearance.MouseDownBackColor = Color.FromArgb(149, 149, 97);
+            btSupprimerRecette.FlatAppearance.MouseOverBackColor = Color.FromArgb(149, 149, 97);
+            btSupprimerRecette.FlatStyle = FlatStyle.Flat;
             btSupprimerRecette.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            btSupprimerRecette.Location = new Point(89, 95);
-            btSupprimerRecette.Margin = new Padding(89, 14, 4, 4);
+            btSupprimerRecette.ForeColor = Color.White;
+            btSupprimerRecette.Image = (Image)resources.GetObject("btSupprimerRecette.Image");
+            btSupprimerRecette.Location = new Point(648, 10);
+            btSupprimerRecette.Margin = new Padding(80, 10, 4, 4);
             btSupprimerRecette.Name = "btSupprimerRecette";
-            btSupprimerRecette.Size = new Size(248, 63);
+            btSupprimerRecette.Size = new Size(200, 50);
             btSupprimerRecette.TabIndex = 2;
-            btSupprimerRecette.Text = "Supprimer";
-            btSupprimerRecette.UseVisualStyleBackColor = true;
+            btSupprimerRecette.Text = "  Supprimer";
+            btSupprimerRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btSupprimerRecette.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel17
             // 
@@ -1209,51 +1734,107 @@
             tableLayoutPanel17.Location = new Point(3, 3);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
             tableLayoutPanel17.RowCount = 8;
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882353F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 32.35294F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 32.35294F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882353F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882353F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882353F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882353F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.882353F));
-            tableLayoutPanel17.Size = new Size(942, 724);
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.76552057F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 28.03662F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 35.0457764F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.765522F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.765522F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.927768F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.927768F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.765522F));
+            tableLayoutPanel17.Size = new Size(926, 686);
             tableLayoutPanel17.TabIndex = 1;
             // 
             // tableLayoutPanel18
             // 
-            tableLayoutPanel18.ColumnCount = 2;
-            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel18.AutoSize = true;
+            tableLayoutPanel18.ColumnCount = 5;
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 11.9760494F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.982037F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.07984F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.07984F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.8822327F));
+            tableLayoutPanel18.Controls.Add(label21, 3, 0);
+            tableLayoutPanel18.Controls.Add(txtTitreRecette, 4, 0);
+            tableLayoutPanel18.Controls.Add(textBox1, 1, 0);
             tableLayoutPanel18.Controls.Add(label11, 0, 0);
-            tableLayoutPanel18.Controls.Add(txtTitreRecette, 1, 0);
+            tableLayoutPanel18.Controls.Add(tableLayoutPanel40, 2, 0);
             tableLayoutPanel18.Dock = DockStyle.Fill;
             tableLayoutPanel18.Location = new Point(3, 3);
             tableLayoutPanel18.Name = "tableLayoutPanel18";
             tableLayoutPanel18.RowCount = 1;
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel18.Size = new Size(936, 36);
+            tableLayoutPanel18.Size = new Size(920, 33);
             tableLayoutPanel18.TabIndex = 0;
             // 
-            // label11
+            // label21
             // 
-            label11.AutoSize = true;
-            label11.Dock = DockStyle.Fill;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(3, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(274, 36);
-            label11.TabIndex = 0;
-            label11.Text = "Nom :";
-            label11.TextAlign = ContentAlignment.MiddleLeft;
+            label21.AutoSize = true;
+            label21.Dock = DockStyle.Fill;
+            label21.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label21.Location = new Point(287, 0);
+            label21.Name = "label21";
+            label21.Size = new Size(86, 33);
+            label21.TabIndex = 3;
+            label21.Text = "   Nom :";
+            label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtTitreRecette
             // 
+            txtTitreRecette.BorderStyle = BorderStyle.None;
             txtTitreRecette.Dock = DockStyle.Fill;
-            txtTitreRecette.Location = new Point(283, 3);
+            txtTitreRecette.Location = new Point(379, 3);
+            txtTitreRecette.Multiline = true;
             txtTitreRecette.Name = "txtTitreRecette";
-            txtTitreRecette.Size = new Size(650, 34);
-            txtTitreRecette.TabIndex = 1;
+            txtTitreRecette.Size = new Size(538, 27);
+            txtTitreRecette.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Location = new Point(113, 3);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(76, 27);
+            textBox1.TabIndex = 1;
+            // 
+            // label11
+            // 
+            label11.Dock = DockStyle.Fill;
+            label11.Location = new Point(3, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(104, 33);
+            label11.TabIndex = 5;
+            label11.Text = "  id :";
+            // 
+            // tableLayoutPanel40
+            // 
+            tableLayoutPanel40.ColumnCount = 3;
+            tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanel40.Controls.Add(spaceSeparatorVertical1, 1, 0);
+            tableLayoutPanel40.Location = new Point(195, 3);
+            tableLayoutPanel40.Name = "tableLayoutPanel40";
+            tableLayoutPanel40.RowCount = 1;
+            tableLayoutPanel40.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel40.Size = new Size(86, 27);
+            tableLayoutPanel40.TabIndex = 6;
+            // 
+            // spaceSeparatorVertical1
+            // 
+            spaceSeparatorVertical1.Customization = "Kioq/yoqKv8jIyP/Kioq/w==";
+            spaceSeparatorVertical1.Dock = DockStyle.Fill;
+            spaceSeparatorVertical1.Font = new Font("Verdana", 8F);
+            spaceSeparatorVertical1.Image = null;
+            spaceSeparatorVertical1.Location = new Point(41, 3);
+            spaceSeparatorVertical1.Name = "spaceSeparatorVertical1";
+            spaceSeparatorVertical1.NoRounding = false;
+            spaceSeparatorVertical1.Size = new Size(4, 21);
+            spaceSeparatorVertical1.TabIndex = 3;
+            spaceSeparatorVertical1.Text = "spaceSeparatorVertical1";
+            spaceSeparatorVertical1.Transparent = false;
             // 
             // tableLayoutPanel19
             // 
@@ -1263,22 +1844,22 @@
             tableLayoutPanel19.Controls.Add(dtpTempsPreparation, 1, 0);
             tableLayoutPanel19.Controls.Add(label12, 0, 0);
             tableLayoutPanel19.Dock = DockStyle.Fill;
-            tableLayoutPanel19.Location = new Point(3, 513);
+            tableLayoutPanel19.Location = new Point(3, 474);
             tableLayoutPanel19.Name = "tableLayoutPanel19";
             tableLayoutPanel19.RowCount = 1;
             tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel19.Size = new Size(936, 36);
+            tableLayoutPanel19.Size = new Size(920, 33);
             tableLayoutPanel19.TabIndex = 1;
             // 
             // dtpTempsPreparation
             // 
             dtpTempsPreparation.Dock = DockStyle.Fill;
             dtpTempsPreparation.Format = DateTimePickerFormat.Time;
-            dtpTempsPreparation.Location = new Point(284, 4);
+            dtpTempsPreparation.Location = new Point(280, 4);
             dtpTempsPreparation.Margin = new Padding(4);
             dtpTempsPreparation.Name = "dtpTempsPreparation";
             dtpTempsPreparation.ShowUpDown = true;
-            dtpTempsPreparation.Size = new Size(648, 34);
+            dtpTempsPreparation.Size = new Size(636, 34);
             dtpTempsPreparation.TabIndex = 2;
             // 
             // label12
@@ -1289,7 +1870,7 @@
             label12.Location = new Point(4, 0);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(272, 36);
+            label12.Size = new Size(268, 33);
             label12.TabIndex = 0;
             label12.Text = "Temps de préparation :";
             label12.TextAlign = ContentAlignment.MiddleLeft;
@@ -1302,22 +1883,22 @@
             tableLayoutPanel20.Controls.Add(dtpTempsCuisson, 1, 0);
             tableLayoutPanel20.Controls.Add(label13, 0, 0);
             tableLayoutPanel20.Dock = DockStyle.Fill;
-            tableLayoutPanel20.Location = new Point(3, 555);
+            tableLayoutPanel20.Location = new Point(3, 513);
             tableLayoutPanel20.Name = "tableLayoutPanel20";
             tableLayoutPanel20.RowCount = 1;
             tableLayoutPanel20.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel20.Size = new Size(936, 36);
+            tableLayoutPanel20.Size = new Size(920, 33);
             tableLayoutPanel20.TabIndex = 2;
             // 
             // dtpTempsCuisson
             // 
             dtpTempsCuisson.Dock = DockStyle.Fill;
             dtpTempsCuisson.Format = DateTimePickerFormat.Time;
-            dtpTempsCuisson.Location = new Point(284, 4);
+            dtpTempsCuisson.Location = new Point(280, 4);
             dtpTempsCuisson.Margin = new Padding(4);
             dtpTempsCuisson.Name = "dtpTempsCuisson";
             dtpTempsCuisson.ShowUpDown = true;
-            dtpTempsCuisson.Size = new Size(648, 34);
+            dtpTempsCuisson.Size = new Size(636, 34);
             dtpTempsCuisson.TabIndex = 2;
             // 
             // label13
@@ -1327,7 +1908,7 @@
             label13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.Location = new Point(3, 0);
             label13.Name = "label13";
-            label13.Size = new Size(274, 36);
+            label13.Size = new Size(270, 33);
             label13.TabIndex = 0;
             label13.Text = "Temps de cuisson :";
             label13.TextAlign = ContentAlignment.MiddleLeft;
@@ -1340,11 +1921,11 @@
             tableLayoutPanel21.Controls.Add(label14, 0, 0);
             tableLayoutPanel21.Controls.Add(listBoxDifficulte, 1, 0);
             tableLayoutPanel21.Dock = DockStyle.Fill;
-            tableLayoutPanel21.Location = new Point(3, 597);
+            tableLayoutPanel21.Location = new Point(3, 552);
             tableLayoutPanel21.Name = "tableLayoutPanel21";
             tableLayoutPanel21.RowCount = 1;
             tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel21.Size = new Size(936, 36);
+            tableLayoutPanel21.Size = new Size(920, 41);
             tableLayoutPanel21.TabIndex = 3;
             // 
             // label14
@@ -1354,7 +1935,7 @@
             label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.Location = new Point(3, 0);
             label14.Name = "label14";
-            label14.Size = new Size(274, 36);
+            label14.Size = new Size(270, 41);
             label14.TabIndex = 0;
             label14.Text = "Difficulté :";
             label14.TextAlign = ContentAlignment.MiddleLeft;
@@ -1365,10 +1946,10 @@
             listBoxDifficulte.FormattingEnabled = true;
             listBoxDifficulte.ItemHeight = 28;
             listBoxDifficulte.Items.AddRange(new object[] { "1", "2", "3" });
-            listBoxDifficulte.Location = new Point(284, 4);
+            listBoxDifficulte.Location = new Point(280, 4);
             listBoxDifficulte.Margin = new Padding(4);
             listBoxDifficulte.Name = "listBoxDifficulte";
-            listBoxDifficulte.Size = new Size(648, 28);
+            listBoxDifficulte.Size = new Size(636, 33);
             listBoxDifficulte.TabIndex = 1;
             // 
             // tableLayoutPanel22
@@ -1379,11 +1960,11 @@
             tableLayoutPanel22.Controls.Add(label15, 0, 0);
             tableLayoutPanel22.Controls.Add(clbCategories, 1, 0);
             tableLayoutPanel22.Dock = DockStyle.Fill;
-            tableLayoutPanel22.Location = new Point(3, 639);
+            tableLayoutPanel22.Location = new Point(3, 599);
             tableLayoutPanel22.Name = "tableLayoutPanel22";
             tableLayoutPanel22.RowCount = 1;
             tableLayoutPanel22.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel22.Size = new Size(936, 36);
+            tableLayoutPanel22.Size = new Size(920, 41);
             tableLayoutPanel22.TabIndex = 4;
             // 
             // label15
@@ -1393,7 +1974,7 @@
             label15.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.Location = new Point(3, 0);
             label15.Name = "label15";
-            label15.Size = new Size(274, 36);
+            label15.Size = new Size(270, 41);
             label15.TabIndex = 0;
             label15.Text = "Catégorie :";
             label15.TextAlign = ContentAlignment.MiddleLeft;
@@ -1402,10 +1983,10 @@
             // 
             clbCategories.Dock = DockStyle.Fill;
             clbCategories.FormattingEnabled = true;
-            clbCategories.Location = new Point(284, 4);
+            clbCategories.Location = new Point(280, 4);
             clbCategories.Margin = new Padding(4);
             clbCategories.Name = "clbCategories";
-            clbCategories.Size = new Size(648, 28);
+            clbCategories.Size = new Size(636, 33);
             clbCategories.TabIndex = 1;
             // 
             // gbxIngredients
@@ -1413,11 +1994,12 @@
             gbxIngredients.Controls.Add(tableLayoutPanel23);
             gbxIngredients.Dock = DockStyle.Fill;
             gbxIngredients.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbxIngredients.Location = new Point(4, 46);
+            gbxIngredients.ForeColor = Color.FromArgb(57, 55, 32);
+            gbxIngredients.Location = new Point(4, 43);
             gbxIngredients.Margin = new Padding(4);
             gbxIngredients.Name = "gbxIngredients";
             gbxIngredients.Padding = new Padding(4);
-            gbxIngredients.Size = new Size(934, 226);
+            gbxIngredients.Size = new Size(918, 184);
             gbxIngredients.TabIndex = 5;
             gbxIngredients.TabStop = false;
             gbxIngredients.Text = "Ingrédients";
@@ -1434,31 +2016,31 @@
             tableLayoutPanel23.RowCount = 2;
             tableLayoutPanel23.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tableLayoutPanel23.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tableLayoutPanel23.Size = new Size(926, 195);
+            tableLayoutPanel23.Size = new Size(910, 153);
             tableLayoutPanel23.TabIndex = 0;
             // 
             // tableLayoutPanel24
             // 
             tableLayoutPanel24.ColumnCount = 3;
-            tableLayoutPanel24.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanel24.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel24.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
-            tableLayoutPanel24.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel24.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             tableLayoutPanel24.Controls.Add(tableLayoutPanel25, 0, 0);
             tableLayoutPanel24.Controls.Add(tableLayoutPanel26, 1, 0);
-            tableLayoutPanel24.Controls.Add(btAjouterIngredient, 2, 0);
+            tableLayoutPanel24.Controls.Add(tableLayoutPanel39, 2, 0);
             tableLayoutPanel24.Dock = DockStyle.Fill;
             tableLayoutPanel24.Location = new Point(3, 3);
             tableLayoutPanel24.Name = "tableLayoutPanel24";
             tableLayoutPanel24.RowCount = 1;
             tableLayoutPanel24.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel24.Size = new Size(920, 52);
+            tableLayoutPanel24.Size = new Size(904, 39);
             tableLayoutPanel24.TabIndex = 0;
             // 
             // tableLayoutPanel25
             // 
             tableLayoutPanel25.ColumnCount = 2;
-            tableLayoutPanel25.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
-            tableLayoutPanel25.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+            tableLayoutPanel25.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel25.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
             tableLayoutPanel25.Controls.Add(label16, 0, 0);
             tableLayoutPanel25.Controls.Add(txtNomIngredientAjouter, 1, 0);
             tableLayoutPanel25.Dock = DockStyle.Fill;
@@ -1466,29 +2048,32 @@
             tableLayoutPanel25.Name = "tableLayoutPanel25";
             tableLayoutPanel25.RowCount = 1;
             tableLayoutPanel25.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel25.Size = new Size(408, 46);
+            tableLayoutPanel25.Size = new Size(446, 33);
             tableLayoutPanel25.TabIndex = 0;
             // 
             // label16
             // 
             label16.AutoSize = true;
             label16.Dock = DockStyle.Fill;
-            label16.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.FromArgb(33, 34, 69);
             label16.Location = new Point(4, 0);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
-            label16.Size = new Size(134, 46);
+            label16.Size = new Size(103, 33);
             label16.TabIndex = 0;
-            label16.Text = "Nom :";
+            label16.Text = " Nom :";
             label16.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtNomIngredientAjouter
             // 
+            txtNomIngredientAjouter.BorderStyle = BorderStyle.None;
             txtNomIngredientAjouter.Dock = DockStyle.Fill;
-            txtNomIngredientAjouter.Location = new Point(146, 4);
+            txtNomIngredientAjouter.Location = new Point(115, 4);
             txtNomIngredientAjouter.Margin = new Padding(4);
+            txtNomIngredientAjouter.Multiline = true;
             txtNomIngredientAjouter.Name = "txtNomIngredientAjouter";
-            txtNomIngredientAjouter.Size = new Size(258, 30);
+            txtNomIngredientAjouter.Size = new Size(327, 25);
             txtNomIngredientAjouter.TabIndex = 1;
             // 
             // tableLayoutPanel26
@@ -1499,55 +2084,112 @@
             tableLayoutPanel26.Controls.Add(label17, 0, 0);
             tableLayoutPanel26.Controls.Add(txtQuantiteIngredientAjouter, 1, 0);
             tableLayoutPanel26.Dock = DockStyle.Fill;
-            tableLayoutPanel26.Location = new Point(417, 3);
+            tableLayoutPanel26.Location = new Point(455, 3);
             tableLayoutPanel26.Name = "tableLayoutPanel26";
             tableLayoutPanel26.RowCount = 1;
             tableLayoutPanel26.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel26.Size = new Size(316, 46);
+            tableLayoutPanel26.Size = new Size(310, 33);
             tableLayoutPanel26.TabIndex = 1;
             // 
             // label17
             // 
             label17.AutoSize = true;
             label17.Dock = DockStyle.Fill;
-            label17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.FromArgb(33, 34, 69);
             label17.Location = new Point(3, 0);
             label17.Name = "label17";
-            label17.Size = new Size(120, 46);
+            label17.Size = new Size(118, 33);
             label17.TabIndex = 0;
             label17.Text = "Quantité :";
             label17.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtQuantiteIngredientAjouter
             // 
+            txtQuantiteIngredientAjouter.BorderStyle = BorderStyle.None;
             txtQuantiteIngredientAjouter.Dock = DockStyle.Fill;
-            txtQuantiteIngredientAjouter.Location = new Point(130, 4);
+            txtQuantiteIngredientAjouter.Location = new Point(128, 4);
             txtQuantiteIngredientAjouter.Margin = new Padding(4);
+            txtQuantiteIngredientAjouter.Multiline = true;
             txtQuantiteIngredientAjouter.Name = "txtQuantiteIngredientAjouter";
-            txtQuantiteIngredientAjouter.Size = new Size(182, 30);
+            txtQuantiteIngredientAjouter.Size = new Size(178, 25);
             txtQuantiteIngredientAjouter.TabIndex = 1;
             // 
-            // btAjouterIngredient
+            // tableLayoutPanel39
             // 
-            btAjouterIngredient.Dock = DockStyle.Fill;
-            btAjouterIngredient.Location = new Point(740, 4);
-            btAjouterIngredient.Margin = new Padding(4);
-            btAjouterIngredient.Name = "btAjouterIngredient";
-            btAjouterIngredient.Size = new Size(176, 44);
-            btAjouterIngredient.TabIndex = 2;
-            btAjouterIngredient.Text = "Ajouter";
-            btAjouterIngredient.UseVisualStyleBackColor = true;
-            btAjouterIngredient.Click += btAjouterIngredient_Click;
+            tableLayoutPanel39.ColumnCount = 3;
+            tableLayoutPanel39.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanel39.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel39.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
+            tableLayoutPanel39.Controls.Add(pictureBox2, 0, 0);
+            tableLayoutPanel39.Controls.Add(pictureBox3, 2, 0);
+            tableLayoutPanel39.Controls.Add(spaceSeparatorVertical2, 1, 0);
+            tableLayoutPanel39.Dock = DockStyle.Fill;
+            tableLayoutPanel39.Location = new Point(771, 3);
+            tableLayoutPanel39.Name = "tableLayoutPanel39";
+            tableLayoutPanel39.RowCount = 1;
+            tableLayoutPanel39.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel39.Size = new Size(130, 33);
+            tableLayoutPanel39.TabIndex = 2;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Dock = DockStyle.Fill;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(3, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(52, 27);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 2;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += btAjouterIngredient_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Dock = DockStyle.Fill;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(74, 3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(53, 27);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 3;
+            pictureBox3.TabStop = false;
+            // 
+            // spaceSeparatorVertical2
+            // 
+            spaceSeparatorVertical2.Customization = "Kioq/yoqKv8jIyP/Kioq/w==";
+            spaceSeparatorVertical2.Dock = DockStyle.Fill;
+            spaceSeparatorVertical2.Font = new Font("Verdana", 8F);
+            spaceSeparatorVertical2.Image = null;
+            spaceSeparatorVertical2.Location = new Point(63, 3);
+            spaceSeparatorVertical2.Margin = new Padding(5, 3, 3, 3);
+            spaceSeparatorVertical2.Name = "spaceSeparatorVertical2";
+            spaceSeparatorVertical2.NoRounding = false;
+            spaceSeparatorVertical2.Size = new Size(4, 27);
+            spaceSeparatorVertical2.TabIndex = 0;
+            spaceSeparatorVertical2.Text = "spaceSeparatorVertical2";
+            spaceSeparatorVertical2.Transparent = false;
             // 
             // dgvIngredientAjouter
             // 
+            dgvIngredientAjouter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvIngredientAjouter.BackgroundColor = Color.White;
+            dgvIngredientAjouter.BorderStyle = BorderStyle.None;
             dgvIngredientAjouter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Window;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = Color.FromArgb(57, 55, 32);
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
+            dgvIngredientAjouter.DefaultCellStyle = dataGridViewCellStyle16;
             dgvIngredientAjouter.Dock = DockStyle.Fill;
-            dgvIngredientAjouter.Location = new Point(4, 62);
+            dgvIngredientAjouter.Location = new Point(4, 49);
             dgvIngredientAjouter.Margin = new Padding(4);
             dgvIngredientAjouter.Name = "dgvIngredientAjouter";
-            dgvIngredientAjouter.RowHeadersWidth = 51;
-            dgvIngredientAjouter.Size = new Size(918, 129);
+            dgvIngredientAjouter.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvIngredientAjouter.Size = new Size(902, 100);
             dgvIngredientAjouter.TabIndex = 1;
             // 
             // gbxEtapesAjouter
@@ -1555,11 +2197,12 @@
             gbxEtapesAjouter.Controls.Add(tableLayoutPanel27);
             gbxEtapesAjouter.Dock = DockStyle.Fill;
             gbxEtapesAjouter.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbxEtapesAjouter.Location = new Point(4, 280);
+            gbxEtapesAjouter.ForeColor = Color.FromArgb(57, 55, 32);
+            gbxEtapesAjouter.Location = new Point(4, 235);
             gbxEtapesAjouter.Margin = new Padding(4);
             gbxEtapesAjouter.Name = "gbxEtapesAjouter";
             gbxEtapesAjouter.Padding = new Padding(4);
-            gbxEtapesAjouter.Size = new Size(934, 226);
+            gbxEtapesAjouter.Size = new Size(918, 232);
             gbxEtapesAjouter.TabIndex = 6;
             gbxEtapesAjouter.TabStop = false;
             gbxEtapesAjouter.Text = "Etapes";
@@ -1567,16 +2210,16 @@
             // tableLayoutPanel27
             // 
             tableLayoutPanel27.ColumnCount = 1;
-            tableLayoutPanel27.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel27.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel27.Controls.Add(tableLayoutPanel28, 0, 0);
             tableLayoutPanel27.Controls.Add(dgvEtapeAjouter, 0, 1);
             tableLayoutPanel27.Dock = DockStyle.Fill;
             tableLayoutPanel27.Location = new Point(4, 31);
             tableLayoutPanel27.Name = "tableLayoutPanel27";
             tableLayoutPanel27.RowCount = 2;
-            tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel27.Size = new Size(926, 191);
+            tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
+            tableLayoutPanel27.Size = new Size(910, 197);
             tableLayoutPanel27.TabIndex = 0;
             // 
             // tableLayoutPanel28
@@ -1587,13 +2230,13 @@
             tableLayoutPanel28.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tableLayoutPanel28.Controls.Add(tableLayoutPanel29, 0, 0);
             tableLayoutPanel28.Controls.Add(groupBox1, 1, 0);
-            tableLayoutPanel28.Controls.Add(btEtapeAjouter, 2, 0);
+            tableLayoutPanel28.Controls.Add(tableLayoutPanel41, 2, 0);
             tableLayoutPanel28.Dock = DockStyle.Fill;
             tableLayoutPanel28.Location = new Point(3, 3);
             tableLayoutPanel28.Name = "tableLayoutPanel28";
             tableLayoutPanel28.RowCount = 1;
             tableLayoutPanel28.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel28.Size = new Size(920, 89);
+            tableLayoutPanel28.Size = new Size(904, 82);
             tableLayoutPanel28.TabIndex = 0;
             // 
             // tableLayoutPanel29
@@ -1604,23 +2247,25 @@
             tableLayoutPanel29.Controls.Add(label18, 0, 0);
             tableLayoutPanel29.Controls.Add(label19, 0, 1);
             tableLayoutPanel29.Controls.Add(txtNumeroEtapeAjouter, 1, 0);
-            tableLayoutPanel29.Controls.Add(textBox2, 1, 1);
+            tableLayoutPanel29.Controls.Add(txtTitreEtapeAjouter, 1, 1);
+            tableLayoutPanel29.Dock = DockStyle.Fill;
             tableLayoutPanel29.Location = new Point(3, 3);
             tableLayoutPanel29.Name = "tableLayoutPanel29";
             tableLayoutPanel29.RowCount = 2;
             tableLayoutPanel29.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel29.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel29.Size = new Size(231, 68);
+            tableLayoutPanel29.Size = new Size(265, 76);
             tableLayoutPanel29.TabIndex = 0;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Dock = DockStyle.Fill;
-            label18.Font = new Font("Segoe UI", 10.2F);
+            label18.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.ForeColor = Color.FromArgb(33, 34, 69);
             label18.Location = new Point(3, 0);
             label18.Name = "label18";
-            label18.Size = new Size(86, 34);
+            label18.Size = new Size(100, 38);
             label18.TabIndex = 0;
             label18.Text = "Numéro : ";
             label18.TextAlign = ContentAlignment.MiddleLeft;
@@ -1629,117 +2274,197 @@
             // 
             label19.AutoSize = true;
             label19.Dock = DockStyle.Fill;
-            label19.Font = new Font("Segoe UI", 10.2F);
-            label19.Location = new Point(3, 34);
+            label19.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.ForeColor = Color.FromArgb(33, 34, 69);
+            label19.Location = new Point(3, 38);
             label19.Name = "label19";
-            label19.Size = new Size(86, 34);
+            label19.Size = new Size(100, 38);
             label19.TabIndex = 1;
             label19.Text = "Titre :";
             label19.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtNumeroEtapeAjouter
             // 
+            txtNumeroEtapeAjouter.BorderStyle = BorderStyle.None;
             txtNumeroEtapeAjouter.Dock = DockStyle.Fill;
-            txtNumeroEtapeAjouter.Location = new Point(96, 4);
+            txtNumeroEtapeAjouter.Location = new Point(110, 4);
             txtNumeroEtapeAjouter.Margin = new Padding(4);
             txtNumeroEtapeAjouter.Name = "txtNumeroEtapeAjouter";
-            txtNumeroEtapeAjouter.Size = new Size(131, 34);
+            txtNumeroEtapeAjouter.Size = new Size(151, 27);
             txtNumeroEtapeAjouter.TabIndex = 2;
             // 
-            // textBox2
+            // txtTitreEtapeAjouter
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(95, 37);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(133, 34);
-            textBox2.TabIndex = 3;
+            txtTitreEtapeAjouter.BorderStyle = BorderStyle.None;
+            txtTitreEtapeAjouter.Dock = DockStyle.Fill;
+            txtTitreEtapeAjouter.Location = new Point(109, 41);
+            txtTitreEtapeAjouter.Multiline = true;
+            txtTitreEtapeAjouter.Name = "txtTitreEtapeAjouter";
+            txtTitreEtapeAjouter.Size = new Size(153, 32);
+            txtTitreEtapeAjouter.TabIndex = 3;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(txtTexteEtapeAjouter);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(280, 4);
+            groupBox1.Location = new Point(275, 4);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(452, 81);
+            groupBox1.Size = new Size(444, 74);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Texte";
             // 
             // txtTexteEtapeAjouter
             // 
+            txtTexteEtapeAjouter.BorderStyle = BorderStyle.None;
             txtTexteEtapeAjouter.Dock = DockStyle.Fill;
             txtTexteEtapeAjouter.Location = new Point(4, 22);
             txtTexteEtapeAjouter.Margin = new Padding(4);
             txtTexteEtapeAjouter.Multiline = true;
             txtTexteEtapeAjouter.Name = "txtTexteEtapeAjouter";
-            txtTexteEtapeAjouter.Size = new Size(444, 55);
+            txtTexteEtapeAjouter.Size = new Size(436, 48);
             txtTexteEtapeAjouter.TabIndex = 0;
             // 
-            // btEtapeAjouter
+            // tableLayoutPanel41
             // 
-            btEtapeAjouter.Dock = DockStyle.Fill;
-            btEtapeAjouter.Location = new Point(740, 4);
-            btEtapeAjouter.Margin = new Padding(4);
-            btEtapeAjouter.Name = "btEtapeAjouter";
-            btEtapeAjouter.Size = new Size(176, 81);
-            btEtapeAjouter.TabIndex = 2;
-            btEtapeAjouter.Text = "Ajouter";
-            btEtapeAjouter.UseVisualStyleBackColor = true;
-            btEtapeAjouter.Click += btEtapeAjouter_Click;
+            tableLayoutPanel41.ColumnCount = 5;
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.8440609F));
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.6569366F));
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 4.99800253F));
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.6569366F));
+            tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.8440657F));
+            tableLayoutPanel41.Controls.Add(spaceSeparatorVertical3, 2, 1);
+            tableLayoutPanel41.Controls.Add(pictureBox4, 1, 1);
+            tableLayoutPanel41.Controls.Add(pictureBox5, 3, 1);
+            tableLayoutPanel41.Controls.Add(crEaTiiOn_LightSeperator3, 1, 0);
+            tableLayoutPanel41.Controls.Add(crEaTiiOn_LightSeperator4, 1, 2);
+            tableLayoutPanel41.Location = new Point(726, 3);
+            tableLayoutPanel41.Name = "tableLayoutPanel41";
+            tableLayoutPanel41.RowCount = 3;
+            tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            tableLayoutPanel41.Size = new Size(175, 72);
+            tableLayoutPanel41.TabIndex = 2;
+            // 
+            // spaceSeparatorVertical3
+            // 
+            spaceSeparatorVertical3.Customization = "Kioq/yoqKv8jIyP/Kioq/w==";
+            spaceSeparatorVertical3.Dock = DockStyle.Fill;
+            spaceSeparatorVertical3.Font = new Font("Verdana", 8F);
+            spaceSeparatorVertical3.Image = null;
+            spaceSeparatorVertical3.Location = new Point(87, 21);
+            spaceSeparatorVertical3.Margin = new Padding(5, 3, 3, 3);
+            spaceSeparatorVertical3.Name = "spaceSeparatorVertical3";
+            spaceSeparatorVertical3.NoRounding = false;
+            spaceSeparatorVertical3.Size = new Size(4, 37);
+            spaceSeparatorVertical3.TabIndex = 2;
+            spaceSeparatorVertical3.Text = "spaceSeparatorVertical3";
+            spaceSeparatorVertical3.Transparent = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Dock = DockStyle.Fill;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(28, 21);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(51, 37);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 0;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += btEtapeAjouter_Click;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Dock = DockStyle.Fill;
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(93, 21);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(51, 37);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 1;
+            pictureBox5.TabStop = false;
+            // 
+            // crEaTiiOn_LightSeperator3
+            // 
+            tableLayoutPanel41.SetColumnSpan(crEaTiiOn_LightSeperator3, 3);
+            crEaTiiOn_LightSeperator3.LineColor = Color.Silver;
+            crEaTiiOn_LightSeperator3.Location = new Point(28, 3);
+            crEaTiiOn_LightSeperator3.Name = "crEaTiiOn_LightSeperator3";
+            crEaTiiOn_LightSeperator3.Size = new Size(116, 11);
+            crEaTiiOn_LightSeperator3.TabIndex = 3;
+            crEaTiiOn_LightSeperator3.Text = "crEaTiiOn_LightSeperator3";
+            // 
+            // crEaTiiOn_LightSeperator4
+            // 
+            tableLayoutPanel41.SetColumnSpan(crEaTiiOn_LightSeperator4, 3);
+            crEaTiiOn_LightSeperator4.LineColor = Color.Silver;
+            crEaTiiOn_LightSeperator4.Location = new Point(28, 64);
+            crEaTiiOn_LightSeperator4.Name = "crEaTiiOn_LightSeperator4";
+            crEaTiiOn_LightSeperator4.Size = new Size(116, 5);
+            crEaTiiOn_LightSeperator4.TabIndex = 4;
+            crEaTiiOn_LightSeperator4.Text = "crEaTiiOn_LightSeperator4";
             // 
             // dgvEtapeAjouter
             // 
+            dgvEtapeAjouter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEtapeAjouter.BackgroundColor = Color.White;
+            dgvEtapeAjouter.BorderStyle = BorderStyle.None;
             dgvEtapeAjouter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEtapeAjouter.Dock = DockStyle.Fill;
-            dgvEtapeAjouter.Location = new Point(4, 99);
+            dgvEtapeAjouter.Location = new Point(4, 92);
             dgvEtapeAjouter.Margin = new Padding(4);
             dgvEtapeAjouter.Name = "dgvEtapeAjouter";
             dgvEtapeAjouter.RowHeadersWidth = 51;
-            dgvEtapeAjouter.Size = new Size(918, 88);
+            dgvEtapeAjouter.Size = new Size(902, 101);
             dgvEtapeAjouter.TabIndex = 1;
-            // 
-            // txtTitreEtapeAjouter
-            // 
-            txtTitreEtapeAjouter.Dock = DockStyle.Fill;
-            txtTitreEtapeAjouter.Location = new Point(101, 20);
-            txtTitreEtapeAjouter.Margin = new Padding(4);
-            txtTitreEtapeAjouter.Name = "txtTitreEtapeAjouter";
-            txtTitreEtapeAjouter.Size = new Size(139, 27);
-            txtTitreEtapeAjouter.TabIndex = 3;
             // 
             // FormBase
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1382, 853);
-            Controls.Add(tableLayoutPanel1);
+            ClientSize = new Size(1400, 900);
+            Controls.Add(dungeonForm1);
             Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
             MinimumSize = new Size(1400, 900);
             Name = "FormBase";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Délices du jour";
+            TransparencyKey = Color.Fuchsia;
             FormClosing += FormBase_FormClosing;
             FormClosed += FormBase_FormClosed;
             Load += FormBase_Load;
+            ((System.ComponentModel.ISupportInitialize)BSRecettes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BSCategories).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BSRecettesByCategorie).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BSCategoriesByRecette).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BSRecettesCategoriesRelations).EndInit();
+            dungeonForm1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tabControl.ResumeLayout(false);
             tabLogin.ResumeLayout(false);
             tabLogin.PerformLayout();
             tableLayoutPanel30.ResumeLayout(false);
             tableLayoutPanel30.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
-            tableLayoutPanel31.ResumeLayout(false);
-            tableLayoutPanel31.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
             tableLayoutPanel32.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel34.ResumeLayout(false);
+            tableLayoutPanel35.ResumeLayout(false);
+            tableLayoutPanel36.ResumeLayout(false);
+            tableLayoutPanel36.PerformLayout();
+            tableLayoutPanel31.ResumeLayout(false);
+            tableLayoutPanel31.PerformLayout();
+            tableLayoutPanel33.ResumeLayout(false);
+            tableLayoutPanel33.PerformLayout();
+            tableLayoutPanel37.ResumeLayout(false);
+            tableLayoutPanel37.PerformLayout();
             tabRecettes.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvRecettes).EndInit();
@@ -1766,7 +2491,7 @@
             tableLayoutPanel13.PerformLayout();
             tableLayoutPanel14.ResumeLayout(false);
             tableLayoutPanel14.PerformLayout();
-            flowLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel38.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvRelationsRecCat).EndInit();
             tabGestionRecette.ResumeLayout(false);
             tableLayoutPanel15.ResumeLayout(false);
@@ -1774,8 +2499,10 @@
             tableLayoutPanel16.ResumeLayout(false);
             flowLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel17.ResumeLayout(false);
+            tableLayoutPanel17.PerformLayout();
             tableLayoutPanel18.ResumeLayout(false);
             tableLayoutPanel18.PerformLayout();
+            tableLayoutPanel40.ResumeLayout(false);
             tableLayoutPanel19.ResumeLayout(false);
             tableLayoutPanel19.PerformLayout();
             tableLayoutPanel20.ResumeLayout(false);
@@ -1791,6 +2518,9 @@
             tableLayoutPanel25.PerformLayout();
             tableLayoutPanel26.ResumeLayout(false);
             tableLayoutPanel26.PerformLayout();
+            tableLayoutPanel39.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvIngredientAjouter).EndInit();
             gbxEtapesAjouter.ResumeLayout(false);
             tableLayoutPanel27.ResumeLayout(false);
@@ -1799,40 +2529,28 @@
             tableLayoutPanel29.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            tableLayoutPanel41.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvEtapeAjouter).EndInit();
-            ((System.ComponentModel.ISupportInitialize)BSRecettes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)BSCategories).EndInit();
-            ((System.ComponentModel.ISupportInitialize)BSRecettesByCategorie).EndInit();
-            ((System.ComponentModel.ISupportInitialize)BSCategoriesByRecette).EndInit();
-            ((System.ComponentModel.ISupportInitialize)BSRecettesCategoriesRelations).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private TableLayoutPanel tableLayoutPanel30;
-        private TableLayoutPanel tableLayoutPanel1;
         private BindingSource BSRecettes;
         private BindingSource BSCategories;
         private BindingSource BSRecettesByCategorie;
         private BindingSource BSCategoriesByRecette;
         private BindingSource BSRecettesCategoriesRelations;
         private TextBox txtDifficulteRecette;
-        private ComboBox cbxDifficulte;
+        private ComboBox cbxDifficulte;        
+        private ReaLTaiizor.Forms.DungeonForm dungeonForm1;
+        private TableLayoutPanel tableLayoutPanel1;
         private TabControl tabControl;
         private TabPage tabLogin;
-        private TabPage tabRecettes;
+        private TableLayoutPanel tableLayoutPanel30;
         private TableLayoutPanel tableLayoutPanel2;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private TextBox txtHttp;
-        private TextBox txtIdentifiant;
-        private TextBox txtPassword;
-        private Label lblRoles;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Button btLogin;
-        private Button btLogOut;
+        private TabPage tabRecettes;
         private TableLayoutPanel tableLayoutPanel3;
         private DataGridView dgvRecettes;
         private GroupBox gbxCategories;
@@ -1841,22 +2559,18 @@
         private Button btPlat;
         private Button btDessert;
         private Button btSoupe;
-  
         private Button btDetailsRecette;
         private Button btTtesRecettes;
         private TabPage tabCategories;
         private TableLayoutPanel tableLayoutPanel4;
-        private DataGridView dgvCategories;
         private FlowLayoutPanel flowLayoutPanel3;
         private Button btActualiserCategorie;
         private Button btAjouterCategorie;
         private Button btModifierCategorie;
         private Button btSupprimerCategorie;
-       
         private TableLayoutPanel tableLayoutPanel5;
         private TextBox txtNomCategories;
         private Label label4;
-   
         private TabPage tabRecetteCategorie;
         private TableLayoutPanel tableLayoutPanel6;
         private TableLayoutPanel tableLayoutPanel7;
@@ -1870,11 +2584,9 @@
         private TextBox txtNomRecette;
         private TableLayoutPanel tableLayoutPanel9;
         private Label label8;
-   
         private TextBox txtIdCategorie;
         private Label label7;
         private TextBox txtNomCategorie;
-
         private TableLayoutPanel tableLayoutPanel10;
         private TableLayoutPanel tableLayoutPanel11;
         private TableLayoutPanel tableLayoutPanel12;
@@ -1882,16 +2594,9 @@
         private Label label9;
         private TextBox txtRelationIdCategorie;
         private TableLayoutPanel tableLayoutPanel14;
-        
         private Label label10;
         private TextBox txtRelationIdRecette;
-        private TextBox textBox2;
-        private FlowLayoutPanel flowLayoutPanel4;
-        private Button btAjouterRelationRecCat;
-        private Button btSupprimerRelationRecCat;
-       
         private DataGridView dgvRelationsRecCat;
-       
         private TabPage tabGestionRecette;
         private TableLayoutPanel tableLayoutPanel15;
         private DataGridView dgvGestionRecette;
@@ -1902,8 +2607,6 @@
         private Button btSupprimerRecette;
         private TableLayoutPanel tableLayoutPanel17;
         private TableLayoutPanel tableLayoutPanel18;
-        private Label label11;
-        private TextBox txtTitreRecette;
         private TableLayoutPanel tableLayoutPanel19;
         private DateTimePicker dtpTempsPreparation;
         private Label label12;
@@ -1914,7 +2617,6 @@
         private Label label14;
         private ListBox listBoxDifficulte;
         private TableLayoutPanel tableLayoutPanel22;
-    
         private Label label15;
         private CheckedListBox clbCategories;
         private GroupBox gbxIngredients;
@@ -1926,9 +2628,6 @@
         private TableLayoutPanel tableLayoutPanel26;
         private Label label17;
         private TextBox txtQuantiteIngredientAjouter;
-        private Button btAjouterIngredient;
-
-        
         private DataGridView dgvIngredientAjouter;
         private GroupBox gbxEtapesAjouter;
         private TableLayoutPanel tableLayoutPanel27;
@@ -1940,13 +2639,47 @@
         private TextBox txtTitreEtapeAjouter;
         private GroupBox groupBox1;
         private TextBox txtTexteEtapeAjouter;
-        private Button btEtapeAjouter;
         private DataGridView dgvEtapeAjouter;
-        
-     
-        private TableLayoutPanel tableLayoutPanel31;
-
+        private ReaLTaiizor.Controls.MetroControlBox metroControlBox1;
+        private TableLayoutPanel tableLayoutPanel34;
+        private TableLayoutPanel tableLayoutPanel35;
+        private TableLayoutPanel tableLayoutPanel36;
+        private Label label2;
+        private TextBox txtHttp;
+        private Label label1;
+        private TableLayoutPanel tableLayoutPanel37;
+        private TextBox txtPassword;
+        private Label label3;
+        private TextBox txtIdentifiant;
+        private Label lblRoles;
         private TableLayoutPanel tableLayoutPanel32;
         private PictureBox pictureBox1;
+        private TableLayoutPanel tableLayoutPanel31;
+        private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator1;
+        private TableLayoutPanel tableLayoutPanel33;
+        private Button btLogOut;
+        private Button btLogin;
+        private Label label20;
+        private DataGridView dgvCategories;
+        private TableLayoutPanel tableLayoutPanel38;
+        private Button btAjouterRelationRecCat;
+        private Button btSupprimerRelationRecCat;
+        private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator2;
+        private TextBox textBox1;
+        private Label label21;
+        private TextBox txtTitreRecette;
+        private Label label11;
+        private TableLayoutPanel tableLayoutPanel39;
+        private TableLayoutPanel tableLayoutPanel40;
+        private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical2;
+        private TableLayoutPanel tableLayoutPanel41;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
+        private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical3;
+        private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator3;
+        private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator4;
     }
 }

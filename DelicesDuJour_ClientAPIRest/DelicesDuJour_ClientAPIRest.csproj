@@ -12,6 +12,7 @@
     <PackageReference Include="NotifyIconEx" Version="1.1.2" />
     <PackageReference Include="ReaLTaiizor" Version="3.8.1.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+    <PackageReference Include="Winform.Metroframework.Design" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>

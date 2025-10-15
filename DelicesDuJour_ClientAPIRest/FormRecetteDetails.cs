@@ -23,7 +23,6 @@ internal partial class FormRecetteDetails : Form
 
         try
         {
-
             var res = await _deliceService.GetRecetteByIdAsync(idRecette);
 
             if (res != null)

@@ -55,6 +55,7 @@ namespace DelicesDuJour_ClientAPIRest
             tabControl.SelectedTab = tabLogin;
             await Task.Delay(50);
             txtPassword.Focus();
+            AcceptButton = btLogin;
         }
         private void FormBase_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -204,7 +205,6 @@ namespace DelicesDuJour_ClientAPIRest
                     Password = txtPassword.Text
                 };
 
-
                 bool res = await _deliceService.Login(txtHttp.Text, loginDTO);
 
                 if (res)
@@ -279,7 +279,7 @@ namespace DelicesDuJour_ClientAPIRest
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
 
-                if (!recettes.Any())
+                if (recettes.Any())
                 {
                     // Étape 3 : vider et remplir la liste liée
                     _recettesByCategorie.Clear();
@@ -292,7 +292,7 @@ namespace DelicesDuJour_ClientAPIRest
                 else
                 {
                     MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }             
+                }
 
             }
             finally
@@ -319,7 +319,7 @@ namespace DelicesDuJour_ClientAPIRest
                 int idEntree = entreeCategorie.Id;
 
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
-                if (!recettes.Any())
+                if (recettes.Any())
                 {
                     //Étape 3 : vider et remplir la liste liée
                     _recettesByCategorie.Clear();
@@ -332,7 +332,7 @@ namespace DelicesDuJour_ClientAPIRest
                 else
                 {
                     MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }               
+                }
             }
             finally
             {
@@ -353,12 +353,12 @@ namespace DelicesDuJour_ClientAPIRest
                 // Étape 1 : trouver la catégorie "Entrée" dans _categories
                 var entreeCategorie = _categories
                     .FirstOrDefault(c => string.Equals(c.nom, "Dessert", StringComparison.OrdinalIgnoreCase));
-                   
+
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 int idEntree = entreeCategorie.Id;
 
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
-                if (!recettes.Any())
+                if (recettes.Any())
                 {
                     // Étape 3 : vider et remplir la liste liée
                     _recettesByCategorie.Clear();
@@ -398,7 +398,7 @@ namespace DelicesDuJour_ClientAPIRest
 
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
 
-                if (!recettes.Any())
+                if (recettes.Any())
                 {
                     // Étape 3 : vider et remplir la liste liée
                     _recettesByCategorie.Clear();
@@ -411,7 +411,7 @@ namespace DelicesDuJour_ClientAPIRest
                 else
                 {
                     MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }     
+                }
 
             }
             finally
@@ -427,13 +427,17 @@ namespace DelicesDuJour_ClientAPIRest
             {
                 var formRecetteDetails = new FormRecetteDetails(currentRecette.Id);
                 formRecetteDetails.Show();
-
+            }
+            else if (BSRecettesByCategorie.Current is RecetteDTO current)
+            {
+                var formRecetteDetails = new FormRecetteDetails(current.Id);
+                formRecetteDetails.Show();
             }
             else
             {
                 MessageBox.Show("Veuillez sélectionner une recette.",
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            }            
         }
 
         private async Task ActualiserRecettes()
@@ -444,7 +448,7 @@ namespace DelicesDuJour_ClientAPIRest
             // Remplissage de la liste
             var result = await _deliceService.GetRecettesAsync();
 
-            if (!result.Any())
+            if (result.Any())
             {
                 _recettes.Clear();
                 foreach (RecetteDTO r in result)
@@ -452,7 +456,7 @@ namespace DelicesDuJour_ClientAPIRest
             }
             else
             {
-                MessageBox.Show("Aucune recette trouvée.","Erreur",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Aucune recette trouvée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // On se repositionne sur le current
@@ -491,9 +495,17 @@ namespace DelicesDuJour_ClientAPIRest
 
                 var res = await _deliceService.AddCategorieAsync(createDTO);
 
-                await ActualiserCategories();
-                BSCategories.Position = _categories.IndexOf(_categories.FirstOrDefault(b => b.Id == res.Id));
+                if (res != null)
+                {
+                    MessageBox.Show("La nouvelle catégorie a bien été ajouté", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    await ActualiserCategories();
+                    BSCategories.Position = _categories.IndexOf(_categories.FirstOrDefault(b => b.Id == res.Id));
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur s'est produite. Impossible de créer la catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             finally
             {
@@ -518,6 +530,17 @@ namespace DelicesDuJour_ClientAPIRest
 
                     var res = await _deliceService.UpdateCategorieAsync(updateDTO, current.Id);
 
+                    if (res != null)
+                    {
+                        MessageBox.Show("La catégorie a bien été modifié", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        await ActualiserCategories();
+                        BSCategories.Position = _categories.IndexOf(_categories.FirstOrDefault(b => b.Id == res.Id));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Une erreur s'est produite. Impossible de modifier la catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     await ActualiserCategories();
                 }
 
@@ -537,7 +560,12 @@ namespace DelicesDuJour_ClientAPIRest
 
                 if (current is not null)
                 {
-                    await _deliceService.DeleteCategorieAsync(current.Id);
+                    if ((MessageBox.Show($"Confirmez vous la suppression de la catégorie {current.nom} ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
+                    {
+                        await _deliceService.DeleteCategorieAsync(current.Id);
+                        MessageBox.Show("La catégorie a bien été supprimé", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                     await ActualiserCategories();
                 }
 
@@ -556,7 +584,7 @@ namespace DelicesDuJour_ClientAPIRest
             // Remplissage de la liste
             var res = await _deliceService.GetCategoriesAsync();
 
-            if (!res.Any())
+            if (res.Any())
             {
                 _categories.Clear();
                 foreach (CategorieDTO c in res)
@@ -564,9 +592,8 @@ namespace DelicesDuJour_ClientAPIRest
             }
             else
             {
-                MessageBox.Show("Aucune catégorie trouvée.", "Erreur",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+                MessageBox.Show("Aucune catégorie trouvée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // On se repositionne sur le current
             if (current is not null)
@@ -614,14 +641,21 @@ namespace DelicesDuJour_ClientAPIRest
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(recette);
 
-
-                // Étape 3 : vider et remplir la liste liée
-                _recettesByCategorie.Clear();
-                foreach (var r in recettes)
+                if (recettes.Any())
                 {
-                    _recettesByCategorie.Add(r);
+                    // Étape 3 : vider et remplir la liste liée
+                    _recettesByCategorie.Clear();
+                    foreach (var r in recettes)
+                    {
+                        _recettesByCategorie.Add(r);
+                    }
+                    ChangeDgvRByC();
                 }
-                ChangeDgvRByC();
+                else
+                {
+                    MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                await ActualiserCategories();
 
             }
             finally
@@ -675,13 +709,20 @@ namespace DelicesDuJour_ClientAPIRest
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 var categories = await _deliceService.GetCategoriesByIdRecette(categorie);
 
-                // Étape 3 : vider et remplir la liste liée
-                _categoriesByRecette.Clear();
-                foreach (var c in categories)
-                {
-                    _categoriesByRecette.Add(c);
+                if (categories.Any())
+                {// Étape 3 : vider et remplir la liste liée
+                    _categoriesByRecette.Clear();
+                    foreach (var c in categories)
+                    {
+                        _categoriesByRecette.Add(c);
+                    }
+                    ChangeDgvByR();
                 }
-                ChangeDgvByR();
+                else
+                {
+                    MessageBox.Show("Aucune catégorie ne correspond à cette recette.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             finally
             {
@@ -713,9 +754,10 @@ namespace DelicesDuJour_ClientAPIRest
 
                 await _deliceService.AddRelationRecetteCategorieAsync(idCategorie, idRecette);
 
+                MessageBox.Show("La création de la relation a bien été faite.", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 await ActualiserRecettesCategoriesRelations();
                 BSRecettesCategoriesRelations.Position = _recettesCategoriesRelations.IndexOf(_recettesCategoriesRelations.FirstOrDefault(r => r.idRecette == idRecette));
-
             }
             finally
             {
@@ -732,7 +774,11 @@ namespace DelicesDuJour_ClientAPIRest
                 int idCategorie = int.Parse(txtRelationIdCategorie.Text);
 
 
-                await _deliceService.DeleteRelationRecetteCategorieAsync(idCategorie, idRecette);
+                if ((MessageBox.Show($"Confirmez vous la suppression de la relation ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
+                {
+                    await _deliceService.DeleteRelationRecetteCategorieAsync(idCategorie, idRecette);
+                    MessageBox.Show("La relation a bien été supprimé", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 await ActualiserRecettesCategoriesRelations();
             }
@@ -767,62 +813,75 @@ namespace DelicesDuJour_ClientAPIRest
 
             RecetteDTO current = BSRecettes.Current as RecetteDTO;
 
-            var currentRecette = await _deliceService.GetRecetteByIdAsync(current.Id);
-
-            txtIdGestionrecette.Text = currentRecette.Id.ToString();
-            txtTitreRecette.Text = currentRecette.nom;
-            dtpTempsPreparation.Value = DateTime.Today.Add(currentRecette.temps_preparation);
-            dtpTempsCuisson.Value = DateTime.Today.Add(currentRecette.temps_cuisson);
-            listBoxDifficulte.SelectedItem = currentRecette.difficulte.ToString();
-
-            for (int i = 0; i < clbCategories.Items.Count; i++)
+            if (current is not null)
             {
-                clbCategories.SetItemChecked(i, false);
-            }
-
-            // Parcourt chaque catégorie de la recette
-            foreach (var categorie in currentRecette.categories)
-            {
-                // Parcourt les items du CheckedListBox
-                for (int i = 0; i < clbCategories.Items.Count; i++)
+                var currentRecette = await _deliceService.GetRecetteByIdAsync(current.Id);
+                if (currentRecette is not null)
                 {
-                    // Récupère la catégorie affichée dans la liste
-                    var item = clbCategories.Items[i] as CategorieDTO;
+                    txtIdGestionrecette.Text = currentRecette.Id.ToString();
+                    txtTitreRecette.Text = currentRecette.nom;
+                    dtpTempsPreparation.Value = DateTime.Today.Add(currentRecette.temps_preparation);
+                    dtpTempsCuisson.Value = DateTime.Today.Add(currentRecette.temps_cuisson);
+                    listBoxDifficulte.SelectedItem = currentRecette.difficulte.ToString();
 
-                    // Compare par Id ou par Nom
-                    if (item != null && item.Id == categorie.Id)
+                    for (int i = 0; i < clbCategories.Items.Count; i++)
                     {
-                        clbCategories.SetItemChecked(i, true);
+                        clbCategories.SetItemChecked(i, false);
                     }
+
+                    // Parcourt chaque catégorie de la recette
+                    foreach (var categorie in currentRecette.categories)
+                    {
+                        // Parcourt les items du CheckedListBox
+                        for (int i = 0; i < clbCategories.Items.Count; i++)
+                        {
+                            // Récupère la catégorie affichée dans la liste
+                            var item = clbCategories.Items[i] as CategorieDTO;
+
+                            // Compare par Id ou par Nom
+                            if (item != null && item.Id == categorie.Id)
+                            {
+                                clbCategories.SetItemChecked(i, true);
+                            }
+                        }
+                    }
+
+                    _ingredients.Clear();
+
+                    foreach (IngredientDTO ingredient in currentRecette.ingredients)
+                    {
+                        _ingredients.Add(ingredient);
+                    }
+
+                    _etapes.Clear();
+
+                    foreach (EtapeDTO etape in currentRecette.etapes)
+                    {
+                        _etapes.Add(etape);
+                    }
+
                 }
             }
 
-            _ingredients.Clear();
 
-            foreach (IngredientDTO ingredient in currentRecette.ingredients)
-            {
-                _ingredients.Add(ingredient);
-            }
-
-            _etapes.Clear();
-            if (currentRecette != null)
-            {
-                foreach (EtapeDTO etape in currentRecette.etapes)
-                {
-                    _etapes.Add(etape);
-                }
-            }
         }
 
         private async void btAjouterIngredient_Click(object sender, EventArgs e)
         {
-            IngredientDTO IngredientDTO = new()
+            if (!string.IsNullOrEmpty(txtNomIngredientAjouter.Text) && !string.IsNullOrEmpty(txtQuantiteIngredientAjouter.Text))
             {
-                nom = txtNomIngredientAjouter.Text,
-                quantite = txtQuantiteIngredientAjouter.Text
-            };
-            // Ajout à la liste liée au DataGridView
-            _ingredients.Add(IngredientDTO);
+                IngredientDTO IngredientDTO = new()
+                {
+                    nom = txtNomIngredientAjouter.Text,
+                    quantite = txtQuantiteIngredientAjouter.Text
+                };
+                // Ajout à la liste liée au DataGridView
+                _ingredients.Add(IngredientDTO);
+            }
+            else
+            {
+                MessageBox.Show("Veuillez renseigner à la fois le nom et la quantité.", "Ajout de catégorie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }           
 
             dgvIngredientAjouter.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
@@ -836,28 +895,41 @@ namespace DelicesDuJour_ClientAPIRest
             if (dgvIngredientAjouter.CurrentRow != null)
             {
                 var current = dgvIngredientAjouter.CurrentRow.DataBoundItem as IngredientDTO;
-                _ingredients.Remove(current);
-            }
 
-            MessageBox.Show("L'ingredient sélectionné a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if ((MessageBox.Show($"Confirmez vous la suppression de l'ingrédient ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
+                {
+                    _ingredients.Remove(current);
+
+                    MessageBox.Show("L'ingredient sélectionné a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+            }
+            
         }
 
         private async void btEtapeAjouter_Click(object sender, EventArgs e)
         {
-            EtapeDTO EtapeDTO = new()
+            if (!string.IsNullOrEmpty(txtNumeroEtapeAjouter.Text) && !string.IsNullOrEmpty(txtTitreEtapeAjouter.Text) && !string.IsNullOrEmpty(txtTexteEtapeAjouter.Text))
             {
-                numero = int.Parse(txtNumeroEtapeAjouter.Text),
-                titre = txtTitreEtapeAjouter.Text,
-                texte = txtTexteEtapeAjouter.Text
-            };
-            // Ajout à la liste liée au DataGridView
-            _etapes.Add(EtapeDTO);
+                EtapeDTO EtapeDTO = new()
+                {
+                    numero = int.Parse(txtNumeroEtapeAjouter.Text),
+                    titre = txtTitreEtapeAjouter.Text,
+                    texte = txtTexteEtapeAjouter.Text
+                };
+                // Ajout à la liste liée au DataGridView
+                _etapes.Add(EtapeDTO);
 
-            // Optionnel : vider les champs après ajout
-            txtNumeroEtapeAjouter.Clear();
-            txtTitreEtapeAjouter.Clear();
-            txtTexteEtapeAjouter.Clear();
-
+                // Optionnel : vider les champs après ajout
+                txtNumeroEtapeAjouter.Clear();
+                txtTitreEtapeAjouter.Clear();
+                txtTexteEtapeAjouter.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez renseigner à la fois le numéro, le nom et le texte de l'étape.", "Ajout d'étape'", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
             dgvEtapeAjouter.Columns["Titre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
@@ -865,11 +937,15 @@ namespace DelicesDuJour_ClientAPIRest
         {
             if (dgvEtapeAjouter.CurrentRow != null)
             {
-                var current = dgvEtapeAjouter.CurrentRow.DataBoundItem as EtapeDTO;
-                _etapes.Remove(current);
-            }
+                if ((MessageBox.Show($"Confirmez vous la suppression de l'étape ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
+                {
+                    var current = dgvEtapeAjouter.CurrentRow.DataBoundItem as EtapeDTO;
+                    _etapes.Remove(current);
 
-            MessageBox.Show("L'étape sélectionné a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("L'étape sélectionnée a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+            }
         }
         private async void btAjouterRecette_Click(object sender, EventArgs e)
         {
@@ -877,84 +953,114 @@ namespace DelicesDuJour_ClientAPIRest
             {
                 Cursor = Cursors.WaitCursor;
 
-                List<CategorieDTO> categoriesSelectionnees = new();
-
-                foreach (var item in clbCategories.CheckedItems)
+                // Vérification des champs requis
+                if (string.IsNullOrWhiteSpace(txtTitreRecette.Text) ||
+                    listBoxDifficulte.SelectedItem == null ||
+                    _ingredients.Count == 0 ||
+                    _etapes.Count == 0)
                 {
-
-                    if (item is CategorieDTO categorie)
-                    {
-                        categoriesSelectionnees.Add(categorie);
-                    }
-
+                    MessageBox.Show(
+                        "Veuillez renseigner tous les champs requis : titre, difficulté, ingrédients et étapes.",
+                        "Ajout de recette",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );                    
                 }
 
-                int difficulte = 1; // valeur par défaut
-                if (listBoxDifficulte.SelectedItem != null)
-                    difficulte = int.Parse(listBoxDifficulte.SelectedItem.ToString());
-
-
-                CreateRecetteDTO createRecetteDTO = new()
+                else
                 {
-                    nom = txtTitreRecette.Text,
-                    temps_preparation = dtpTempsPreparation.Value.TimeOfDay,
-                    temps_cuisson = dtpTempsCuisson.Value.TimeOfDay,
-                    difficulte = difficulte,
-                    categories = categoriesSelectionnees,
-                    ingredients = _ingredients.ToList(),
-                    etapes = _etapes.ToList()
-                };
+                    // Récupération des catégories cochées
+                    List<CategorieDTO> categoriesSelectionnees = new();
+                    foreach (var item in clbCategories.CheckedItems)
+                    {
+                        if (item is CategorieDTO categorie)
+                            categoriesSelectionnees.Add(categorie);
+                    }
 
-                var res = await _deliceService.CreateRecetteAsync(createRecetteDTO);
+                    // Difficulté
+                    int difficulte = int.Parse(listBoxDifficulte.SelectedItem.ToString());
 
-                await ActualiserRecettes();
+                    // Création du DTO
+                    CreateRecetteDTO createRecetteDTO = new()
+                    {
+                        nom = txtTitreRecette.Text,
+                        temps_preparation = dtpTempsPreparation.Value.TimeOfDay,
+                        temps_cuisson = dtpTempsCuisson.Value.TimeOfDay,
+                        difficulte = difficulte,
+                        categories = categoriesSelectionnees,
+                        ingredients = _ingredients.ToList(),
+                        etapes = _etapes.ToList()
+                    };
 
-                await Task.Delay(100);
+                    // Création de la recette
+                    RecetteDTO res = await _deliceService.CreateRecetteAsync(createRecetteDTO);
 
-                BSRecettes.Position = _recettes.IndexOf(_recettes.FirstOrDefault(r => r.Id == res.Id));
-                dgvGestionRecette.Refresh();
+                    // Actualisation
+                    await ActualiserRecettes();
+                    await Task.Delay(100);
+                    BSRecettes.Position = _recettes.IndexOf(_recettes.FirstOrDefault(r => r.Id == res.Id));
+                    dgvGestionRecette.Refresh();
+                }                    
             }
             finally
             {
                 Cursor = Cursors.Default;
             }
         }
+
         private async void btModifierRecette_Click(object sender, EventArgs e)
         {
             try
             {
                 Cursor = Cursors.WaitCursor;
-                RecetteDTO current = BSRecettes.Current as RecetteDTO;
 
-                List<CategorieDTO> listCategories = new();
-
-                foreach (var item in clbCategories.CheckedItems)
+                // Vérification des champs requis
+                if (string.IsNullOrWhiteSpace(txtTitreRecette.Text) ||
+                    listBoxDifficulte.SelectedItem == null ||
+                    _ingredients.Count == 0 ||
+                    _etapes.Count == 0)
                 {
-                    if (item is CategorieDTO categorie)
-                    {
-                        listCategories.Add(categorie);
-                    }
+                    MessageBox.Show(
+                        "Veuillez renseigner tous les champs requis : titre, difficulté, ingrédients et étapes.",
+                        "Ajout de recette",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
                 }
-
-                UpdateRecetteDTO updateDTO = new();
-                if (current is not null)
+                else
                 {
-                    if (txtIdGestionrecette is not null && listBoxDifficulte.SelectedItem is not null)
+                    RecetteDTO current = BSRecettes.Current as RecetteDTO;
+
+                    List<CategorieDTO> listCategories = new();
+
+                    foreach (var item in clbCategories.CheckedItems)
                     {
-                        updateDTO.Id = int.Parse(txtIdGestionrecette.Text);
-                        updateDTO.nom = txtTitreRecette.Text;
-                        updateDTO.temps_preparation = dtpTempsPreparation.Value.TimeOfDay;
-                        updateDTO.temps_cuisson = dtpTempsCuisson.Value.TimeOfDay;
-                        updateDTO.difficulte = int.Parse(listBoxDifficulte.Text);
-                        updateDTO.categories = listCategories;
-                        updateDTO.ingredients = _ingredients.ToList();
-                        updateDTO.etapes = _etapes.ToList();
+                        if (item is CategorieDTO categorie)
+                        {
+                            listCategories.Add(categorie);
+                        }
                     }
-                }
 
-                await _deliceService.UpdateRecetteAsync(updateDTO);
+                    UpdateRecetteDTO updateDTO = new();
+                    if (current is not null)
+                    {
+                        if (txtIdGestionrecette is not null && listBoxDifficulte.SelectedItem is not null)
+                        {
+                            updateDTO.Id = int.Parse(txtIdGestionrecette.Text);
+                            updateDTO.nom = txtTitreRecette.Text;
+                            updateDTO.temps_preparation = dtpTempsPreparation.Value.TimeOfDay;
+                            updateDTO.temps_cuisson = dtpTempsCuisson.Value.TimeOfDay;
+                            updateDTO.difficulte = int.Parse(listBoxDifficulte.Text);
+                            updateDTO.categories = listCategories;
+                            updateDTO.ingredients = _ingredients.ToList();
+                            updateDTO.etapes = _etapes.ToList();
+                        }
+                    }
 
-                ActualiserRecettes();
+                    await _deliceService.UpdateRecetteAsync(updateDTO);
+
+                    ActualiserRecettes();
+                }          
 
             }
             finally
@@ -967,9 +1073,18 @@ namespace DelicesDuJour_ClientAPIRest
             Cursor = Cursors.WaitCursor;
             RecetteDTO current = BSRecettes.Current as RecetteDTO;
 
-            await _deliceService.DeleteRecetteAsync(current.Id);
+            if (current != null)
+            {
+                if ((MessageBox.Show($"Confirmez vous la suppression de la recette ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
+                {
+                    await _deliceService.DeleteRecetteAsync(current.Id);
 
-            ActualiserRecettes();
+                    ActualiserRecettes();
+
+                    MessageBox.Show("La recette sélectionnée a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }            
         }
         #endregion Fin gestion des recettes
         private void TabPagesAuthorizations()

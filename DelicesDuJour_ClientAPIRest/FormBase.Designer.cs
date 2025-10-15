@@ -1,5 +1,4 @@
-﻿using DelicesDuJour_ClientAPIRest.ControlUtilisateur;
-
+﻿
 namespace DelicesDuJour_ClientAPIRest
 {
     partial class FormBase
@@ -345,7 +344,7 @@ namespace DelicesDuJour_ClientAPIRest
             tabControl.DrawItem += tabControl_DrawItem;
             tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
             tabControl.Selecting += tabControl_Selecting;
-            tabControl.MouseMove += tabControl_MouseMove;
+            tabControl.MouseHover += tabControl_MouseHover;
             // 
             // tabLogin
             // 
@@ -1695,6 +1694,7 @@ namespace DelicesDuJour_ClientAPIRest
             btSupprimerRecette.Text = "  Supprimer";
             btSupprimerRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
             btSupprimerRecette.UseVisualStyleBackColor = false;
+            btSupprimerRecette.Click += btSupprimerRecette_Click;
             // 
             // tableLayoutPanel17
             // 

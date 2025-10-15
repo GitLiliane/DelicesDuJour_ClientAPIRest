@@ -30,9 +30,8 @@ namespace DelicesDuJour_ClientAPIRest.Domain.DTO
         public int difficulte { get; set; }
         public List<EtapeDTO>? etapes { get; set; } = new List<EtapeDTO>();
         public List<IngredientDTO>? ingredients { get; set; } = new List<IngredientDTO>();
-
         public List<CategorieDTO> categories { get; set; } = new List<CategorieDTO>();
-        //public List<int>? categorie_ids { get; set; } = new List<int>();
+        
         //public string? photo { get; set; }
         //public IFormFile? photoFile { get; set; }
     }

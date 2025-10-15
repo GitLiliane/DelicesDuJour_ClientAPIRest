@@ -21,6 +21,7 @@ namespace DelicesDuJour_ClientAPIRest.Services
         const string URL_GET_RECETTES_CATEGORIES_RELATIONS = "api/RecettesCategoriesRelations";
         const string URL_POST_RECETTE = "api/Recettes";
         const string URL_PUT_RECETTE = "api/Recettes";
+        const string URL_DELETE_RECETTE = "api/Recettes";
 
         const string URL_GET_CATEGORIES = "api/Categories";
         const string URL_POST_CATEGORIES = "api/Categories";
@@ -117,7 +118,7 @@ namespace DelicesDuJour_ClientAPIRest.Services
 
         public async Task<IEnumerable<RecetteDTO>> GetRecettesAsync()
         {
-            var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}");
+            var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}");           
             return res;
         }
 
@@ -129,11 +130,11 @@ namespace DelicesDuJour_ClientAPIRest.Services
                 var res = await _rest.GetAsync<RecetteDTO>($"{URL_GET_RECETTE_BY_ID}/{idRecette}");
                 return res;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception("Impossible de récupérer la recette");
             }
-          
+
         }
         public async Task<IEnumerable<RecetteDTO>> GetRecettesByIdCategorieAsync(int idCategorie)
         {
@@ -142,7 +143,7 @@ namespace DelicesDuJour_ClientAPIRest.Services
 
             return res;
         }
-   
+
         #endregion Fin Recette
 
         #region Catégories
@@ -210,6 +211,11 @@ namespace DelicesDuJour_ClientAPIRest.Services
         {
             var res = await _rest.PutAsync<RecetteDTO, UpdateRecetteDTO>($"{URL_PUT_RECETTE}/{updateRecette.Id}", updateRecette);
             return res;
+        }
+
+        public async Task DeleteRecetteAsync(int idRecette)
+        {
+            await _rest.DeleteAsync($"{URL_DELETE_RECETTE}/{idRecette}");
         }
 
         #endregion Fin gestion recette

@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Windows.Forms;
-using DelicesDuJour_ClientAPIRest.ControlUtilisateur;
 using ReaLTaiizor.Controls;
 using TabPage = System.Windows.Forms.TabPage;
+using System.Threading.Tasks;
 
 namespace DelicesDuJour_ClientAPIRest
 {
@@ -36,12 +36,10 @@ namespace DelicesDuJour_ClientAPIRest
             // Active les boutons natifs
             metroControlBox1.MinimizeBox = true;
             metroControlBox1.MaximizeBox = true;
-
         }
 
         private async void FormBase_Load(object sender, EventArgs e)
         {
-
             InitializeBinding();
 
             _tabPages = tabControl.TabPages.Cast<TabPage>().ToList();
@@ -51,10 +49,12 @@ namespace DelicesDuJour_ClientAPIRest
 
             tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl.DrawItem += tabControl_DrawItem;
-            tabControl.MouseMove += tabControl_MouseMove;
+            tabControl.MouseHover += tabControl_MouseHover;
             tabControl.MouseLeave += tabControl_MouseLeave;
 
-
+            tabControl.SelectedTab = tabLogin;
+            await Task.Delay(50);
+            txtPassword.Focus();
         }
         private void FormBase_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -64,7 +64,6 @@ namespace DelicesDuJour_ClientAPIRest
                 e.Cancel = true;
             }
         }
-
         private void FormBase_FormClosed(object sender, FormClosedEventArgs e)
         {
             Properties.Settings.Default.Http = txtHttp.Text;
@@ -160,19 +159,30 @@ namespace DelicesDuJour_ClientAPIRest
             );
         }
 
-        private async void tabControl_MouseMove(object sender, MouseEventArgs e)
+        private void tabControl_MouseHover(object sender, EventArgs e)
         {
+            // Récupère la position de la souris dans le tabControl
+            Point mousePos = tabControl.PointToClient(Cursor.Position);
+
             for (int i = 0; i < tabControl.TabCount; i++)
             {
-                if (tabControl.GetTabRect(i).Contains(e.Location))
+                if (tabControl.GetTabRect(i).Contains(mousePos))
                 {
-                    _hoveredIndex = i;
-                    tabControl.Invalidate();
+                    if (_hoveredIndex != i)
+                    {
+                        _hoveredIndex = i;
+                        tabControl.Invalidate();
+                    }
                     return;
                 }
             }
-            _hoveredIndex = -1;
-            tabControl.Invalidate();
+
+            // Si la souris ne survole aucun onglet
+            if (_hoveredIndex != -1)
+            {
+                _hoveredIndex = -1;
+                tabControl.Invalidate();
+            }
         }
 
         private async void tabControl_MouseLeave(object sender, EventArgs e)
@@ -227,10 +237,14 @@ namespace DelicesDuJour_ClientAPIRest
             _deliceService.Logout();
 
             _roles = [];
-            //_recettes.Clear();
-            //_authors.Clear();
-            //_authorsByIdBook.Clear();
-            //_authorsNotIdBook.Clear();
+            _recettes.Clear();
+            _categories.Clear();
+            _recettesByCategorie.Clear();
+            _categoriesByRecette.Clear();
+            _recettesCategoriesRelations.Clear();
+            _ingredients.Clear();
+            _etapes.Clear();
+            _gestionRecettes.Clear();
 
             lblRoles.Text = string.Empty;
             txtPassword.Text = string.Empty;
@@ -245,7 +259,7 @@ namespace DelicesDuJour_ClientAPIRest
         private async void btTtesRecettes_Click(object sender, EventArgs e)
         {
             ActualiserRecettes();
-            ChangeDgv();
+            ChangeBSRecettes();
         }
         private async void btEntree_Click(object sender, EventArgs e)
         {
@@ -265,14 +279,20 @@ namespace DelicesDuJour_ClientAPIRest
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
 
-                // Étape 3 : vider et remplir la liste liée
-                _recettesByCategorie.Clear();
-                foreach (var recette in recettes)
+                if (!recettes.Any())
                 {
-                    _recettesByCategorie.Add(recette);
+                    // Étape 3 : vider et remplir la liste liée
+                    _recettesByCategorie.Clear();
+                    foreach (var recette in recettes)
+                    {
+                        _recettesByCategorie.Add(recette);
+                    }
+                    ChangeDgvByCategorie();
                 }
-                ChangeDgvByCategorie();
-
+                else
+                {
+                    MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }             
 
             }
             finally
@@ -295,27 +315,24 @@ namespace DelicesDuJour_ClientAPIRest
                 var entreeCategorie = _categories
                     .FirstOrDefault(c => string.Equals(c.nom, "Plat", StringComparison.OrdinalIgnoreCase));
 
-                if (entreeCategorie == null)
-                {
-                    MessageBox.Show("La catégorie 'Plat' n’existe pas.", "Erreur",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 int idEntree = entreeCategorie.Id;
 
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
-
-                //Étape 3 : vider et remplir la liste liée
-                _recettesByCategorie.Clear();
-                foreach (var recette in recettes)
+                if (!recettes.Any())
                 {
-                    _recettesByCategorie.Add(recette);
+                    //Étape 3 : vider et remplir la liste liée
+                    _recettesByCategorie.Clear();
+                    foreach (var recette in recettes)
+                    {
+                        _recettesByCategorie.Add(recette);
+                    }
+                    ChangeDgvByCategorie();
                 }
-                ChangeDgvByCategorie();
-
-
+                else
+                {
+                    MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }               
             }
             finally
             {
@@ -336,28 +353,25 @@ namespace DelicesDuJour_ClientAPIRest
                 // Étape 1 : trouver la catégorie "Entrée" dans _categories
                 var entreeCategorie = _categories
                     .FirstOrDefault(c => string.Equals(c.nom, "Dessert", StringComparison.OrdinalIgnoreCase));
-
-                if (entreeCategorie == null)
-                {
-                    MessageBox.Show("La catégorie 'Dessert' n’existe pas.", "Erreur",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
+                   
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 int idEntree = entreeCategorie.Id;
 
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
-
-                // Étape 3 : vider et remplir la liste liée
-                _recettesByCategorie.Clear();
-                foreach (var recette in recettes)
+                if (!recettes.Any())
                 {
-                    _recettesByCategorie.Add(recette);
+                    // Étape 3 : vider et remplir la liste liée
+                    _recettesByCategorie.Clear();
+                    foreach (var recette in recettes)
+                    {
+                        _recettesByCategorie.Add(recette);
+                    }
+                    ChangeDgvByCategorie();
                 }
-                ChangeDgvByCategorie();
-
-
+                else
+                {
+                    MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             finally
             {
@@ -379,26 +393,25 @@ namespace DelicesDuJour_ClientAPIRest
                 var entreeCategorie = _categories
                     .FirstOrDefault(c => string.Equals(c.nom, "Soupe", StringComparison.OrdinalIgnoreCase));
 
-                if (entreeCategorie == null)
-                {
-                    MessageBox.Show("La catégorie 'Soupe' n’existe pas.", "Erreur",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 // Étape 2 : récupérer les recettes de cette catégorie via l’API
                 int idEntree = entreeCategorie.Id;
 
                 var recettes = await _deliceService.GetRecettesByIdCategorieAsync(idEntree);
 
-                // Étape 3 : vider et remplir la liste liée
-                _recettesByCategorie.Clear();
-                foreach (var recette in recettes)
+                if (!recettes.Any())
                 {
-                    _recettesByCategorie.Add(recette);
+                    // Étape 3 : vider et remplir la liste liée
+                    _recettesByCategorie.Clear();
+                    foreach (var recette in recettes)
+                    {
+                        _recettesByCategorie.Add(recette);
+                    }
+                    ChangeDgvByCategorie();
                 }
-                ChangeDgvByCategorie();
-
+                else
+                {
+                    MessageBox.Show("Aucune recette trouvée dans cette catégorie.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }     
 
             }
             finally
@@ -431,9 +444,16 @@ namespace DelicesDuJour_ClientAPIRest
             // Remplissage de la liste
             var result = await _deliceService.GetRecettesAsync();
 
-            _recettes.Clear();
-            foreach (RecetteDTO r in result)
-                _recettes.Add(r);
+            if (!result.Any())
+            {
+                _recettes.Clear();
+                foreach (RecetteDTO r in result)
+                    _recettes.Add(r);
+            }
+            else
+            {
+                MessageBox.Show("Aucune recette trouvée.","Erreur",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // On se repositionne sur le current
             if (current is not null)
@@ -536,9 +556,17 @@ namespace DelicesDuJour_ClientAPIRest
             // Remplissage de la liste
             var res = await _deliceService.GetCategoriesAsync();
 
-            _categories.Clear();
-            foreach (CategorieDTO c in res)
-                _categories.Add(c);
+            if (!res.Any())
+            {
+                _categories.Clear();
+                foreach (CategorieDTO c in res)
+                    _categories.Add(c);
+            }
+            else
+            {
+                MessageBox.Show("Aucune catégorie trouvée.", "Erreur",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
 
             // On se repositionne sur le current
             if (current is not null)
@@ -934,6 +962,15 @@ namespace DelicesDuJour_ClientAPIRest
                 Cursor = Cursors.Default;
             }
         }
+        private async void btSupprimerRecette_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            RecetteDTO current = BSRecettes.Current as RecetteDTO;
+
+            await _deliceService.DeleteRecetteAsync(current.Id);
+
+            ActualiserRecettes();
+        }
         #endregion Fin gestion des recettes
         private void TabPagesAuthorizations()
         {
@@ -1070,10 +1107,9 @@ namespace DelicesDuJour_ClientAPIRest
         {
             dgvRecettes.DataSource = BSRecettesByCategorie;
         }
-        private async void ChangeDgv()
+        private async void ChangeBSRecettes()
         {
             dgvRecettes.DataSource = BSRecettes;
-
         }
 
 

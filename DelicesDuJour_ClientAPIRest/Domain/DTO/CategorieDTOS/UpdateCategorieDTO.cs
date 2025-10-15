@@ -8,6 +8,7 @@ namespace DelicesDuJour_ClientAPIRest.Domain.DTO.CategorieDTOS
 {
     public class UpdateCategorieDTO
     {
+        public int Id { get; set; }
         public string nom { get; set; }
     }
 }

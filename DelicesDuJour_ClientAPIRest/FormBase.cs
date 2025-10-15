@@ -22,8 +22,9 @@ namespace DelicesDuJour_ClientAPIRest
         BindingList<RecetteDTO> _recettesByCategorie;
         BindingList<CategorieDTO> _categoriesByRecette;
         BindingList<RecetteCategorieRelationshipDTO> _recettesCategoriesRelations;
-        BindingList<CreateIngredientDTO> _ingredients = new();
-        BindingList<CreateEtapeDTO> _etapes = new();
+        BindingList<IngredientDTO> _ingredients = new();
+        BindingList<EtapeDTO> _etapes = new();
+        BindingList<RecetteDTO> _gestionRecettes;
 
         private readonly DeliceService _deliceService = DeliceService.Instance;
 
@@ -104,7 +105,7 @@ namespace DelicesDuJour_ClientAPIRest
             }
         }
 
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private async void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (TabPage page in tabControl.TabPages)
             {
@@ -123,7 +124,7 @@ namespace DelicesDuJour_ClientAPIRest
 
         private int _hoveredIndex = -1;
 
-        private void tabControl_DrawItem(object sender, DrawItemEventArgs e)
+        private async void tabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabControl.TabPages[e.Index];
             Rectangle rect = e.Bounds;
@@ -159,7 +160,7 @@ namespace DelicesDuJour_ClientAPIRest
             );
         }
 
-        private void tabControl_MouseMove(object sender, MouseEventArgs e)
+        private async void tabControl_MouseMove(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < tabControl.TabCount; i++)
             {
@@ -174,7 +175,7 @@ namespace DelicesDuJour_ClientAPIRest
             tabControl.Invalidate();
         }
 
-        private void tabControl_MouseLeave(object sender, EventArgs e)
+        private async void tabControl_MouseLeave(object sender, EventArgs e)
         {
             _hoveredIndex = -1;
             tabControl.Invalidate();
@@ -221,12 +222,7 @@ namespace DelicesDuJour_ClientAPIRest
             ActualiserRecettes();
         }
 
-        private void TabControl_VisibleChanged(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void btLogOut_Click(object sender, EventArgs e)
+        private async void btLogOut_Click(object sender, EventArgs e)
         {
             _deliceService.Logout();
 
@@ -412,7 +408,7 @@ namespace DelicesDuJour_ClientAPIRest
             }
         }
 
-        private void btDetailsRecette_Click(object sender, EventArgs e)
+        private async void btDetailsRecette_Click(object sender, EventArgs e)
         {
             if (BSRecettes.Current is RecetteDTO currentRecette)
             {
@@ -607,12 +603,12 @@ namespace DelicesDuJour_ClientAPIRest
             }
         }
 
-        private void btGetRecByCat_MouseMove(object sender, MouseEventArgs e)
+        private async void btGetRecByCat_MouseMove(object sender, MouseEventArgs e)
         {
             btGetRecByCat.ForeColor = Color.FromArgb(182, 204, 254);
         }
 
-        private void btGetRecByCat_MouseLeave(object sender, EventArgs e)
+        private async void btGetRecByCat_MouseLeave(object sender, EventArgs e)
         {
             btGetRecByCat.ForeColor = Color.WhiteSmoke;
         }
@@ -666,12 +662,12 @@ namespace DelicesDuJour_ClientAPIRest
             }
         }
 
-        private void btGetCatByRec_MouseHover(object sender, EventArgs e)
+        private async void btGetCatByRec_MouseHover(object sender, EventArgs e)
         {
             btGetCatByRec.ForeColor = Color.FromArgb(182, 204, 254);
         }
 
-        private void btGetCatByRec_MouseLeave(object sender, EventArgs e)
+        private async void btGetCatByRec_MouseLeave(object sender, EventArgs e)
         {
             btGetCatByRec.ForeColor = Color.WhiteSmoke;
         }
@@ -737,33 +733,97 @@ namespace DelicesDuJour_ClientAPIRest
 
         #region gestion des recettes
 
-        private void btAjouterIngredient_Click(object sender, EventArgs e)
+        private async void dgvGestionRecette_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CreateIngredientDTO createIngredientDTO = new()
+            Cursor = Cursors.WaitCursor;
+
+            RecetteDTO current = BSRecettes.Current as RecetteDTO;
+
+            var currentRecette = await _deliceService.GetRecetteByIdAsync(current.Id);
+
+            txtIdGestionrecette.Text = currentRecette.Id.ToString();
+            txtTitreRecette.Text = currentRecette.nom;
+            dtpTempsPreparation.Value = DateTime.Today.Add(currentRecette.temps_preparation);
+            dtpTempsCuisson.Value = DateTime.Today.Add(currentRecette.temps_cuisson);
+            listBoxDifficulte.SelectedItem = currentRecette.difficulte.ToString();
+
+            for (int i = 0; i < clbCategories.Items.Count; i++)
+            {
+                clbCategories.SetItemChecked(i, false);
+            }
+
+            // Parcourt chaque catégorie de la recette
+            foreach (var categorie in currentRecette.categories)
+            {
+                // Parcourt les items du CheckedListBox
+                for (int i = 0; i < clbCategories.Items.Count; i++)
+                {
+                    // Récupère la catégorie affichée dans la liste
+                    var item = clbCategories.Items[i] as CategorieDTO;
+
+                    // Compare par Id ou par Nom
+                    if (item != null && item.Id == categorie.Id)
+                    {
+                        clbCategories.SetItemChecked(i, true);
+                    }
+                }
+            }
+
+            _ingredients.Clear();
+
+            foreach (IngredientDTO ingredient in currentRecette.ingredients)
+            {
+                _ingredients.Add(ingredient);
+            }
+
+            _etapes.Clear();
+            if (currentRecette != null)
+            {
+                foreach (EtapeDTO etape in currentRecette.etapes)
+                {
+                    _etapes.Add(etape);
+                }
+            }
+        }
+
+        private async void btAjouterIngredient_Click(object sender, EventArgs e)
+        {
+            IngredientDTO IngredientDTO = new()
             {
                 nom = txtNomIngredientAjouter.Text,
                 quantite = txtQuantiteIngredientAjouter.Text
             };
             // Ajout à la liste liée au DataGridView
-            _ingredients.Add(createIngredientDTO);
+            _ingredients.Add(IngredientDTO);
 
             dgvIngredientAjouter.Columns["Nom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             // Optionnel : vider les champs après ajout
             txtNomIngredientAjouter.Clear();
-            txtQuantiteIngredientAjouter.Clear();            
+            txtQuantiteIngredientAjouter.Clear();
         }
 
-        private void btEtapeAjouter_Click(object sender, EventArgs e)
+        private async void btSupprimerIngredient_Click(object sender, EventArgs e)
         {
-            CreateEtapeDTO createaEtapeDTO = new()
+            if (dgvIngredientAjouter.CurrentRow != null)
+            {
+                var current = dgvIngredientAjouter.CurrentRow.DataBoundItem as IngredientDTO;
+                _ingredients.Remove(current);
+            }
+
+            MessageBox.Show("L'ingredient sélectionné a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private async void btEtapeAjouter_Click(object sender, EventArgs e)
+        {
+            EtapeDTO EtapeDTO = new()
             {
                 numero = int.Parse(txtNumeroEtapeAjouter.Text),
                 titre = txtTitreEtapeAjouter.Text,
                 texte = txtTexteEtapeAjouter.Text
             };
             // Ajout à la liste liée au DataGridView
-            _etapes.Add(createaEtapeDTO);
+            _etapes.Add(EtapeDTO);
 
             // Optionnel : vider les champs après ajout
             txtNumeroEtapeAjouter.Clear();
@@ -771,6 +831,17 @@ namespace DelicesDuJour_ClientAPIRest
             txtTexteEtapeAjouter.Clear();
 
             dgvEtapeAjouter.Columns["Titre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
+
+        private async void btEtapeSupprimer_Click(object sender, EventArgs e)
+        {
+            if (dgvEtapeAjouter.CurrentRow != null)
+            {
+                var current = dgvEtapeAjouter.CurrentRow.DataBoundItem as EtapeDTO;
+                _etapes.Remove(current);
+            }
+
+            MessageBox.Show("L'étape sélectionné a bien été supprimé.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private async void btAjouterRecette_Click(object sender, EventArgs e)
         {
@@ -806,7 +877,7 @@ namespace DelicesDuJour_ClientAPIRest
                     etapes = _etapes.ToList()
                 };
 
-                var res = await _deliceService.CreateRecette(createRecetteDTO);
+                var res = await _deliceService.CreateRecetteAsync(createRecetteDTO);
 
                 await ActualiserRecettes();
 
@@ -820,7 +891,49 @@ namespace DelicesDuJour_ClientAPIRest
                 Cursor = Cursors.Default;
             }
         }
+        private async void btModifierRecette_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                RecetteDTO current = BSRecettes.Current as RecetteDTO;
 
+                List<CategorieDTO> listCategories = new();
+
+                foreach (var item in clbCategories.CheckedItems)
+                {
+                    if (item is CategorieDTO categorie)
+                    {
+                        listCategories.Add(categorie);
+                    }
+                }
+
+                UpdateRecetteDTO updateDTO = new();
+                if (current is not null)
+                {
+                    if (txtIdGestionrecette is not null && listBoxDifficulte.SelectedItem is not null)
+                    {
+                        updateDTO.Id = int.Parse(txtIdGestionrecette.Text);
+                        updateDTO.nom = txtTitreRecette.Text;
+                        updateDTO.temps_preparation = dtpTempsPreparation.Value.TimeOfDay;
+                        updateDTO.temps_cuisson = dtpTempsCuisson.Value.TimeOfDay;
+                        updateDTO.difficulte = int.Parse(listBoxDifficulte.Text);
+                        updateDTO.categories = listCategories;
+                        updateDTO.ingredients = _ingredients.ToList();
+                        updateDTO.etapes = _etapes.ToList();
+                    }
+                }
+
+                await _deliceService.UpdateRecetteAsync(updateDTO);
+
+                ActualiserRecettes();
+
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
         #endregion Fin gestion des recettes
         private void TabPagesAuthorizations()
         {
@@ -909,7 +1022,7 @@ namespace DelicesDuJour_ClientAPIRest
 
             dgvIngredientAjouter.AutoGenerateColumns = true;
             dgvIngredientAjouter.DataSource = _ingredients;
-                        
+
             dgvIngredientAjouter.EnableHeadersVisualStyles = false;
             dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             dgvIngredientAjouter.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -919,7 +1032,7 @@ namespace DelicesDuJour_ClientAPIRest
 
             dgvEtapeAjouter.AutoGenerateColumns = true;
             dgvEtapeAjouter.DataSource = _etapes;
-            
+
             dgvEtapeAjouter.EnableHeadersVisualStyles = false;
             dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             dgvEtapeAjouter.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -929,7 +1042,7 @@ namespace DelicesDuJour_ClientAPIRest
 
         }
 
-        private void ChangeDgvRByC()
+        private async void ChangeDgvRByC()
         {
             dgvGetRecCat.DataSource = BSRecettesByCategorie;
 
@@ -941,7 +1054,7 @@ namespace DelicesDuJour_ClientAPIRest
             dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
             dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
         }
-        private void ChangeDgvByR()
+        private async void ChangeDgvByR()
         {
             dgvGetRecCat.DataSource = BSCategoriesByRecette;
 
@@ -953,11 +1066,11 @@ namespace DelicesDuJour_ClientAPIRest
             dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(154, 205, 255);
             dgvGetRecCat.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
         }
-        private void ChangeDgvByCategorie()
+        private async void ChangeDgvByCategorie()
         {
             dgvRecettes.DataSource = BSRecettesByCategorie;
         }
-        private void ChangeDgv()
+        private async void ChangeDgv()
         {
             dgvRecettes.DataSource = BSRecettes;
 

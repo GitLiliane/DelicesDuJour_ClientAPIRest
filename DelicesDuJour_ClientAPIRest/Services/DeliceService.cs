@@ -20,6 +20,7 @@ namespace DelicesDuJour_ClientAPIRest.Services
         const string URL_GET_RECETTE_BY_ID = "api/Recettes";
         const string URL_GET_RECETTES_CATEGORIES_RELATIONS = "api/RecettesCategoriesRelations";
         const string URL_POST_RECETTE = "api/Recettes";
+        const string URL_PUT_RECETTE = "api/Recettes";
 
         const string URL_GET_CATEGORIES = "api/Categories";
         const string URL_POST_CATEGORIES = "api/Categories";
@@ -122,8 +123,17 @@ namespace DelicesDuJour_ClientAPIRest.Services
 
         public async Task<RecetteDTO> GetRecetteByIdAsync(int idRecette)
         {
-            var res = await _rest.GetAsync<RecetteDTO>($"{URL_GET_RECETTE_BY_ID}/{idRecette}");
-            return res;
+            try
+            {
+
+                var res = await _rest.GetAsync<RecetteDTO>($"{URL_GET_RECETTE_BY_ID}/{idRecette}");
+                return res;
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Impossible de récupérer la recette");
+            }
+          
         }
         public async Task<IEnumerable<RecetteDTO>> GetRecettesByIdCategorieAsync(int idCategorie)
         {
@@ -132,12 +142,7 @@ namespace DelicesDuJour_ClientAPIRest.Services
 
             return res;
         }
-
-        public async Task<RecetteDTO> CreateRecette(CreateRecetteDTO createRecetteDTO)
-        {
-            var res = await _rest.PostAsync<RecetteDTO, CreateRecetteDTO>(URL_POST_RECETTE, createRecetteDTO);
-            return res;
-        }
+   
         #endregion Fin Recette
 
         #region Catégories
@@ -193,5 +198,20 @@ namespace DelicesDuJour_ClientAPIRest.Services
         }
 
         #endregion Fin Relation Recettes Catégories
+
+        #region Gestion Recette
+        public async Task<RecetteDTO> CreateRecetteAsync(CreateRecetteDTO createRecetteDTO)
+        {
+            var res = await _rest.PostAsync<RecetteDTO, CreateRecetteDTO>(URL_POST_RECETTE, createRecetteDTO);
+            return res;
+        }
+
+        public async Task<RecetteDTO> UpdateRecetteAsync(UpdateRecetteDTO updateRecette)
+        {
+            var res = await _rest.PutAsync<RecetteDTO, UpdateRecetteDTO>($"{URL_PUT_RECETTE}/{updateRecette.Id}", updateRecette);
+            return res;
+        }
+
+        #endregion Fin gestion recette
     }
 }

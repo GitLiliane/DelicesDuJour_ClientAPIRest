@@ -19,6 +19,8 @@ internal partial class FormRecetteDetails : Form
     {
         InitializeBinding();
 
+        //txtListeEtapesAfficherRecette.Font = new Font("Merienda", 14F, FontStyle.Regular);
+
         try
         {
 
@@ -44,15 +46,34 @@ internal partial class FormRecetteDetails : Form
                 }
                 if (res.etapes != null && res.etapes.Any())
                 {
-                    txtListeEtapesAfficherRecette.Text = string.Join(
-                        Environment.NewLine,
-                        res.etapes.Select(e => $"{e.titre} - {e.texte}")
-                    );
+                    // On efface tout le contenu du RichTextBox
+                    rtxtListeEtapesAfficherRecette.Clear();
+
+                    foreach (var etape in res.etapes)
+                    {
+                        // ----- TITRE -----
+                        rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Bold);
+                        rtxtListeEtapesAfficherRecette.SelectionColor = Color.FromArgb(42, 124, 204);
+                        rtxtListeEtapesAfficherRecette.AppendText(etape.titre + Environment.NewLine);
+
+                        // ----- TEXTE -----
+                        rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Regular);
+                        //rtxtListeEtapesAfficherRecette.SelectionColor = Color.Black;
+                        rtxtListeEtapesAfficherRecette.AppendText(etape.texte + Environment.NewLine + Environment.NewLine);
+                    }
+
+                    // Revenir au style par défaut à la fin
+                    rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Regular);
+                    rtxtListeEtapesAfficherRecette.SelectionColor = Color.Black;
                 }
                 else
                 {
-                    txtListeEtapesAfficherRecette.Text = "Aucune étape trouvée.";
+                    rtxtListeEtapesAfficherRecette.Clear();
+                    rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Bold);
+                    rtxtListeEtapesAfficherRecette.SelectionColor = Color.Gray;
+                    rtxtListeEtapesAfficherRecette.AppendText("Aucune étape trouvée.");
                 }
+
 
                 txtdifficulteAfficherRecette.Text = res.difficulte.ToString();
 
@@ -63,6 +84,15 @@ internal partial class FormRecetteDetails : Form
         {
             Cursor = Cursors.Default;
 
+        }
+    }
+
+    private void FormRecetteDetails_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        DialogResult res = MessageBox.Show("Confirmez-vous la fermeture de la fenêtre ?", "Fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+        if (res == DialogResult.No)
+        {
+            e.Cancel = true;
         }
     }
 
@@ -77,6 +107,6 @@ internal partial class FormRecetteDetails : Form
 
     }
 
-
+  
 }
 

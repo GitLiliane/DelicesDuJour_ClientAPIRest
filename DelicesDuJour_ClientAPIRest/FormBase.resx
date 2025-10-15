@@ -10755,7 +10755,7 @@
         VgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btAjouterIngredient.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAbMAAAGvCAYAAADR+TtnAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAY
         SAAAGEgBd8p7yQAA+qxJREFUeF7svQecHMWZ/t8zu0ogwBjHM7bPZ9/Zx50v+c72+e/f4btzwEcSKK60
@@ -11831,7 +11831,7 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btSupprimerIngredient.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAbcAAAGzCAYAAACsBln9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAY
         SAAAGEgBd8p7yQAA289JREFUeF7tvQe4JFd55l/V4YbJGsVRBEkgGBBJYDAGZGOiTTBB2DgCzl7jHHdt
@@ -12775,7 +12775,7 @@
         3Miy/x8EYmNUgdGYhgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btEtapeAjouter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAbMAAAGvCAYAAADR+TtnAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAY
         SAAAGEgBd8p7yQAA+qxJREFUeF7svQecHMWZ/t8zu0ogwBjHM7bPZ9/Zx50v+c72+e/f4btzwEcSKK60
@@ -13851,7 +13851,7 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="pictureBox5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btEtapeSupprimer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAbcAAAGzCAYAAACsBln9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAY
         SAAAGEgBd8p7yQAA289JREFUeF7tvQe4JFd55l/V4YbJGsVRBEkgGBBJYDAGZGOiTTBB2DgCzl7jHHdt

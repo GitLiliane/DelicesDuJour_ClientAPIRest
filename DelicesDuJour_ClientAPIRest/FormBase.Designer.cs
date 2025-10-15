@@ -72,7 +72,6 @@ namespace DelicesDuJour_ClientAPIRest
             txtHttp = new TextBox();
             label1 = new Label();
             tableLayoutPanel31 = new TableLayoutPanel();
-            crEaTiiOn_LightSeperator1 = new CBH.Controls.CrEaTiiOn_LightSeperator();
             tableLayoutPanel33 = new TableLayoutPanel();
             btLogOut = new Button();
             btLogin = new Button();
@@ -119,7 +118,6 @@ namespace DelicesDuJour_ClientAPIRest
             txtNomCategorie = new TextBox();
             tableLayoutPanel10 = new TableLayoutPanel();
             tableLayoutPanel11 = new TableLayoutPanel();
-            crEaTiiOn_LightSeperator2 = new CBH.Controls.CrEaTiiOn_LightSeperator();
             tableLayoutPanel12 = new TableLayoutPanel();
             tableLayoutPanel13 = new TableLayoutPanel();
             label9 = new Label();
@@ -142,11 +140,11 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel17 = new TableLayoutPanel();
             tableLayoutPanel18 = new TableLayoutPanel();
             label21 = new Label();
-            txtTitreRecette = new TextBox();
-            textBox1 = new TextBox();
+            txtIdGestionrecette = new TextBox();
             label11 = new Label();
             tableLayoutPanel40 = new TableLayoutPanel();
             spaceSeparatorVertical1 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
+            txtTitreRecette = new TextBox();
             tableLayoutPanel19 = new TableLayoutPanel();
             dtpTempsPreparation = new DateTimePicker();
             label12 = new Label();
@@ -169,8 +167,8 @@ namespace DelicesDuJour_ClientAPIRest
             label17 = new Label();
             txtQuantiteIngredientAjouter = new TextBox();
             tableLayoutPanel39 = new TableLayoutPanel();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
+            btAjouterIngredient = new PictureBox();
+            btSupprimerIngredient = new PictureBox();
             spaceSeparatorVertical2 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
             dgvIngredientAjouter = new DataGridView();
             gbxEtapesAjouter = new GroupBox();
@@ -185,10 +183,8 @@ namespace DelicesDuJour_ClientAPIRest
             txtTexteEtapeAjouter = new TextBox();
             tableLayoutPanel41 = new TableLayoutPanel();
             spaceSeparatorVertical3 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            crEaTiiOn_LightSeperator3 = new CBH.Controls.CrEaTiiOn_LightSeperator();
-            crEaTiiOn_LightSeperator4 = new CBH.Controls.CrEaTiiOn_LightSeperator();
+            btEtapeAjouter = new PictureBox();
+            btEtapeSupprimer = new PictureBox();
             dgvEtapeAjouter = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)BSRecettes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BSCategories).BeginInit();
@@ -250,8 +246,8 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel25.SuspendLayout();
             tableLayoutPanel26.SuspendLayout();
             tableLayoutPanel39.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btAjouterIngredient).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btSupprimerIngredient).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvIngredientAjouter).BeginInit();
             gbxEtapesAjouter.SuspendLayout();
             tableLayoutPanel27.SuspendLayout();
@@ -259,8 +255,8 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel29.SuspendLayout();
             groupBox1.SuspendLayout();
             tableLayoutPanel41.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btEtapeAjouter).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btEtapeSupprimer).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvEtapeAjouter).BeginInit();
             SuspendLayout();
             // 
@@ -367,6 +363,7 @@ namespace DelicesDuJour_ClientAPIRest
             // tableLayoutPanel30
             // 
             tableLayoutPanel30.AutoSize = true;
+            tableLayoutPanel30.BackColor = Color.Ivory;
             tableLayoutPanel30.ColumnCount = 3;
             tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel30.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
@@ -551,7 +548,6 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             tableLayoutPanel31.ColumnCount = 1;
             tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel31.Controls.Add(crEaTiiOn_LightSeperator1, 0, 1);
             tableLayoutPanel31.Controls.Add(tableLayoutPanel33, 0, 2);
             tableLayoutPanel31.Dock = DockStyle.Fill;
             tableLayoutPanel31.Location = new Point(3, 183);
@@ -562,17 +558,6 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel31.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             tableLayoutPanel31.Size = new Size(721, 255);
             tableLayoutPanel31.TabIndex = 1;
-            // 
-            // crEaTiiOn_LightSeperator1
-            // 
-            crEaTiiOn_LightSeperator1.Dock = DockStyle.Fill;
-            crEaTiiOn_LightSeperator1.ImeMode = ImeMode.HangulFull;
-            crEaTiiOn_LightSeperator1.LineColor = Color.Silver;
-            crEaTiiOn_LightSeperator1.Location = new Point(3, 28);
-            crEaTiiOn_LightSeperator1.Name = "crEaTiiOn_LightSeperator1";
-            crEaTiiOn_LightSeperator1.Size = new Size(715, 19);
-            crEaTiiOn_LightSeperator1.TabIndex = 0;
-            crEaTiiOn_LightSeperator1.Text = "crEaTiiOn_LightSeperator1";
             // 
             // tableLayoutPanel33
             // 
@@ -1362,7 +1347,6 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             tableLayoutPanel11.ColumnCount = 1;
             tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel11.Controls.Add(crEaTiiOn_LightSeperator2, 0, 1);
             tableLayoutPanel11.Controls.Add(tableLayoutPanel12, 0, 0);
             tableLayoutPanel11.Controls.Add(tableLayoutPanel38, 0, 2);
             tableLayoutPanel11.Dock = DockStyle.Fill;
@@ -1374,16 +1358,6 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel11.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel11.Size = new Size(792, 187);
             tableLayoutPanel11.TabIndex = 0;
-            // 
-            // crEaTiiOn_LightSeperator2
-            // 
-            crEaTiiOn_LightSeperator2.Dock = DockStyle.Fill;
-            crEaTiiOn_LightSeperator2.LineColor = Color.Silver;
-            crEaTiiOn_LightSeperator2.Location = new Point(3, 70);
-            crEaTiiOn_LightSeperator2.Name = "crEaTiiOn_LightSeperator2";
-            crEaTiiOn_LightSeperator2.Size = new Size(786, 1);
-            crEaTiiOn_LightSeperator2.TabIndex = 4;
-            crEaTiiOn_LightSeperator2.Text = "crEaTiiOn_LightSeperator2";
             // 
             // tableLayoutPanel12
             // 
@@ -1632,6 +1606,7 @@ namespace DelicesDuJour_ClientAPIRest
             dgvGestionRecette.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dgvGestionRecette.Size = new Size(396, 769);
             dgvGestionRecette.TabIndex = 0;
+            dgvGestionRecette.CellClick += dgvGestionRecette_CellClick;
             // 
             // tableLayoutPanel16
             // 
@@ -1678,6 +1653,7 @@ namespace DelicesDuJour_ClientAPIRest
             btAjouterRecette.Text = "  Ajouter";
             btAjouterRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
             btAjouterRecette.UseVisualStyleBackColor = false;
+            btAjouterRecette.Click += btAjouterRecette_Click;
             // 
             // btModifierRecette
             // 
@@ -1698,6 +1674,7 @@ namespace DelicesDuJour_ClientAPIRest
             btModifierRecette.Text = "  Modifier";
             btModifierRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
             btModifierRecette.UseVisualStyleBackColor = false;
+            btModifierRecette.Click += btModifierRecette_Click;
             // 
             // btSupprimerRecette
             // 
@@ -1734,14 +1711,14 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel17.Location = new Point(3, 3);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
             tableLayoutPanel17.RowCount = 8;
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.76552057F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 28.03662F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 35.0457764F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.765522F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.765522F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.927768F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.927768F));
-            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.765522F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.466759F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 27.8279839F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 34.7849846F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.72261763F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.72261763F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.876215F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.876215F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.72261763F));
             tableLayoutPanel17.Size = new Size(926, 686);
             tableLayoutPanel17.TabIndex = 1;
             // 
@@ -1755,16 +1732,16 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.07984F));
             tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.8822327F));
             tableLayoutPanel18.Controls.Add(label21, 3, 0);
-            tableLayoutPanel18.Controls.Add(txtTitreRecette, 4, 0);
-            tableLayoutPanel18.Controls.Add(textBox1, 1, 0);
+            tableLayoutPanel18.Controls.Add(txtIdGestionrecette, 1, 0);
             tableLayoutPanel18.Controls.Add(label11, 0, 0);
             tableLayoutPanel18.Controls.Add(tableLayoutPanel40, 2, 0);
+            tableLayoutPanel18.Controls.Add(txtTitreRecette, 4, 0);
             tableLayoutPanel18.Dock = DockStyle.Fill;
             tableLayoutPanel18.Location = new Point(3, 3);
             tableLayoutPanel18.Name = "tableLayoutPanel18";
             tableLayoutPanel18.RowCount = 1;
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel18.Size = new Size(920, 33);
+            tableLayoutPanel18.Size = new Size(920, 38);
             tableLayoutPanel18.TabIndex = 0;
             // 
             // label21
@@ -1774,37 +1751,28 @@ namespace DelicesDuJour_ClientAPIRest
             label21.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label21.Location = new Point(287, 0);
             label21.Name = "label21";
-            label21.Size = new Size(86, 33);
+            label21.Size = new Size(86, 38);
             label21.TabIndex = 3;
             label21.Text = "   Nom :";
             label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // txtTitreRecette
+            // txtIdGestionrecette
             // 
-            txtTitreRecette.BorderStyle = BorderStyle.None;
-            txtTitreRecette.Dock = DockStyle.Fill;
-            txtTitreRecette.Location = new Point(379, 3);
-            txtTitreRecette.Multiline = true;
-            txtTitreRecette.Name = "txtTitreRecette";
-            txtTitreRecette.Size = new Size(538, 27);
-            txtTitreRecette.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(113, 3);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(76, 27);
-            textBox1.TabIndex = 1;
+            txtIdGestionrecette.BorderStyle = BorderStyle.None;
+            txtIdGestionrecette.Dock = DockStyle.Fill;
+            txtIdGestionrecette.Location = new Point(113, 3);
+            txtIdGestionrecette.Multiline = true;
+            txtIdGestionrecette.Name = "txtIdGestionrecette";
+            txtIdGestionrecette.ReadOnly = true;
+            txtIdGestionrecette.Size = new Size(76, 32);
+            txtIdGestionrecette.TabIndex = 1;
             // 
             // label11
             // 
             label11.Dock = DockStyle.Fill;
             label11.Location = new Point(3, 0);
             label11.Name = "label11";
-            label11.Size = new Size(104, 33);
+            label11.Size = new Size(104, 38);
             label11.TabIndex = 5;
             label11.Text = "  id :";
             // 
@@ -1836,6 +1804,16 @@ namespace DelicesDuJour_ClientAPIRest
             spaceSeparatorVertical1.Text = "spaceSeparatorVertical1";
             spaceSeparatorVertical1.Transparent = false;
             // 
+            // txtTitreRecette
+            // 
+            txtTitreRecette.BorderStyle = BorderStyle.None;
+            txtTitreRecette.Dock = DockStyle.Fill;
+            txtTitreRecette.Location = new Point(379, 3);
+            txtTitreRecette.Multiline = true;
+            txtTitreRecette.Name = "txtTitreRecette";
+            txtTitreRecette.Size = new Size(538, 32);
+            txtTitreRecette.TabIndex = 7;
+            // 
             // tableLayoutPanel19
             // 
             tableLayoutPanel19.ColumnCount = 2;
@@ -1844,7 +1822,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel19.Controls.Add(dtpTempsPreparation, 1, 0);
             tableLayoutPanel19.Controls.Add(label12, 0, 0);
             tableLayoutPanel19.Dock = DockStyle.Fill;
-            tableLayoutPanel19.Location = new Point(3, 474);
+            tableLayoutPanel19.Location = new Point(3, 475);
             tableLayoutPanel19.Name = "tableLayoutPanel19";
             tableLayoutPanel19.RowCount = 1;
             tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -1883,7 +1861,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel20.Controls.Add(dtpTempsCuisson, 1, 0);
             tableLayoutPanel20.Controls.Add(label13, 0, 0);
             tableLayoutPanel20.Dock = DockStyle.Fill;
-            tableLayoutPanel20.Location = new Point(3, 513);
+            tableLayoutPanel20.Location = new Point(3, 514);
             tableLayoutPanel20.Name = "tableLayoutPanel20";
             tableLayoutPanel20.RowCount = 1;
             tableLayoutPanel20.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -1921,7 +1899,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel21.Controls.Add(label14, 0, 0);
             tableLayoutPanel21.Controls.Add(listBoxDifficulte, 1, 0);
             tableLayoutPanel21.Dock = DockStyle.Fill;
-            tableLayoutPanel21.Location = new Point(3, 552);
+            tableLayoutPanel21.Location = new Point(3, 553);
             tableLayoutPanel21.Name = "tableLayoutPanel21";
             tableLayoutPanel21.RowCount = 1;
             tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -1960,7 +1938,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel22.Controls.Add(label15, 0, 0);
             tableLayoutPanel22.Controls.Add(clbCategories, 1, 0);
             tableLayoutPanel22.Dock = DockStyle.Fill;
-            tableLayoutPanel22.Location = new Point(3, 599);
+            tableLayoutPanel22.Location = new Point(3, 600);
             tableLayoutPanel22.Name = "tableLayoutPanel22";
             tableLayoutPanel22.RowCount = 1;
             tableLayoutPanel22.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -1995,11 +1973,11 @@ namespace DelicesDuJour_ClientAPIRest
             gbxIngredients.Dock = DockStyle.Fill;
             gbxIngredients.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbxIngredients.ForeColor = Color.FromArgb(57, 55, 32);
-            gbxIngredients.Location = new Point(4, 43);
+            gbxIngredients.Location = new Point(4, 48);
             gbxIngredients.Margin = new Padding(4);
             gbxIngredients.Name = "gbxIngredients";
             gbxIngredients.Padding = new Padding(4);
-            gbxIngredients.Size = new Size(918, 184);
+            gbxIngredients.Size = new Size(918, 182);
             gbxIngredients.TabIndex = 5;
             gbxIngredients.TabStop = false;
             gbxIngredients.Text = "Ingrédients";
@@ -2016,7 +1994,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel23.RowCount = 2;
             tableLayoutPanel23.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tableLayoutPanel23.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tableLayoutPanel23.Size = new Size(910, 153);
+            tableLayoutPanel23.Size = new Size(910, 151);
             tableLayoutPanel23.TabIndex = 0;
             // 
             // tableLayoutPanel24
@@ -2121,8 +2099,8 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel39.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tableLayoutPanel39.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel39.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
-            tableLayoutPanel39.Controls.Add(pictureBox2, 0, 0);
-            tableLayoutPanel39.Controls.Add(pictureBox3, 2, 0);
+            tableLayoutPanel39.Controls.Add(btAjouterIngredient, 0, 0);
+            tableLayoutPanel39.Controls.Add(btSupprimerIngredient, 2, 0);
             tableLayoutPanel39.Controls.Add(spaceSeparatorVertical2, 1, 0);
             tableLayoutPanel39.Dock = DockStyle.Fill;
             tableLayoutPanel39.Location = new Point(771, 3);
@@ -2132,28 +2110,29 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel39.Size = new Size(130, 33);
             tableLayoutPanel39.TabIndex = 2;
             // 
-            // pictureBox2
+            // btAjouterIngredient
             // 
-            pictureBox2.Dock = DockStyle.Fill;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(3, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(52, 27);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += btAjouterIngredient_Click;
+            btAjouterIngredient.Dock = DockStyle.Fill;
+            btAjouterIngredient.Image = (Image)resources.GetObject("btAjouterIngredient.Image");
+            btAjouterIngredient.Location = new Point(3, 3);
+            btAjouterIngredient.Name = "btAjouterIngredient";
+            btAjouterIngredient.Size = new Size(52, 27);
+            btAjouterIngredient.SizeMode = PictureBoxSizeMode.Zoom;
+            btAjouterIngredient.TabIndex = 2;
+            btAjouterIngredient.TabStop = false;
+            btAjouterIngredient.Click += btAjouterIngredient_Click;
             // 
-            // pictureBox3
+            // btSupprimerIngredient
             // 
-            pictureBox3.Dock = DockStyle.Fill;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(74, 3);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(53, 27);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 3;
-            pictureBox3.TabStop = false;
+            btSupprimerIngredient.Dock = DockStyle.Fill;
+            btSupprimerIngredient.Image = (Image)resources.GetObject("btSupprimerIngredient.Image");
+            btSupprimerIngredient.Location = new Point(74, 3);
+            btSupprimerIngredient.Name = "btSupprimerIngredient";
+            btSupprimerIngredient.Size = new Size(53, 27);
+            btSupprimerIngredient.SizeMode = PictureBoxSizeMode.Zoom;
+            btSupprimerIngredient.TabIndex = 3;
+            btSupprimerIngredient.TabStop = false;
+            btSupprimerIngredient.Click += btSupprimerIngredient_Click;
             // 
             // spaceSeparatorVertical2
             // 
@@ -2189,7 +2168,7 @@ namespace DelicesDuJour_ClientAPIRest
             dgvIngredientAjouter.Margin = new Padding(4);
             dgvIngredientAjouter.Name = "dgvIngredientAjouter";
             dgvIngredientAjouter.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dgvIngredientAjouter.Size = new Size(902, 100);
+            dgvIngredientAjouter.Size = new Size(902, 98);
             dgvIngredientAjouter.TabIndex = 1;
             // 
             // gbxEtapesAjouter
@@ -2198,11 +2177,11 @@ namespace DelicesDuJour_ClientAPIRest
             gbxEtapesAjouter.Dock = DockStyle.Fill;
             gbxEtapesAjouter.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbxEtapesAjouter.ForeColor = Color.FromArgb(57, 55, 32);
-            gbxEtapesAjouter.Location = new Point(4, 235);
+            gbxEtapesAjouter.Location = new Point(4, 238);
             gbxEtapesAjouter.Margin = new Padding(4);
             gbxEtapesAjouter.Name = "gbxEtapesAjouter";
             gbxEtapesAjouter.Padding = new Padding(4);
-            gbxEtapesAjouter.Size = new Size(918, 232);
+            gbxEtapesAjouter.Size = new Size(918, 230);
             gbxEtapesAjouter.TabIndex = 6;
             gbxEtapesAjouter.TabStop = false;
             gbxEtapesAjouter.Text = "Etapes";
@@ -2219,7 +2198,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel27.RowCount = 2;
             tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
             tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
-            tableLayoutPanel27.Size = new Size(910, 197);
+            tableLayoutPanel27.Size = new Size(910, 195);
             tableLayoutPanel27.TabIndex = 0;
             // 
             // tableLayoutPanel28
@@ -2236,7 +2215,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel28.Name = "tableLayoutPanel28";
             tableLayoutPanel28.RowCount = 1;
             tableLayoutPanel28.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel28.Size = new Size(904, 82);
+            tableLayoutPanel28.Size = new Size(904, 81);
             tableLayoutPanel28.TabIndex = 0;
             // 
             // tableLayoutPanel29
@@ -2254,7 +2233,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel29.RowCount = 2;
             tableLayoutPanel29.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel29.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel29.Size = new Size(265, 76);
+            tableLayoutPanel29.Size = new Size(265, 75);
             tableLayoutPanel29.TabIndex = 0;
             // 
             // label18
@@ -2265,7 +2244,7 @@ namespace DelicesDuJour_ClientAPIRest
             label18.ForeColor = Color.FromArgb(33, 34, 69);
             label18.Location = new Point(3, 0);
             label18.Name = "label18";
-            label18.Size = new Size(100, 38);
+            label18.Size = new Size(100, 37);
             label18.TabIndex = 0;
             label18.Text = "Numéro : ";
             label18.TextAlign = ContentAlignment.MiddleLeft;
@@ -2276,7 +2255,7 @@ namespace DelicesDuJour_ClientAPIRest
             label19.Dock = DockStyle.Fill;
             label19.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label19.ForeColor = Color.FromArgb(33, 34, 69);
-            label19.Location = new Point(3, 38);
+            label19.Location = new Point(3, 37);
             label19.Name = "label19";
             label19.Size = new Size(100, 38);
             label19.TabIndex = 1;
@@ -2297,7 +2276,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             txtTitreEtapeAjouter.BorderStyle = BorderStyle.None;
             txtTitreEtapeAjouter.Dock = DockStyle.Fill;
-            txtTitreEtapeAjouter.Location = new Point(109, 41);
+            txtTitreEtapeAjouter.Location = new Point(109, 40);
             txtTitreEtapeAjouter.Multiline = true;
             txtTitreEtapeAjouter.Name = "txtTitreEtapeAjouter";
             txtTitreEtapeAjouter.Size = new Size(153, 32);
@@ -2312,7 +2291,7 @@ namespace DelicesDuJour_ClientAPIRest
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(444, 74);
+            groupBox1.Size = new Size(444, 73);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Texte";
@@ -2325,7 +2304,7 @@ namespace DelicesDuJour_ClientAPIRest
             txtTexteEtapeAjouter.Margin = new Padding(4);
             txtTexteEtapeAjouter.Multiline = true;
             txtTexteEtapeAjouter.Name = "txtTexteEtapeAjouter";
-            txtTexteEtapeAjouter.Size = new Size(436, 48);
+            txtTexteEtapeAjouter.Size = new Size(436, 47);
             txtTexteEtapeAjouter.TabIndex = 0;
             // 
             // tableLayoutPanel41
@@ -2337,10 +2316,8 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.6569366F));
             tableLayoutPanel41.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.8440657F));
             tableLayoutPanel41.Controls.Add(spaceSeparatorVertical3, 2, 1);
-            tableLayoutPanel41.Controls.Add(pictureBox4, 1, 1);
-            tableLayoutPanel41.Controls.Add(pictureBox5, 3, 1);
-            tableLayoutPanel41.Controls.Add(crEaTiiOn_LightSeperator3, 1, 0);
-            tableLayoutPanel41.Controls.Add(crEaTiiOn_LightSeperator4, 1, 2);
+            tableLayoutPanel41.Controls.Add(btEtapeAjouter, 1, 1);
+            tableLayoutPanel41.Controls.Add(btEtapeSupprimer, 3, 1);
             tableLayoutPanel41.Location = new Point(726, 3);
             tableLayoutPanel41.Name = "tableLayoutPanel41";
             tableLayoutPanel41.RowCount = 3;
@@ -2365,48 +2342,29 @@ namespace DelicesDuJour_ClientAPIRest
             spaceSeparatorVertical3.Text = "spaceSeparatorVertical3";
             spaceSeparatorVertical3.Transparent = false;
             // 
-            // pictureBox4
+            // btEtapeAjouter
             // 
-            pictureBox4.Dock = DockStyle.Fill;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(28, 21);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(51, 37);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 0;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += btEtapeAjouter_Click;
+            btEtapeAjouter.Dock = DockStyle.Fill;
+            btEtapeAjouter.Image = (Image)resources.GetObject("btEtapeAjouter.Image");
+            btEtapeAjouter.Location = new Point(28, 21);
+            btEtapeAjouter.Name = "btEtapeAjouter";
+            btEtapeAjouter.Size = new Size(51, 37);
+            btEtapeAjouter.SizeMode = PictureBoxSizeMode.Zoom;
+            btEtapeAjouter.TabIndex = 0;
+            btEtapeAjouter.TabStop = false;
+            btEtapeAjouter.Click += btEtapeAjouter_Click;
             // 
-            // pictureBox5
+            // btEtapeSupprimer
             // 
-            pictureBox5.Dock = DockStyle.Fill;
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(93, 21);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(51, 37);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 1;
-            pictureBox5.TabStop = false;
-            // 
-            // crEaTiiOn_LightSeperator3
-            // 
-            tableLayoutPanel41.SetColumnSpan(crEaTiiOn_LightSeperator3, 3);
-            crEaTiiOn_LightSeperator3.LineColor = Color.Silver;
-            crEaTiiOn_LightSeperator3.Location = new Point(28, 3);
-            crEaTiiOn_LightSeperator3.Name = "crEaTiiOn_LightSeperator3";
-            crEaTiiOn_LightSeperator3.Size = new Size(116, 11);
-            crEaTiiOn_LightSeperator3.TabIndex = 3;
-            crEaTiiOn_LightSeperator3.Text = "crEaTiiOn_LightSeperator3";
-            // 
-            // crEaTiiOn_LightSeperator4
-            // 
-            tableLayoutPanel41.SetColumnSpan(crEaTiiOn_LightSeperator4, 3);
-            crEaTiiOn_LightSeperator4.LineColor = Color.Silver;
-            crEaTiiOn_LightSeperator4.Location = new Point(28, 64);
-            crEaTiiOn_LightSeperator4.Name = "crEaTiiOn_LightSeperator4";
-            crEaTiiOn_LightSeperator4.Size = new Size(116, 5);
-            crEaTiiOn_LightSeperator4.TabIndex = 4;
-            crEaTiiOn_LightSeperator4.Text = "crEaTiiOn_LightSeperator4";
+            btEtapeSupprimer.Dock = DockStyle.Fill;
+            btEtapeSupprimer.Image = (Image)resources.GetObject("btEtapeSupprimer.Image");
+            btEtapeSupprimer.Location = new Point(93, 21);
+            btEtapeSupprimer.Name = "btEtapeSupprimer";
+            btEtapeSupprimer.Size = new Size(51, 37);
+            btEtapeSupprimer.SizeMode = PictureBoxSizeMode.Zoom;
+            btEtapeSupprimer.TabIndex = 1;
+            btEtapeSupprimer.TabStop = false;
+            btEtapeSupprimer.Click += btEtapeSupprimer_Click;
             // 
             // dgvEtapeAjouter
             // 
@@ -2415,11 +2373,11 @@ namespace DelicesDuJour_ClientAPIRest
             dgvEtapeAjouter.BorderStyle = BorderStyle.None;
             dgvEtapeAjouter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEtapeAjouter.Dock = DockStyle.Fill;
-            dgvEtapeAjouter.Location = new Point(4, 92);
+            dgvEtapeAjouter.Location = new Point(4, 91);
             dgvEtapeAjouter.Margin = new Padding(4);
             dgvEtapeAjouter.Name = "dgvEtapeAjouter";
             dgvEtapeAjouter.RowHeadersWidth = 51;
-            dgvEtapeAjouter.Size = new Size(902, 101);
+            dgvEtapeAjouter.Size = new Size(902, 100);
             dgvEtapeAjouter.TabIndex = 1;
             // 
             // FormBase
@@ -2519,8 +2477,8 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel26.ResumeLayout(false);
             tableLayoutPanel26.PerformLayout();
             tableLayoutPanel39.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btAjouterIngredient).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btSupprimerIngredient).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvIngredientAjouter).EndInit();
             gbxEtapesAjouter.ResumeLayout(false);
             tableLayoutPanel27.ResumeLayout(false);
@@ -2530,8 +2488,8 @@ namespace DelicesDuJour_ClientAPIRest
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             tableLayoutPanel41.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btEtapeAjouter).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btEtapeSupprimer).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvEtapeAjouter).EndInit();
             ResumeLayout(false);
         }
@@ -2665,21 +2623,21 @@ namespace DelicesDuJour_ClientAPIRest
         private Button btAjouterRelationRecCat;
         private Button btSupprimerRelationRecCat;
         private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator2;
-        private TextBox textBox1;
+        private TextBox txtIdGestionrecette;
         private Label label21;
-        private TextBox txtTitreRecette;
         private Label label11;
         private TableLayoutPanel tableLayoutPanel39;
         private TableLayoutPanel tableLayoutPanel40;
         private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical1;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private PictureBox btAjouterIngredient;
+        private PictureBox btSupprimerIngredient;
         private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical2;
         private TableLayoutPanel tableLayoutPanel41;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox5;
+        private PictureBox btEtapeAjouter;
+        private PictureBox btEtapeSupprimer;
         private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical3;
         private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator3;
         private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator4;
+        private TextBox txtTitreRecette;
     }
 }

@@ -41,8 +41,17 @@ namespace DelicesDuJour_ClientAPIRest
 
         public string JwtToken { get; set; }
 
-        #region GET
-        private RestClient() { }
+        // 🛠️ Constructeur privé : initialisation du HttpClient
+        private RestClient()
+        {
+            // ⏱️ Timeout augmenté pour les requêtes longues (ex : upload d’image)
+            _httpClient.Timeout = TimeSpan.FromMinutes(10);
+
+            // Optionnel : définir un User-Agent explicite
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("DelicesDuJour-Client/1.0");
+        }
+
+        #region GET     
 
         public async Task<T> GetAsync<T>(string endpoint, Dictionary<string, string> customHeaders = null)
         {
@@ -82,6 +91,17 @@ namespace DelicesDuJour_ClientAPIRest
             await SendAsync(HttpMethod.Post, endpoint, null, customHeaders);
         }
 
+        public async Task<T> PostMultipartAsync<T>(string endpoint, MultipartFormDataContent multipartContent)
+        {
+            var headers = new Dictionary<string, string>();
+            if (!string.IsNullOrWhiteSpace(JwtToken))
+                headers["Authorization"] = $"Bearer {JwtToken}";
+
+            var response = await SendAsync(HttpMethod.Post, endpoint, multipartContent, headers);
+            return await response.Content.ReadJsonSafeAsync<T>();
+        }
+
+
         #endregion POST
 
         #region PUT
@@ -107,6 +127,17 @@ namespace DelicesDuJour_ClientAPIRest
         {
             await SendAsync(HttpMethod.Put, endpoint, null, customHeaders);
         }
+
+        public async Task<T> PutMultipartAsync<T>(string endpoint, MultipartFormDataContent multipartContent)
+        {
+            var headers = new Dictionary<string, string>();
+            if (!string.IsNullOrWhiteSpace(JwtToken))
+                headers["Authorization"] = $"Bearer {JwtToken}";
+
+            var response = await SendAsync(HttpMethod.Put, endpoint, multipartContent, headers);
+            return await response.Content.ReadJsonSafeAsync<T>();
+        }
+       
 
         #endregion PUT
 

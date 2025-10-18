@@ -12,18 +12,52 @@ internal partial class FormRecetteDetails : Form
     public FormRecetteDetails(int idRecetteDTO)
     {
         InitializeComponent();
-        idRecette = idRecetteDTO;
+        idRecette = idRecetteDTO;        
     }
 
+    RecetteDTO res = null;
+
+    public void RefreshRecette(int newIdRecette)
+    {
+        idRecette = newIdRecette;
+        RecetteDetails();
+    }
     private async void FormRecetteDetails_Load(object sender, EventArgs e)
     {
         InitializeBinding();
 
         //txtListeEtapesAfficherRecette.Font = new Font("Merienda", 14F, FontStyle.Regular);
+        if (this.Owner != null)
+        {
+            // Récupère la position et taille du parent
+            var parent = this.Owner;
+
+            // Place la fenêtre enfant à droite du parent
+            this.Location = new Point(
+                parent.Location.X + parent.Width + 10, // +10 = petit espacement
+                parent.Location.Y
+            );
+        }
+
 
         try
         {
-            var res = await _deliceService.GetRecetteByIdAsync(idRecette);
+            RecetteDetails();
+
+        }
+
+        finally
+        {
+            Cursor = Cursors.Default;
+
+        }
+    }
+
+    private async void RecetteDetails()
+    {
+        try
+        {
+            res = await _deliceService.GetRecetteByIdAsync(idRecette);
 
             if (res != null)
             {
@@ -76,7 +110,38 @@ internal partial class FormRecetteDetails : Form
 
                 txtdifficulteAfficherRecette.Text = res.difficulte.ToString();
 
-            }
+                // Avant de charger, on prépare la PictureBox
+                pbxImageRecette.SizeMode = PictureBoxSizeMode.Zoom;
+
+                // Si ton API renvoie un chemin relatif (ex: "/images/recettes/photo.jpg"),
+                // tu peux le compléter ici avec ton URL de base :
+                string baseUrl = "http://localhost:5289"; // <-- adapte cette valeur !
+                string imageUrl = !string.IsNullOrEmpty(res.photo)
+                    ? (res.photo.StartsWith("http") ? res.photo : $"{baseUrl}{res.photo}")
+                    : null;
+
+                if (!string.IsNullOrEmpty(imageUrl))
+                {
+                    try
+                    {
+                        // Cette méthode est asynchrone et gère automatiquement :
+                        // - InitialImage (pendant le chargement)
+                        // - ErrorImage (si erreur ou fichier introuvable)
+                        pbxImageRecette.LoadAsync(imageUrl);
+                    }
+                    catch
+                    {
+                        // Si le chargement échoue, la PictureBox utilisera automatiquement ErrorImage
+                        pbxImageRecette.Image = pbxImageRecette.ErrorImage;
+                    }
+                }
+                else
+                {
+                    // Si aucune image n’est définie pour la recette,
+                    // on affiche l’image par défaut (InitialImage)
+                    pbxImageRecette.Image = pbxImageRecette.InitialImage;
+                }
+            }        
         }
 
         finally
@@ -85,7 +150,6 @@ internal partial class FormRecetteDetails : Form
 
         }
     }
-
     private void FormRecetteDetails_FormClosing(object sender, FormClosingEventArgs e)
     {
         DialogResult res = MessageBox.Show("Confirmez-vous la fermeture de la fenêtre ?", "Fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -106,6 +170,6 @@ internal partial class FormRecetteDetails : Form
 
     }
 
-  
+
 }
 

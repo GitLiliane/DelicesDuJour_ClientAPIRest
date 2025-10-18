@@ -25,8 +25,8 @@ namespace DelicesDuJour_ClientAPIRest.Domain.DTO
         public List<IngredientDTO>? ingredients { get; set; } = new List<IngredientDTO>();
 
         public List<CategorieDTO> categories { get; set; } = new List<CategorieDTO>();
-    
-        //public string? photo { get; set; }
-        //public IFormFile? photoFile { get; set; }
+
+        public string? photo { get; set; } // chemin de stockage sur le serveur
+        public string? ImagePathLocal { get; set; } // chemin local sur ton PC (non envoyé dans le JSON)
     }
 }

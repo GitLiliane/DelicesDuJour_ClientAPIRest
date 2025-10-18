@@ -47,6 +47,13 @@ namespace DelicesDuJour_ClientAPIRest
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
             BSRecettes = new BindingSource(components);
             BSCategories = new BindingSource(components);
             BSRecettesByCategorie = new BindingSource(components);
@@ -185,6 +192,17 @@ namespace DelicesDuJour_ClientAPIRest
             btEtapeAjouter = new PictureBox();
             btEtapeSupprimer = new PictureBox();
             dgvEtapeAjouter = new DataGridView();
+            tableLayoutPanel42 = new TableLayoutPanel();
+            label22 = new Label();
+            tableLayoutPanel43 = new TableLayoutPanel();
+            btAjouterImage = new PictureBox();
+            txtImage = new TextBox();
+            openFileDialogImageRecette = new OpenFileDialog();
+            tpImage = new ToolTip(components);
+            tltAjouterIngredient = new ToolTip(components);
+            tltSupprimerIngredient = new ToolTip(components);
+            tltAjouterEtape = new ToolTip(components);
+            tltSupprimerEtape = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)BSRecettes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BSCategories).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BSRecettesByCategorie).BeginInit();
@@ -257,6 +275,9 @@ namespace DelicesDuJour_ClientAPIRest
             ((System.ComponentModel.ISupportInitialize)btEtapeAjouter).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btEtapeSupprimer).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvEtapeAjouter).BeginInit();
+            tableLayoutPanel42.SuspendLayout();
+            tableLayoutPanel43.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btAjouterImage).BeginInit();
             SuspendLayout();
             // 
             // dungeonForm1
@@ -280,7 +301,7 @@ namespace DelicesDuJour_ClientAPIRest
             dungeonForm1.Sizable = true;
             dungeonForm1.Size = new Size(1400, 900);
             dungeonForm1.SmartBounds = true;
-            dungeonForm1.StartPosition = FormStartPosition.CenterScreen;
+            dungeonForm1.StartPosition = FormStartPosition.WindowsDefaultBounds;
             dungeonForm1.TabIndex = 0;
             dungeonForm1.Text = "Délices du jour";
             dungeonForm1.TitleColor = Color.FromArgb(223, 219, 210);
@@ -693,7 +714,7 @@ namespace DelicesDuJour_ClientAPIRest
             dgvRecettes.BorderStyle = BorderStyle.None;
             dgvRecettes.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(53, 155, 255);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.Padding = new Padding(3, 0, 0, 0);
@@ -714,14 +735,16 @@ namespace DelicesDuJour_ClientAPIRest
             dgvRecettes.Location = new Point(3, 3);
             dgvRecettes.Name = "dgvRecettes";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.BackColor = Color.Ivory;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(145, 203, 62);
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvRecettes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvRecettes.RowHeadersWidth = 51;
+            dgvRecettes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dgvRecettes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvRecettes.Size = new Size(1334, 497);
             dgvRecettes.TabIndex = 0;
             // 
@@ -909,35 +932,37 @@ namespace DelicesDuJour_ClientAPIRest
             dgvCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCategories.BackgroundColor = Color.White;
             dgvCategories.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.FromArgb(33, 34, 69);
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvCategories.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvCategories.DefaultCellStyle = dataGridViewCellStyle6;
             dgvCategories.Dock = DockStyle.Fill;
             dgvCategories.Location = new Point(3, 3);
             dgvCategories.Name = "dgvCategories";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.Ivory;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvCategories.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.BackColor = Color.Ivory;
+            dgvCategories.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvCategories.Size = new Size(1334, 567);
             dgvCategories.TabIndex = 0;
             // 
@@ -1125,34 +1150,34 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             dgvGetRecCat.BackgroundColor = Color.White;
             dgvGetRecCat.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvGetRecCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dgvGetRecCat.ColumnHeadersHeight = 37;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.FromArgb(33, 34, 69);
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(145, 203, 62);
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgvGetRecCat.DefaultCellStyle = dataGridViewCellStyle8;
-            dgvGetRecCat.Dock = DockStyle.Fill;
-            dgvGetRecCat.Location = new Point(3, 3);
-            dgvGetRecCat.Name = "dgvGetRecCat";
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dgvGetRecCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dgvGetRecCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dgvGetRecCat.ColumnHeadersHeight = 37;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dgvGetRecCat.DefaultCellStyle = dataGridViewCellStyle10;
+            dgvGetRecCat.Dock = DockStyle.Fill;
+            dgvGetRecCat.Location = new Point(3, 3);
+            dgvGetRecCat.Name = "dgvGetRecCat";
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.Ivory;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dgvGetRecCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dgvGetRecCat.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dgvGetRecCat.Size = new Size(524, 440);
             dgvGetRecCat.TabIndex = 2;
@@ -1510,34 +1535,34 @@ namespace DelicesDuJour_ClientAPIRest
             dgvRelationsRecCat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRelationsRecCat.BackgroundColor = Color.White;
             dgvRelationsRecCat.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = SystemColors.Control;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            dgvRelationsRecCat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = SystemColors.Window;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle11.ForeColor = Color.FromArgb(33, 34, 69);
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(145, 203, 62);
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            dgvRelationsRecCat.DefaultCellStyle = dataGridViewCellStyle11;
-            dgvRelationsRecCat.Dock = DockStyle.Fill;
-            dgvRelationsRecCat.Location = new Point(3, 3);
-            dgvRelationsRecCat.Name = "dgvRelationsRecCat";
             dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = SystemColors.Control;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 12F);
             dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dgvRelationsRecCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dgvRelationsRecCat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dgvRelationsRecCat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Window;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle13.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+            dgvRelationsRecCat.DefaultCellStyle = dataGridViewCellStyle13;
+            dgvRelationsRecCat.Dock = DockStyle.Fill;
+            dgvRelationsRecCat.Location = new Point(3, 3);
+            dgvRelationsRecCat.Name = "dgvRelationsRecCat";
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.Ivory;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle14.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            dgvRelationsRecCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             dgvRelationsRecCat.RowHeadersWidth = 51;
             dgvRelationsRecCat.Size = new Size(792, 570);
             dgvRelationsRecCat.TabIndex = 1;
@@ -1557,8 +1582,8 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             tableLayoutPanel15.AutoScroll = true;
             tableLayoutPanel15.ColumnCount = 2;
-            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38F));
+            tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62F));
             tableLayoutPanel15.Controls.Add(dgvGestionRecette, 0, 0);
             tableLayoutPanel15.Controls.Add(tableLayoutPanel16, 1, 0);
             tableLayoutPanel15.Dock = DockStyle.Fill;
@@ -1571,29 +1596,9 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // dgvGestionRecette
             // 
-            dgvGestionRecette.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvGestionRecette.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvGestionRecette.BackgroundColor = Color.White;
             dgvGestionRecette.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = SystemColors.Control;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dgvGestionRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            dgvGestionRecette.ColumnHeadersHeight = 37;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = SystemColors.Window;
-            dataGridViewCellStyle14.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle14.ForeColor = Color.FromArgb(33, 34, 69);
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(145, 203, 62);
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
-            dgvGestionRecette.DefaultCellStyle = dataGridViewCellStyle14;
-            dgvGestionRecette.Dock = DockStyle.Fill;
-            dgvGestionRecette.Location = new Point(3, 3);
-            dgvGestionRecette.Name = "dgvGestionRecette";
             dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle15.BackColor = SystemColors.Control;
             dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
@@ -1601,9 +1606,31 @@ namespace DelicesDuJour_ClientAPIRest
             dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            dgvGestionRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            dgvGestionRecette.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dgvGestionRecette.Size = new Size(396, 769);
+            dgvGestionRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dgvGestionRecette.ColumnHeadersHeight = 37;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Window;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = Color.FromArgb(33, 34, 69);
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
+            dgvGestionRecette.DefaultCellStyle = dataGridViewCellStyle16;
+            dgvGestionRecette.Dock = DockStyle.Fill;
+            dgvGestionRecette.Location = new Point(3, 3);
+            dgvGestionRecette.Name = "dgvGestionRecette";
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.Ivory;
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle17.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dgvGestionRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dgvGestionRecette.RowHeadersWidth = 51;
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dgvGestionRecette.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dgvGestionRecette.Size = new Size(503, 769);
             dgvGestionRecette.TabIndex = 0;
             dgvGestionRecette.CellClick += dgvGestionRecette_CellClick;
             // 
@@ -1614,12 +1641,12 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel16.Controls.Add(flowLayoutPanel5, 0, 1);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel17, 0, 0);
             tableLayoutPanel16.Dock = DockStyle.Fill;
-            tableLayoutPanel16.Location = new Point(405, 3);
+            tableLayoutPanel16.Location = new Point(512, 3);
             tableLayoutPanel16.Name = "tableLayoutPanel16";
             tableLayoutPanel16.RowCount = 2;
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel16.Size = new Size(932, 769);
+            tableLayoutPanel16.Size = new Size(825, 769);
             tableLayoutPanel16.TabIndex = 1;
             // 
             // flowLayoutPanel5
@@ -1630,7 +1657,7 @@ namespace DelicesDuJour_ClientAPIRest
             flowLayoutPanel5.Dock = DockStyle.Fill;
             flowLayoutPanel5.Location = new Point(3, 695);
             flowLayoutPanel5.Name = "flowLayoutPanel5";
-            flowLayoutPanel5.Size = new Size(926, 71);
+            flowLayoutPanel5.Size = new Size(819, 71);
             flowLayoutPanel5.TabIndex = 0;
             // 
             // btAjouterRecette
@@ -1644,10 +1671,10 @@ namespace DelicesDuJour_ClientAPIRest
             btAjouterRecette.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btAjouterRecette.ForeColor = Color.White;
             btAjouterRecette.Image = (Image)resources.GetObject("btAjouterRecette.Image");
-            btAjouterRecette.Location = new Point(80, 10);
-            btAjouterRecette.Margin = new Padding(80, 10, 4, 4);
+            btAjouterRecette.Location = new Point(40, 10);
+            btAjouterRecette.Margin = new Padding(40, 10, 4, 4);
             btAjouterRecette.Name = "btAjouterRecette";
-            btAjouterRecette.Size = new Size(200, 50);
+            btAjouterRecette.Size = new Size(195, 50);
             btAjouterRecette.TabIndex = 0;
             btAjouterRecette.Text = "  Ajouter";
             btAjouterRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -1665,10 +1692,10 @@ namespace DelicesDuJour_ClientAPIRest
             btModifierRecette.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btModifierRecette.ForeColor = Color.White;
             btModifierRecette.Image = (Image)resources.GetObject("btModifierRecette.Image");
-            btModifierRecette.Location = new Point(364, 10);
+            btModifierRecette.Location = new Point(319, 10);
             btModifierRecette.Margin = new Padding(80, 10, 4, 4);
             btModifierRecette.Name = "btModifierRecette";
-            btModifierRecette.Size = new Size(200, 50);
+            btModifierRecette.Size = new Size(195, 50);
             btModifierRecette.TabIndex = 1;
             btModifierRecette.Text = "  Modifier";
             btModifierRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -1686,10 +1713,10 @@ namespace DelicesDuJour_ClientAPIRest
             btSupprimerRecette.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btSupprimerRecette.ForeColor = Color.White;
             btSupprimerRecette.Image = (Image)resources.GetObject("btSupprimerRecette.Image");
-            btSupprimerRecette.Location = new Point(648, 10);
+            btSupprimerRecette.Location = new Point(598, 10);
             btSupprimerRecette.Margin = new Padding(80, 10, 4, 4);
             btSupprimerRecette.Name = "btSupprimerRecette";
-            btSupprimerRecette.Size = new Size(200, 50);
+            btSupprimerRecette.Size = new Size(195, 50);
             btSupprimerRecette.TabIndex = 2;
             btSupprimerRecette.Text = "  Supprimer";
             btSupprimerRecette.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -1707,6 +1734,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel17.Controls.Add(tableLayoutPanel22, 0, 6);
             tableLayoutPanel17.Controls.Add(gbxIngredients, 0, 1);
             tableLayoutPanel17.Controls.Add(gbxEtapesAjouter, 0, 2);
+            tableLayoutPanel17.Controls.Add(tableLayoutPanel42, 0, 7);
             tableLayoutPanel17.Dock = DockStyle.Fill;
             tableLayoutPanel17.Location = new Point(3, 3);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
@@ -1719,7 +1747,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.876215F));
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 6.876215F));
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 5.72261763F));
-            tableLayoutPanel17.Size = new Size(926, 686);
+            tableLayoutPanel17.Size = new Size(819, 686);
             tableLayoutPanel17.TabIndex = 1;
             // 
             // tableLayoutPanel18
@@ -1741,7 +1769,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel18.Name = "tableLayoutPanel18";
             tableLayoutPanel18.RowCount = 1;
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel18.Size = new Size(920, 38);
+            tableLayoutPanel18.Size = new Size(813, 38);
             tableLayoutPanel18.TabIndex = 0;
             // 
             // label21
@@ -1749,9 +1777,9 @@ namespace DelicesDuJour_ClientAPIRest
             label21.AutoSize = true;
             label21.Dock = DockStyle.Fill;
             label21.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.Location = new Point(287, 0);
+            label21.Location = new Point(254, 0);
             label21.Name = "label21";
-            label21.Size = new Size(86, 38);
+            label21.Size = new Size(75, 38);
             label21.TabIndex = 3;
             label21.Text = "   Nom :";
             label21.TextAlign = ContentAlignment.MiddleLeft;
@@ -1760,11 +1788,11 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             txtIdGestionrecette.BorderStyle = BorderStyle.None;
             txtIdGestionrecette.Dock = DockStyle.Fill;
-            txtIdGestionrecette.Location = new Point(113, 3);
+            txtIdGestionrecette.Location = new Point(100, 3);
             txtIdGestionrecette.Multiline = true;
             txtIdGestionrecette.Name = "txtIdGestionrecette";
             txtIdGestionrecette.ReadOnly = true;
-            txtIdGestionrecette.Size = new Size(76, 32);
+            txtIdGestionrecette.Size = new Size(67, 32);
             txtIdGestionrecette.TabIndex = 1;
             // 
             // label11
@@ -1772,7 +1800,7 @@ namespace DelicesDuJour_ClientAPIRest
             label11.Dock = DockStyle.Fill;
             label11.Location = new Point(3, 0);
             label11.Name = "label11";
-            label11.Size = new Size(104, 38);
+            label11.Size = new Size(91, 38);
             label11.TabIndex = 5;
             label11.Text = "  id :";
             // 
@@ -1783,11 +1811,11 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel40.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tableLayoutPanel40.Controls.Add(spaceSeparatorVertical1, 1, 0);
-            tableLayoutPanel40.Location = new Point(195, 3);
+            tableLayoutPanel40.Location = new Point(173, 3);
             tableLayoutPanel40.Name = "tableLayoutPanel40";
             tableLayoutPanel40.RowCount = 1;
             tableLayoutPanel40.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel40.Size = new Size(86, 27);
+            tableLayoutPanel40.Size = new Size(75, 27);
             tableLayoutPanel40.TabIndex = 6;
             // 
             // spaceSeparatorVertical1
@@ -1796,7 +1824,7 @@ namespace DelicesDuJour_ClientAPIRest
             spaceSeparatorVertical1.Dock = DockStyle.Fill;
             spaceSeparatorVertical1.Font = new Font("Verdana", 8F);
             spaceSeparatorVertical1.Image = null;
-            spaceSeparatorVertical1.Location = new Point(41, 3);
+            spaceSeparatorVertical1.Location = new Point(36, 3);
             spaceSeparatorVertical1.Name = "spaceSeparatorVertical1";
             spaceSeparatorVertical1.NoRounding = false;
             spaceSeparatorVertical1.Size = new Size(4, 21);
@@ -1808,10 +1836,10 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             txtTitreRecette.BorderStyle = BorderStyle.None;
             txtTitreRecette.Dock = DockStyle.Fill;
-            txtTitreRecette.Location = new Point(379, 3);
+            txtTitreRecette.Location = new Point(335, 3);
             txtTitreRecette.Multiline = true;
             txtTitreRecette.Name = "txtTitreRecette";
-            txtTitreRecette.Size = new Size(538, 32);
+            txtTitreRecette.Size = new Size(475, 32);
             txtTitreRecette.TabIndex = 7;
             // 
             // tableLayoutPanel19
@@ -1826,18 +1854,18 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel19.Name = "tableLayoutPanel19";
             tableLayoutPanel19.RowCount = 1;
             tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel19.Size = new Size(920, 33);
+            tableLayoutPanel19.Size = new Size(813, 33);
             tableLayoutPanel19.TabIndex = 1;
             // 
             // dtpTempsPreparation
             // 
             dtpTempsPreparation.Dock = DockStyle.Fill;
             dtpTempsPreparation.Format = DateTimePickerFormat.Time;
-            dtpTempsPreparation.Location = new Point(280, 4);
+            dtpTempsPreparation.Location = new Point(247, 4);
             dtpTempsPreparation.Margin = new Padding(4);
             dtpTempsPreparation.Name = "dtpTempsPreparation";
             dtpTempsPreparation.ShowUpDown = true;
-            dtpTempsPreparation.Size = new Size(636, 34);
+            dtpTempsPreparation.Size = new Size(562, 34);
             dtpTempsPreparation.TabIndex = 2;
             // 
             // label12
@@ -1848,7 +1876,7 @@ namespace DelicesDuJour_ClientAPIRest
             label12.Location = new Point(4, 0);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(268, 33);
+            label12.Size = new Size(235, 33);
             label12.TabIndex = 0;
             label12.Text = "Temps de préparation :";
             label12.TextAlign = ContentAlignment.MiddleLeft;
@@ -1865,18 +1893,18 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel20.Name = "tableLayoutPanel20";
             tableLayoutPanel20.RowCount = 1;
             tableLayoutPanel20.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel20.Size = new Size(920, 33);
+            tableLayoutPanel20.Size = new Size(813, 33);
             tableLayoutPanel20.TabIndex = 2;
             // 
             // dtpTempsCuisson
             // 
             dtpTempsCuisson.Dock = DockStyle.Fill;
             dtpTempsCuisson.Format = DateTimePickerFormat.Time;
-            dtpTempsCuisson.Location = new Point(280, 4);
+            dtpTempsCuisson.Location = new Point(247, 4);
             dtpTempsCuisson.Margin = new Padding(4);
             dtpTempsCuisson.Name = "dtpTempsCuisson";
             dtpTempsCuisson.ShowUpDown = true;
-            dtpTempsCuisson.Size = new Size(636, 34);
+            dtpTempsCuisson.Size = new Size(562, 34);
             dtpTempsCuisson.TabIndex = 2;
             // 
             // label13
@@ -1886,7 +1914,7 @@ namespace DelicesDuJour_ClientAPIRest
             label13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.Location = new Point(3, 0);
             label13.Name = "label13";
-            label13.Size = new Size(270, 33);
+            label13.Size = new Size(237, 33);
             label13.TabIndex = 0;
             label13.Text = "Temps de cuisson :";
             label13.TextAlign = ContentAlignment.MiddleLeft;
@@ -1903,7 +1931,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel21.Name = "tableLayoutPanel21";
             tableLayoutPanel21.RowCount = 1;
             tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel21.Size = new Size(920, 41);
+            tableLayoutPanel21.Size = new Size(813, 41);
             tableLayoutPanel21.TabIndex = 3;
             // 
             // label14
@@ -1913,7 +1941,7 @@ namespace DelicesDuJour_ClientAPIRest
             label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.Location = new Point(3, 0);
             label14.Name = "label14";
-            label14.Size = new Size(270, 41);
+            label14.Size = new Size(237, 41);
             label14.TabIndex = 0;
             label14.Text = "Difficulté :";
             label14.TextAlign = ContentAlignment.MiddleLeft;
@@ -1924,10 +1952,10 @@ namespace DelicesDuJour_ClientAPIRest
             listBoxDifficulte.FormattingEnabled = true;
             listBoxDifficulte.ItemHeight = 28;
             listBoxDifficulte.Items.AddRange(new object[] { "1", "2", "3" });
-            listBoxDifficulte.Location = new Point(280, 4);
+            listBoxDifficulte.Location = new Point(247, 4);
             listBoxDifficulte.Margin = new Padding(4);
             listBoxDifficulte.Name = "listBoxDifficulte";
-            listBoxDifficulte.Size = new Size(636, 33);
+            listBoxDifficulte.Size = new Size(562, 33);
             listBoxDifficulte.TabIndex = 1;
             // 
             // tableLayoutPanel22
@@ -1942,7 +1970,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel22.Name = "tableLayoutPanel22";
             tableLayoutPanel22.RowCount = 1;
             tableLayoutPanel22.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel22.Size = new Size(920, 41);
+            tableLayoutPanel22.Size = new Size(813, 41);
             tableLayoutPanel22.TabIndex = 4;
             // 
             // label15
@@ -1952,7 +1980,7 @@ namespace DelicesDuJour_ClientAPIRest
             label15.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.Location = new Point(3, 0);
             label15.Name = "label15";
-            label15.Size = new Size(270, 41);
+            label15.Size = new Size(237, 41);
             label15.TabIndex = 0;
             label15.Text = "Catégorie :";
             label15.TextAlign = ContentAlignment.MiddleLeft;
@@ -1961,10 +1989,10 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             clbCategories.Dock = DockStyle.Fill;
             clbCategories.FormattingEnabled = true;
-            clbCategories.Location = new Point(280, 4);
+            clbCategories.Location = new Point(247, 4);
             clbCategories.Margin = new Padding(4);
             clbCategories.Name = "clbCategories";
-            clbCategories.Size = new Size(636, 33);
+            clbCategories.Size = new Size(562, 33);
             clbCategories.TabIndex = 1;
             // 
             // gbxIngredients
@@ -1977,7 +2005,7 @@ namespace DelicesDuJour_ClientAPIRest
             gbxIngredients.Margin = new Padding(4);
             gbxIngredients.Name = "gbxIngredients";
             gbxIngredients.Padding = new Padding(4);
-            gbxIngredients.Size = new Size(918, 182);
+            gbxIngredients.Size = new Size(811, 182);
             gbxIngredients.TabIndex = 5;
             gbxIngredients.TabStop = false;
             gbxIngredients.Text = "Ingrédients";
@@ -1994,7 +2022,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel23.RowCount = 2;
             tableLayoutPanel23.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tableLayoutPanel23.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tableLayoutPanel23.Size = new Size(910, 151);
+            tableLayoutPanel23.Size = new Size(803, 151);
             tableLayoutPanel23.TabIndex = 0;
             // 
             // tableLayoutPanel24
@@ -2011,7 +2039,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel24.Name = "tableLayoutPanel24";
             tableLayoutPanel24.RowCount = 1;
             tableLayoutPanel24.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel24.Size = new Size(904, 39);
+            tableLayoutPanel24.Size = new Size(797, 39);
             tableLayoutPanel24.TabIndex = 0;
             // 
             // tableLayoutPanel25
@@ -2026,7 +2054,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel25.Name = "tableLayoutPanel25";
             tableLayoutPanel25.RowCount = 1;
             tableLayoutPanel25.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel25.Size = new Size(446, 33);
+            tableLayoutPanel25.Size = new Size(392, 33);
             tableLayoutPanel25.TabIndex = 0;
             // 
             // label16
@@ -2038,7 +2066,7 @@ namespace DelicesDuJour_ClientAPIRest
             label16.Location = new Point(4, 0);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
-            label16.Size = new Size(103, 33);
+            label16.Size = new Size(90, 33);
             label16.TabIndex = 0;
             label16.Text = " Nom :";
             label16.TextAlign = ContentAlignment.MiddleLeft;
@@ -2047,11 +2075,11 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             txtNomIngredientAjouter.BorderStyle = BorderStyle.None;
             txtNomIngredientAjouter.Dock = DockStyle.Fill;
-            txtNomIngredientAjouter.Location = new Point(115, 4);
+            txtNomIngredientAjouter.Location = new Point(102, 4);
             txtNomIngredientAjouter.Margin = new Padding(4);
             txtNomIngredientAjouter.Multiline = true;
             txtNomIngredientAjouter.Name = "txtNomIngredientAjouter";
-            txtNomIngredientAjouter.Size = new Size(327, 25);
+            txtNomIngredientAjouter.Size = new Size(286, 25);
             txtNomIngredientAjouter.TabIndex = 1;
             // 
             // tableLayoutPanel26
@@ -2062,11 +2090,11 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel26.Controls.Add(label17, 0, 0);
             tableLayoutPanel26.Controls.Add(txtQuantiteIngredientAjouter, 1, 0);
             tableLayoutPanel26.Dock = DockStyle.Fill;
-            tableLayoutPanel26.Location = new Point(455, 3);
+            tableLayoutPanel26.Location = new Point(401, 3);
             tableLayoutPanel26.Name = "tableLayoutPanel26";
             tableLayoutPanel26.RowCount = 1;
             tableLayoutPanel26.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel26.Size = new Size(310, 33);
+            tableLayoutPanel26.Size = new Size(272, 33);
             tableLayoutPanel26.TabIndex = 1;
             // 
             // label17
@@ -2077,7 +2105,7 @@ namespace DelicesDuJour_ClientAPIRest
             label17.ForeColor = Color.FromArgb(33, 34, 69);
             label17.Location = new Point(3, 0);
             label17.Name = "label17";
-            label17.Size = new Size(118, 33);
+            label17.Size = new Size(102, 33);
             label17.TabIndex = 0;
             label17.Text = "Quantité :";
             label17.TextAlign = ContentAlignment.MiddleLeft;
@@ -2086,11 +2114,11 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             txtQuantiteIngredientAjouter.BorderStyle = BorderStyle.None;
             txtQuantiteIngredientAjouter.Dock = DockStyle.Fill;
-            txtQuantiteIngredientAjouter.Location = new Point(128, 4);
+            txtQuantiteIngredientAjouter.Location = new Point(112, 4);
             txtQuantiteIngredientAjouter.Margin = new Padding(4);
             txtQuantiteIngredientAjouter.Multiline = true;
             txtQuantiteIngredientAjouter.Name = "txtQuantiteIngredientAjouter";
-            txtQuantiteIngredientAjouter.Size = new Size(178, 25);
+            txtQuantiteIngredientAjouter.Size = new Size(156, 25);
             txtQuantiteIngredientAjouter.TabIndex = 1;
             // 
             // tableLayoutPanel39
@@ -2103,11 +2131,11 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel39.Controls.Add(btSupprimerIngredient, 2, 0);
             tableLayoutPanel39.Controls.Add(spaceSeparatorVertical2, 1, 0);
             tableLayoutPanel39.Dock = DockStyle.Fill;
-            tableLayoutPanel39.Location = new Point(771, 3);
+            tableLayoutPanel39.Location = new Point(679, 3);
             tableLayoutPanel39.Name = "tableLayoutPanel39";
             tableLayoutPanel39.RowCount = 1;
             tableLayoutPanel39.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel39.Size = new Size(130, 33);
+            tableLayoutPanel39.Size = new Size(115, 33);
             tableLayoutPanel39.TabIndex = 2;
             // 
             // btAjouterIngredient
@@ -2116,7 +2144,7 @@ namespace DelicesDuJour_ClientAPIRest
             btAjouterIngredient.Image = (Image)resources.GetObject("btAjouterIngredient.Image");
             btAjouterIngredient.Location = new Point(3, 3);
             btAjouterIngredient.Name = "btAjouterIngredient";
-            btAjouterIngredient.Size = new Size(52, 27);
+            btAjouterIngredient.Size = new Size(45, 27);
             btAjouterIngredient.SizeMode = PictureBoxSizeMode.Zoom;
             btAjouterIngredient.TabIndex = 2;
             btAjouterIngredient.TabStop = false;
@@ -2126,9 +2154,9 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             btSupprimerIngredient.Dock = DockStyle.Fill;
             btSupprimerIngredient.Image = (Image)resources.GetObject("btSupprimerIngredient.Image");
-            btSupprimerIngredient.Location = new Point(74, 3);
+            btSupprimerIngredient.Location = new Point(65, 3);
             btSupprimerIngredient.Name = "btSupprimerIngredient";
-            btSupprimerIngredient.Size = new Size(53, 27);
+            btSupprimerIngredient.Size = new Size(47, 27);
             btSupprimerIngredient.SizeMode = PictureBoxSizeMode.Zoom;
             btSupprimerIngredient.TabIndex = 3;
             btSupprimerIngredient.TabStop = false;
@@ -2140,7 +2168,7 @@ namespace DelicesDuJour_ClientAPIRest
             spaceSeparatorVertical2.Dock = DockStyle.Fill;
             spaceSeparatorVertical2.Font = new Font("Verdana", 8F);
             spaceSeparatorVertical2.Image = null;
-            spaceSeparatorVertical2.Location = new Point(63, 3);
+            spaceSeparatorVertical2.Location = new Point(56, 3);
             spaceSeparatorVertical2.Margin = new Padding(5, 3, 3, 3);
             spaceSeparatorVertical2.Name = "spaceSeparatorVertical2";
             spaceSeparatorVertical2.NoRounding = false;
@@ -2155,20 +2183,30 @@ namespace DelicesDuJour_ClientAPIRest
             dgvIngredientAjouter.BackgroundColor = Color.White;
             dgvIngredientAjouter.BorderStyle = BorderStyle.None;
             dgvIngredientAjouter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.Window;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = Color.FromArgb(57, 55, 32);
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(145, 203, 62);
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
-            dgvIngredientAjouter.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = SystemColors.Window;
+            dataGridViewCellStyle19.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle19.ForeColor = Color.FromArgb(57, 55, 32);
+            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle19.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.False;
+            dgvIngredientAjouter.DefaultCellStyle = dataGridViewCellStyle19;
             dgvIngredientAjouter.Dock = DockStyle.Fill;
             dgvIngredientAjouter.Location = new Point(4, 49);
             dgvIngredientAjouter.Margin = new Padding(4);
             dgvIngredientAjouter.Name = "dgvIngredientAjouter";
-            dgvIngredientAjouter.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dgvIngredientAjouter.Size = new Size(902, 98);
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = Color.Ivory;
+            dataGridViewCellStyle20.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle20.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle20.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
+            dgvIngredientAjouter.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dgvIngredientAjouter.RowHeadersWidth = 51;
+            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dgvIngredientAjouter.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dgvIngredientAjouter.Size = new Size(795, 98);
             dgvIngredientAjouter.TabIndex = 1;
             // 
             // gbxEtapesAjouter
@@ -2181,7 +2219,7 @@ namespace DelicesDuJour_ClientAPIRest
             gbxEtapesAjouter.Margin = new Padding(4);
             gbxEtapesAjouter.Name = "gbxEtapesAjouter";
             gbxEtapesAjouter.Padding = new Padding(4);
-            gbxEtapesAjouter.Size = new Size(918, 230);
+            gbxEtapesAjouter.Size = new Size(811, 230);
             gbxEtapesAjouter.TabIndex = 6;
             gbxEtapesAjouter.TabStop = false;
             gbxEtapesAjouter.Text = "Etapes";
@@ -2198,7 +2236,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel27.RowCount = 2;
             tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
             tableLayoutPanel27.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
-            tableLayoutPanel27.Size = new Size(910, 195);
+            tableLayoutPanel27.Size = new Size(803, 195);
             tableLayoutPanel27.TabIndex = 0;
             // 
             // tableLayoutPanel28
@@ -2215,7 +2253,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel28.Name = "tableLayoutPanel28";
             tableLayoutPanel28.RowCount = 1;
             tableLayoutPanel28.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel28.Size = new Size(904, 81);
+            tableLayoutPanel28.Size = new Size(797, 81);
             tableLayoutPanel28.TabIndex = 0;
             // 
             // tableLayoutPanel29
@@ -2233,7 +2271,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel29.RowCount = 2;
             tableLayoutPanel29.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel29.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel29.Size = new Size(265, 75);
+            tableLayoutPanel29.Size = new Size(233, 75);
             tableLayoutPanel29.TabIndex = 0;
             // 
             // label18
@@ -2244,7 +2282,7 @@ namespace DelicesDuJour_ClientAPIRest
             label18.ForeColor = Color.FromArgb(33, 34, 69);
             label18.Location = new Point(3, 0);
             label18.Name = "label18";
-            label18.Size = new Size(100, 37);
+            label18.Size = new Size(87, 37);
             label18.TabIndex = 0;
             label18.Text = "Numéro : ";
             label18.TextAlign = ContentAlignment.MiddleLeft;
@@ -2257,7 +2295,7 @@ namespace DelicesDuJour_ClientAPIRest
             label19.ForeColor = Color.FromArgb(33, 34, 69);
             label19.Location = new Point(3, 37);
             label19.Name = "label19";
-            label19.Size = new Size(100, 38);
+            label19.Size = new Size(87, 38);
             label19.TabIndex = 1;
             label19.Text = "Titre :";
             label19.TextAlign = ContentAlignment.MiddleLeft;
@@ -2266,20 +2304,20 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             txtNumeroEtapeAjouter.BorderStyle = BorderStyle.None;
             txtNumeroEtapeAjouter.Dock = DockStyle.Fill;
-            txtNumeroEtapeAjouter.Location = new Point(110, 4);
+            txtNumeroEtapeAjouter.Location = new Point(97, 4);
             txtNumeroEtapeAjouter.Margin = new Padding(4);
             txtNumeroEtapeAjouter.Name = "txtNumeroEtapeAjouter";
-            txtNumeroEtapeAjouter.Size = new Size(151, 27);
+            txtNumeroEtapeAjouter.Size = new Size(132, 27);
             txtNumeroEtapeAjouter.TabIndex = 2;
             // 
             // txtTitreEtapeAjouter
             // 
             txtTitreEtapeAjouter.BorderStyle = BorderStyle.None;
             txtTitreEtapeAjouter.Dock = DockStyle.Fill;
-            txtTitreEtapeAjouter.Location = new Point(109, 40);
+            txtTitreEtapeAjouter.Location = new Point(96, 40);
             txtTitreEtapeAjouter.Multiline = true;
             txtTitreEtapeAjouter.Name = "txtTitreEtapeAjouter";
-            txtTitreEtapeAjouter.Size = new Size(153, 32);
+            txtTitreEtapeAjouter.Size = new Size(134, 32);
             txtTitreEtapeAjouter.TabIndex = 3;
             // 
             // groupBox1
@@ -2287,11 +2325,11 @@ namespace DelicesDuJour_ClientAPIRest
             groupBox1.Controls.Add(txtTexteEtapeAjouter);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(275, 4);
+            groupBox1.Location = new Point(243, 4);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(444, 73);
+            groupBox1.Size = new Size(390, 73);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Texte";
@@ -2304,7 +2342,7 @@ namespace DelicesDuJour_ClientAPIRest
             txtTexteEtapeAjouter.Margin = new Padding(4);
             txtTexteEtapeAjouter.Multiline = true;
             txtTexteEtapeAjouter.Name = "txtTexteEtapeAjouter";
-            txtTexteEtapeAjouter.Size = new Size(436, 47);
+            txtTexteEtapeAjouter.Size = new Size(382, 47);
             txtTexteEtapeAjouter.TabIndex = 0;
             // 
             // tableLayoutPanel41
@@ -2318,13 +2356,13 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel41.Controls.Add(spaceSeparatorVertical3, 2, 1);
             tableLayoutPanel41.Controls.Add(btEtapeAjouter, 1, 1);
             tableLayoutPanel41.Controls.Add(btEtapeSupprimer, 3, 1);
-            tableLayoutPanel41.Location = new Point(726, 3);
+            tableLayoutPanel41.Location = new Point(640, 3);
             tableLayoutPanel41.Name = "tableLayoutPanel41";
             tableLayoutPanel41.RowCount = 3;
             tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel41.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel41.Size = new Size(175, 72);
+            tableLayoutPanel41.Size = new Size(154, 72);
             tableLayoutPanel41.TabIndex = 2;
             // 
             // spaceSeparatorVertical3
@@ -2333,8 +2371,7 @@ namespace DelicesDuJour_ClientAPIRest
             spaceSeparatorVertical3.Dock = DockStyle.Fill;
             spaceSeparatorVertical3.Font = new Font("Verdana", 8F);
             spaceSeparatorVertical3.Image = null;
-            spaceSeparatorVertical3.Location = new Point(87, 21);
-            spaceSeparatorVertical3.Margin = new Padding(5, 3, 3, 3);
+            spaceSeparatorVertical3.Location = new Point(75, 21);
             spaceSeparatorVertical3.Name = "spaceSeparatorVertical3";
             spaceSeparatorVertical3.NoRounding = false;
             spaceSeparatorVertical3.Size = new Size(4, 37);
@@ -2346,9 +2383,9 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             btEtapeAjouter.Dock = DockStyle.Fill;
             btEtapeAjouter.Image = (Image)resources.GetObject("btEtapeAjouter.Image");
-            btEtapeAjouter.Location = new Point(28, 21);
+            btEtapeAjouter.Location = new Point(25, 21);
             btEtapeAjouter.Name = "btEtapeAjouter";
-            btEtapeAjouter.Size = new Size(51, 37);
+            btEtapeAjouter.Size = new Size(44, 37);
             btEtapeAjouter.SizeMode = PictureBoxSizeMode.Zoom;
             btEtapeAjouter.TabIndex = 0;
             btEtapeAjouter.TabStop = false;
@@ -2358,9 +2395,9 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             btEtapeSupprimer.Dock = DockStyle.Fill;
             btEtapeSupprimer.Image = (Image)resources.GetObject("btEtapeSupprimer.Image");
-            btEtapeSupprimer.Location = new Point(93, 21);
+            btEtapeSupprimer.Location = new Point(82, 21);
             btEtapeSupprimer.Name = "btEtapeSupprimer";
-            btEtapeSupprimer.Size = new Size(51, 37);
+            btEtapeSupprimer.Size = new Size(44, 37);
             btEtapeSupprimer.SizeMode = PictureBoxSizeMode.Zoom;
             btEtapeSupprimer.TabIndex = 1;
             btEtapeSupprimer.TabStop = false;
@@ -2368,7 +2405,8 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // dgvEtapeAjouter
             // 
-            dgvEtapeAjouter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEtapeAjouter.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvEtapeAjouter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dgvEtapeAjouter.BackgroundColor = Color.White;
             dgvEtapeAjouter.BorderStyle = BorderStyle.None;
             dgvEtapeAjouter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -2376,9 +2414,88 @@ namespace DelicesDuJour_ClientAPIRest
             dgvEtapeAjouter.Location = new Point(4, 91);
             dgvEtapeAjouter.Margin = new Padding(4);
             dgvEtapeAjouter.Name = "dgvEtapeAjouter";
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = Color.Ivory;
+            dataGridViewCellStyle22.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle22.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dataGridViewCellStyle22.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
+            dgvEtapeAjouter.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
             dgvEtapeAjouter.RowHeadersWidth = 51;
-            dgvEtapeAjouter.Size = new Size(902, 100);
+            dataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(145, 203, 62);
+            dgvEtapeAjouter.RowsDefaultCellStyle = dataGridViewCellStyle23;
+            dgvEtapeAjouter.Size = new Size(795, 100);
             dgvEtapeAjouter.TabIndex = 1;
+            // 
+            // tableLayoutPanel42
+            // 
+            tableLayoutPanel42.ColumnCount = 2;
+            tableLayoutPanel42.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tableLayoutPanel42.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tableLayoutPanel42.Controls.Add(label22, 0, 0);
+            tableLayoutPanel42.Controls.Add(tableLayoutPanel43, 1, 0);
+            tableLayoutPanel42.Dock = DockStyle.Fill;
+            tableLayoutPanel42.Location = new Point(0, 644);
+            tableLayoutPanel42.Margin = new Padding(0);
+            tableLayoutPanel42.Name = "tableLayoutPanel42";
+            tableLayoutPanel42.RowCount = 1;
+            tableLayoutPanel42.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel42.Size = new Size(819, 42);
+            tableLayoutPanel42.TabIndex = 7;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Dock = DockStyle.Fill;
+            label22.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.Location = new Point(0, 0);
+            label22.Margin = new Padding(0);
+            label22.Name = "label22";
+            label22.Size = new Size(245, 42);
+            label22.TabIndex = 0;
+            label22.Text = " Image :";
+            // 
+            // tableLayoutPanel43
+            // 
+            tableLayoutPanel43.ColumnCount = 2;
+            tableLayoutPanel43.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 92F));
+            tableLayoutPanel43.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8F));
+            tableLayoutPanel43.Controls.Add(btAjouterImage, 1, 0);
+            tableLayoutPanel43.Controls.Add(txtImage, 0, 0);
+            tableLayoutPanel43.Dock = DockStyle.Fill;
+            tableLayoutPanel43.Location = new Point(245, 0);
+            tableLayoutPanel43.Margin = new Padding(0);
+            tableLayoutPanel43.Name = "tableLayoutPanel43";
+            tableLayoutPanel43.RowCount = 1;
+            tableLayoutPanel43.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel43.Size = new Size(574, 42);
+            tableLayoutPanel43.TabIndex = 1;
+            // 
+            // btAjouterImage
+            // 
+            btAjouterImage.Dock = DockStyle.Fill;
+            btAjouterImage.Image = (Image)resources.GetObject("btAjouterImage.Image");
+            btAjouterImage.Location = new Point(528, 0);
+            btAjouterImage.Margin = new Padding(0);
+            btAjouterImage.Name = "btAjouterImage";
+            btAjouterImage.Size = new Size(46, 42);
+            btAjouterImage.SizeMode = PictureBoxSizeMode.Zoom;
+            btAjouterImage.TabIndex = 0;
+            btAjouterImage.TabStop = false;
+            btAjouterImage.Click += btAjouterImage_Click;
+            // 
+            // txtImage
+            // 
+            txtImage.Dock = DockStyle.Fill;
+            txtImage.Location = new Point(3, 3);
+            txtImage.Name = "txtImage";
+            txtImage.Size = new Size(522, 34);
+            txtImage.TabIndex = 1;
+            // 
+            // openFileDialogImageRecette
+            // 
+            openFileDialogImageRecette.FileName = "openFileDialog1";
             // 
             // FormBase
             // 
@@ -2392,7 +2509,7 @@ namespace DelicesDuJour_ClientAPIRest
             Margin = new Padding(4);
             MinimumSize = new Size(1400, 900);
             Name = "FormBase";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "Délices du jour";
             TransparencyKey = Color.Fuchsia;
             FormClosing += FormBase_FormClosing;
@@ -2491,6 +2608,11 @@ namespace DelicesDuJour_ClientAPIRest
             ((System.ComponentModel.ISupportInitialize)btEtapeAjouter).EndInit();
             ((System.ComponentModel.ISupportInitialize)btEtapeSupprimer).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvEtapeAjouter).EndInit();
+            tableLayoutPanel42.ResumeLayout(false);
+            tableLayoutPanel42.PerformLayout();
+            tableLayoutPanel43.ResumeLayout(false);
+            tableLayoutPanel43.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btAjouterImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -2639,5 +2761,16 @@ namespace DelicesDuJour_ClientAPIRest
         private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator3;
         private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator4;
         private TextBox txtTitreRecette;
+        private TableLayoutPanel tableLayoutPanel42;
+        private Label label22;
+        private OpenFileDialog openFileDialogImageRecette;
+        private TableLayoutPanel tableLayoutPanel43;
+        private PictureBox btAjouterImage;
+        private TextBox txtImage;
+        private ToolTip tpImage;
+        private ToolTip tltAjouterIngredient;
+        private ToolTip tltSupprimerIngredient;
+        private ToolTip tltAjouterEtape;
+        private ToolTip tltSupprimerEtape;
     }
 }

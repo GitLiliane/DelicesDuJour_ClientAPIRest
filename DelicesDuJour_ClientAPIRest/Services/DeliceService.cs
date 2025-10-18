@@ -9,6 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+
 
 namespace DelicesDuJour_ClientAPIRest.Services
 {
@@ -118,7 +122,7 @@ namespace DelicesDuJour_ClientAPIRest.Services
 
         public async Task<IEnumerable<RecetteDTO>> GetRecettesAsync()
         {
-            var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}");           
+            var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}");
             return res;
         }
 
@@ -201,17 +205,124 @@ namespace DelicesDuJour_ClientAPIRest.Services
         #endregion Fin Relation Recettes Catégories
 
         #region Gestion Recette
-        public async Task<RecetteDTO> CreateRecetteAsync(CreateRecetteDTO createRecetteDTO)
+      
+        public async Task<RecetteDTO> CreateRecetteAsync(CreateRecetteDTO dto, string imagePath = null)
         {
-            var res = await _rest.PostAsync<RecetteDTO, CreateRecetteDTO>(URL_POST_RECETTE, createRecetteDTO);
-            return res;
+            // Cas sans image : PUT simple
+            if (string.IsNullOrEmpty(imagePath) || !File.Exists(imagePath))
+            {
+                var res = await _rest.PostAsync<RecetteDTO, CreateRecetteDTO>(URL_POST_RECETTE, dto);
+                return res;
+            }
+
+            if (string.IsNullOrWhiteSpace(RestClient.Instance.JwtToken))
+                throw new InvalidOperationException("Le token JWT n'est pas défini. Connectez-vous d'abord.");
+
+            string url = $"{RestClient.Instance.BaseUrl}/api/recettes";
+
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", RestClient.Instance.JwtToken);
+
+            using var multipart = new MultipartFormDataContent();
+
+            // Sérialiser le DTO en JSON
+            var dtoJson = JsonSerializer.Serialize(dto, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            var jsonContent = new StringContent(dtoJson, Encoding.UTF8, "application/json");
+
+            // Le nom "request" doit correspondre au paramètre côté API
+            multipart.Add(jsonContent, "request");
+
+            // Ajouter le fichier image 
+
+            var fileStream = File.OpenRead(imagePath);
+            var fileContent = new StreamContent(fileStream);
+            var mime = MimeMappingFromExtension(Path.GetExtension(imagePath));
+            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(mime);
+
+            // Le nom "photoFile" doit correspondre au paramètre côté API
+            multipart.Add(fileContent, "photoFile", Path.GetFileName(imagePath));
+
+
+            // Envoyer la requête
+            var response = await httpClient.PostAsync(url, multipart);
+
+            // Lancer une exception si l'API retourne une erreur
+            response.EnsureSuccessStatusCode();
+
+            // Lire et désérialiser la réponse en RecetteDTO
+            var responseJson = await response.Content.ReadAsStringAsync();
+            var recette = JsonSerializer.Deserialize<RecetteDTO>(responseJson,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return recette!;
         }
 
-        public async Task<RecetteDTO> UpdateRecetteAsync(UpdateRecetteDTO updateRecette)
+
+
+        // Helper simple pour déduire le MIME type depuis l'extension (très minimal)
+        private static string MimeMappingFromExtension(string ext)
         {
-            var res = await _rest.PutAsync<RecetteDTO, UpdateRecetteDTO>($"{URL_PUT_RECETTE}/{updateRecette.Id}", updateRecette);
-            return res;
+            if (string.IsNullOrEmpty(ext)) return "application/octet-stream";
+            ext = ext.ToLowerInvariant();
+            return ext switch
+            {
+                ".jpg" or ".jpeg" => "image/jpeg",
+                ".png" => "image/png",
+                _ => "application/octet-stream"
+            };
         }
+        public async Task<RecetteDTO> UpdateRecetteAsync(UpdateRecetteDTO updateRecette, string imagePath = null)
+        {
+            // Cas sans image : PUT simple
+            if (string.IsNullOrEmpty(imagePath) || !File.Exists(imagePath))
+            {
+                var res = await _rest.PutAsync<RecetteDTO, UpdateRecetteDTO>(
+                    $"{URL_PUT_RECETTE}/{updateRecette.Id}",
+                    updateRecette
+                );
+                return res;
+            }
+
+            // Cas avec image
+            if (string.IsNullOrWhiteSpace(RestClient.Instance.JwtToken))
+                throw new InvalidOperationException("Le token JWT n'est pas défini. Connectez-vous d'abord.");
+
+            // ⚠️ Inclure l'ID dans l'URL pour que le controller le reçoive
+            string url = $"{RestClient.Instance.BaseUrl}/api/recettes/{updateRecette.Id}";
+
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", RestClient.Instance.JwtToken);
+
+            using var multipart = new MultipartFormDataContent();
+
+            // Sérialiser le DTO en JSON
+            var dtoJson = JsonSerializer.Serialize(updateRecette, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            var jsonContent = new StringContent(dtoJson, Encoding.UTF8, "application/json");
+            multipart.Add(jsonContent, "request");
+
+            // Ajouter le fichier image
+            var fileStream = File.OpenRead(imagePath);
+            var fileContent = new StreamContent(fileStream);
+            var mime = MimeMappingFromExtension(Path.GetExtension(imagePath));
+            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(mime);
+            multipart.Add(fileContent, "photoFile", Path.GetFileName(imagePath));
+
+            // Envoyer la requête avec l'ID dans l'URL
+            var response = await httpClient.PutAsync(url, multipart);
+
+            response.EnsureSuccessStatusCode();
+
+            var responseJson = await response.Content.ReadAsStringAsync();
+            var recette = JsonSerializer.Deserialize<RecetteDTO>(
+                responseJson,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+            );
+
+            return recette!;
+        }
+
 
         public async Task DeleteRecetteAsync(int idRecette)
         {

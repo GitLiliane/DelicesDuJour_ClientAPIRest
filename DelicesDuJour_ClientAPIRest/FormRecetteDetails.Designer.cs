@@ -35,7 +35,7 @@
             metroControlBox1 = new ReaLTaiizor.Controls.MetroControlBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            pictureBox1 = new PictureBox();
+            pbxImageRecette = new PictureBox();
             tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
             txtdifficulteAfficherRecette = new TextBox();
@@ -62,7 +62,7 @@
             dungeonForm1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxImageRecette).BeginInit();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
@@ -97,7 +97,7 @@
             dungeonForm1.Sizable = true;
             dungeonForm1.Size = new Size(853, 1005);
             dungeonForm1.SmartBounds = true;
-            dungeonForm1.StartPosition = FormStartPosition.WindowsDefaultBounds;
+            dungeonForm1.StartPosition = FormStartPosition.CenterScreen;
             dungeonForm1.TabIndex = 0;
             dungeonForm1.Text = "Délices du jour";
             dungeonForm1.TitleColor = Color.FromArgb(223, 219, 210);
@@ -159,7 +159,7 @@
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
-            tableLayoutPanel2.Controls.Add(pictureBox1, 0, 0);
+            tableLayoutPanel2.Controls.Add(pbxImageRecette, 0, 0);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 77);
@@ -169,17 +169,17 @@
             tableLayoutPanel2.Size = new Size(807, 423);
             tableLayoutPanel2.TabIndex = 4;
             // 
-            // pictureBox1
+            // pbxImageRecette
             // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(437, 417);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pbxImageRecette.Dock = DockStyle.Fill;
+            pbxImageRecette.Image = (Image)resources.GetObject("pbxImageRecette.Image");
+            pbxImageRecette.InitialImage = (Image)resources.GetObject("pbxImageRecette.InitialImage");
+            pbxImageRecette.Location = new Point(3, 3);
+            pbxImageRecette.Name = "pbxImageRecette";
+            pbxImageRecette.Size = new Size(437, 417);
+            pbxImageRecette.SizeMode = PictureBoxSizeMode.Zoom;
+            pbxImageRecette.TabIndex = 0;
+            pbxImageRecette.TabStop = false;
             // 
             // tableLayoutPanel3
             // 
@@ -384,12 +384,14 @@
             // 
             // rchListIngredientAfficherRecette
             // 
+            rchListIngredientAfficherRecette.BackColor = Color.White;
             rchListIngredientAfficherRecette.BorderStyle = BorderStyle.None;
             rchListIngredientAfficherRecette.Dock = DockStyle.Fill;
             rchListIngredientAfficherRecette.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             rchListIngredientAfficherRecette.ForeColor = Color.FromArgb(57, 55, 32);
             rchListIngredientAfficherRecette.Location = new Point(3, 47);
             rchListIngredientAfficherRecette.Name = "rchListIngredientAfficherRecette";
+            rchListIngredientAfficherRecette.ReadOnly = true;
             rchListIngredientAfficherRecette.Size = new Size(346, 228);
             rchListIngredientAfficherRecette.TabIndex = 0;
             rchListIngredientAfficherRecette.Text = "";
@@ -442,6 +444,7 @@
             txtNomAfficherRecette.Margin = new Padding(3, 0, 3, 3);
             txtNomAfficherRecette.Multiline = true;
             txtNomAfficherRecette.Name = "txtNomAfficherRecette";
+            txtNomAfficherRecette.ReadOnly = true;
             txtNomAfficherRecette.Size = new Size(807, 62);
             txtNomAfficherRecette.TabIndex = 3;
             txtNomAfficherRecette.TextAlign = HorizontalAlignment.Center;
@@ -475,7 +478,7 @@
             FormBorderStyle = FormBorderStyle.None;
             MinimumSize = new Size(853, 1005);
             Name = "FormRecetteDetails";
-            StartPosition = FormStartPosition.WindowsDefaultBounds;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Délices du jour";
             TransparencyKey = Color.Fuchsia;
             FormClosing += FormRecetteDetails_FormClosing;
@@ -486,7 +489,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxImageRecette).EndInit();
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
@@ -512,7 +515,7 @@
         private TextBox txtNomAfficherRecette;
         private GroupBox groupBox2;
         private TableLayoutPanel tableLayoutPanel2;
-        private PictureBox pictureBox1;
+        private PictureBox pbxImageRecette;
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
         private TextBox txtdifficulteAfficherRecette;

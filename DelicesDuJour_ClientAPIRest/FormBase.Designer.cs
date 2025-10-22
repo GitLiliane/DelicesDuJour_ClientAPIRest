@@ -81,6 +81,7 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel33 = new TableLayoutPanel();
             btLogOut = new Button();
             btLogin = new Button();
+            crEaTiiOn_LightSeperator5 = new CBH.Controls.CrEaTiiOn_LightSeperator();
             tableLayoutPanel37 = new TableLayoutPanel();
             lblRoles = new Label();
             label20 = new Label();
@@ -403,6 +404,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // tableLayoutPanel32
             // 
+            tableLayoutPanel32.AutoSize = true;
             tableLayoutPanel32.ColumnCount = 3;
             tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.454102F));
             tableLayoutPanel32.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80.51235F));
@@ -448,6 +450,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // tableLayoutPanel34
             // 
+            tableLayoutPanel34.AutoSize = true;
             tableLayoutPanel34.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
             tableLayoutPanel34.ColumnCount = 1;
             tableLayoutPanel34.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -462,6 +465,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // tableLayoutPanel35
             // 
+            tableLayoutPanel35.AutoSize = true;
             tableLayoutPanel35.ColumnCount = 1;
             tableLayoutPanel35.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel35.Controls.Add(tableLayoutPanel36, 0, 0);
@@ -477,6 +481,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // tableLayoutPanel36
             // 
+            tableLayoutPanel36.AutoSize = true;
             tableLayoutPanel36.ColumnCount = 2;
             tableLayoutPanel36.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanel36.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
@@ -566,9 +571,11 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // tableLayoutPanel31
             // 
+            tableLayoutPanel31.AutoSize = true;
             tableLayoutPanel31.ColumnCount = 1;
             tableLayoutPanel31.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel31.Controls.Add(tableLayoutPanel33, 0, 2);
+            tableLayoutPanel31.Controls.Add(crEaTiiOn_LightSeperator5, 0, 1);
             tableLayoutPanel31.Dock = DockStyle.Fill;
             tableLayoutPanel31.Location = new Point(3, 183);
             tableLayoutPanel31.Name = "tableLayoutPanel31";
@@ -582,24 +589,26 @@ namespace DelicesDuJour_ClientAPIRest
             // tableLayoutPanel33
             // 
             tableLayoutPanel33.AutoSize = true;
-            tableLayoutPanel33.ColumnCount = 3;
-            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49F));
-            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
-            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49F));
-            tableLayoutPanel33.Controls.Add(btLogOut, 2, 0);
-            tableLayoutPanel33.Controls.Add(btLogin, 0, 0);
+            tableLayoutPanel33.ColumnCount = 5;
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.8712873F));
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.6534653F));
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 4.95049524F));
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.6534653F));
+            tableLayoutPanel33.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.8712873F));
+            tableLayoutPanel33.Controls.Add(btLogOut, 3, 1);
+            tableLayoutPanel33.Controls.Add(btLogin, 1, 1);
             tableLayoutPanel33.Dock = DockStyle.Fill;
             tableLayoutPanel33.Location = new Point(3, 53);
             tableLayoutPanel33.Name = "tableLayoutPanel33";
-            tableLayoutPanel33.RowCount = 1;
-            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel33.RowCount = 3;
+            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel33.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel33.Size = new Size(715, 199);
             tableLayoutPanel33.TabIndex = 15;
             // 
             // btLogOut
             // 
-            btLogOut.Anchor = AnchorStyles.Top;
             btLogOut.AutoSize = true;
             btLogOut.BackColor = Color.FromArgb(57, 55, 32);
             btLogOut.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
@@ -609,10 +618,10 @@ namespace DelicesDuJour_ClientAPIRest
             btLogOut.FlatStyle = FlatStyle.Flat;
             btLogOut.ForeColor = Color.AliceBlue;
             btLogOut.Image = (Image)resources.GetObject("btLogOut.Image");
-            btLogOut.Location = new Point(434, 50);
-            btLogOut.Margin = new Padding(0, 50, 0, 0);
+            btLogOut.Location = new Point(377, 69);
+            btLogOut.Margin = new Padding(3, 30, 0, 0);
             btLogOut.Name = "btLogOut";
-            btLogOut.Size = new Size(210, 80);
+            btLogOut.Size = new Size(240, 89);
             btLogOut.TabIndex = 14;
             btLogOut.Text = "  Logout";
             btLogOut.TextAlign = ContentAlignment.MiddleLeft;
@@ -622,7 +631,6 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // btLogin
             // 
-            btLogin.Anchor = AnchorStyles.Top;
             btLogin.AutoSize = true;
             btLogin.BackColor = Color.FromArgb(57, 55, 32);
             btLogin.FlatAppearance.BorderColor = Color.FromArgb(53, 155, 255);
@@ -634,15 +642,25 @@ namespace DelicesDuJour_ClientAPIRest
             btLogin.ForeColor = Color.White;
             btLogin.Image = (Image)resources.GetObject("btLogin.Image");
             btLogin.ImageAlign = ContentAlignment.MiddleLeft;
-            btLogin.Location = new Point(75, 50);
-            btLogin.Margin = new Padding(10, 50, 0, 0);
+            btLogin.Location = new Point(95, 69);
+            btLogin.Margin = new Padding(3, 30, 0, 0);
             btLogin.Name = "btLogin";
-            btLogin.Size = new Size(210, 80);
+            btLogin.Size = new Size(240, 89);
             btLogin.TabIndex = 13;
             btLogin.Text = "Login";
             btLogin.TextImageRelation = TextImageRelation.TextBeforeImage;
             btLogin.UseVisualStyleBackColor = false;
             btLogin.Click += btLogin_Click;
+            // 
+            // crEaTiiOn_LightSeperator5
+            // 
+            crEaTiiOn_LightSeperator5.Dock = DockStyle.Fill;
+            crEaTiiOn_LightSeperator5.LineColor = Color.Silver;
+            crEaTiiOn_LightSeperator5.Location = new Point(3, 28);
+            crEaTiiOn_LightSeperator5.Name = "crEaTiiOn_LightSeperator5";
+            crEaTiiOn_LightSeperator5.Size = new Size(715, 19);
+            crEaTiiOn_LightSeperator5.TabIndex = 16;
+            crEaTiiOn_LightSeperator5.Text = "crEaTiiOn_LightSeperator5";
             // 
             // tableLayoutPanel37
             // 
@@ -1638,7 +1656,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             tableLayoutPanel16.ColumnCount = 1;
             tableLayoutPanel16.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel16.Controls.Add(flowLayoutPanel5, 0, 1);
+            tableLayoutPanel16.Controls.Add(flowLayoutPanel5, 0, 0);
             tableLayoutPanel16.Controls.Add(tableLayoutPanel17, 0, 0);
             tableLayoutPanel16.Dock = DockStyle.Fill;
             tableLayoutPanel16.Location = new Point(512, 3);
@@ -1651,6 +1669,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // flowLayoutPanel5
             // 
+            flowLayoutPanel5.AutoSize = true;
             flowLayoutPanel5.Controls.Add(btAjouterRecette);
             flowLayoutPanel5.Controls.Add(btModifierRecette);
             flowLayoutPanel5.Controls.Add(btSupprimerRecette);
@@ -1662,6 +1681,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // btAjouterRecette
             // 
+            btAjouterRecette.AutoSize = true;
             btAjouterRecette.BackColor = Color.FromArgb(57, 55, 32);
             btAjouterRecette.FlatAppearance.BorderColor = Color.FromArgb(145, 203, 62);
             btAjouterRecette.FlatAppearance.BorderSize = 2;
@@ -1683,6 +1703,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // btModifierRecette
             // 
+            btModifierRecette.AutoSize = true;
             btModifierRecette.BackColor = Color.FromArgb(57, 55, 32);
             btModifierRecette.FlatAppearance.BorderColor = Color.FromArgb(145, 203, 62);
             btModifierRecette.FlatAppearance.BorderSize = 2;
@@ -1704,6 +1725,7 @@ namespace DelicesDuJour_ClientAPIRest
             // 
             // btSupprimerRecette
             // 
+            btSupprimerRecette.AutoSize = true;
             btSupprimerRecette.BackColor = Color.FromArgb(57, 55, 32);
             btSupprimerRecette.FlatAppearance.BorderColor = Color.FromArgb(145, 203, 62);
             btSupprimerRecette.FlatAppearance.BorderSize = 2;
@@ -2530,8 +2552,11 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel32.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             tableLayoutPanel34.ResumeLayout(false);
+            tableLayoutPanel34.PerformLayout();
             tableLayoutPanel35.ResumeLayout(false);
+            tableLayoutPanel35.PerformLayout();
             tableLayoutPanel36.ResumeLayout(false);
             tableLayoutPanel36.PerformLayout();
             tableLayoutPanel31.ResumeLayout(false);
@@ -2572,7 +2597,9 @@ namespace DelicesDuJour_ClientAPIRest
             tableLayoutPanel15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvGestionRecette).EndInit();
             tableLayoutPanel16.ResumeLayout(false);
+            tableLayoutPanel16.PerformLayout();
             flowLayoutPanel5.ResumeLayout(false);
+            flowLayoutPanel5.PerformLayout();
             tableLayoutPanel17.ResumeLayout(false);
             tableLayoutPanel17.PerformLayout();
             tableLayoutPanel18.ResumeLayout(false);
@@ -2772,5 +2799,6 @@ namespace DelicesDuJour_ClientAPIRest
         private ToolTip tltSupprimerIngredient;
         private ToolTip tltAjouterEtape;
         private ToolTip tltSupprimerEtape;
+        private CBH.Controls.CrEaTiiOn_LightSeperator crEaTiiOn_LightSeperator5;
     }
 }

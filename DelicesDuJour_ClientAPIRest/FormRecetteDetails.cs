@@ -1,175 +1,184 @@
 ﻿using DelicesDuJour_ClientAPIRest.Domain.DTO;
 using DelicesDuJour_ClientAPIRest.Domain.DTOS;
 using DelicesDuJour_ClientAPIRest.Services;
-namespace DelicesDuJour_ClientAPIRest;
 
-internal partial class FormRecetteDetails : Form
+namespace DelicesDuJour_ClientAPIRest
 {
-    private RecetteDTO _recette;
-    private readonly RestClient _rest = RestClient.Instance;
-    private readonly DeliceService _deliceService = DeliceService.Instance;
-    private int idRecette;
-    public FormRecetteDetails(int idRecetteDTO)
+    // Formulaire Windows Forms pour afficher les détails d'une recette spécifique.
+    // Il permet de visualiser :
+    // - le nom de la recette,
+    // - les temps de préparation et de cuisson,
+    // - la difficulté,
+    // - la liste des ingrédients et étapes,
+    // - la photo associée.
+    internal partial class FormRecetteDetails : Form
     {
-        InitializeComponent();
-        idRecette = idRecetteDTO;        
-    }
+        private RecetteDTO _recette; // Objet recette lié aux bindings.
+        private readonly RestClient _rest = RestClient.Instance; // Client REST singleton.
+        private readonly DeliceService _deliceService = DeliceService.Instance; // Service métier singleton.
+        private int idRecette; // ID de la recette affichée.
 
-    RecetteDTO res = null;
-
-    public void RefreshRecette(int newIdRecette)
-    {
-        idRecette = newIdRecette;
-        RecetteDetails();
-    }
-    private async void FormRecetteDetails_Load(object sender, EventArgs e)
-    {
-        InitializeBinding();
-
-        //txtListeEtapesAfficherRecette.Font = new Font("Merienda", 14F, FontStyle.Regular);
-        if (this.Owner != null)
+        // Constructeur du formulaire, prend l'ID de la recette à afficher.
+        public FormRecetteDetails(int idRecetteDTO)
         {
-            // Récupère la position et taille du parent
-            var parent = this.Owner;
-
-            // Place la fenêtre enfant à droite du parent
-            this.Location = new Point(
-                parent.Location.X + parent.Width + 10, // +10 = petit espacement
-                parent.Location.Y
-            );
+            InitializeComponent(); // Initialise les composants WinForms.
+            idRecette = idRecetteDTO;
         }
 
+        RecetteDTO res = null; // Variable temporaire pour stocker les détails de la recette.
 
-        try
+        // Permet de rafraîchir la recette affichée avec un nouvel ID.
+        public void RefreshRecette(int newIdRecette)
         {
+            idRecette = newIdRecette;
             RecetteDetails();
-
         }
 
-        finally
+        // Événement déclenché lorsque le formulaire se charge.
+        private async void FormRecetteDetails_Load(object sender, EventArgs e)
         {
-            Cursor = Cursors.Default;
+            InitializeBinding(); // Initialise les bindings de données.
 
-        }
-    }
-
-    private async void RecetteDetails()
-    {
-        try
-        {
-            res = await _deliceService.GetRecetteByIdAsync(idRecette);
-
-            if (res != null)
+            // Positionne la fenêtre par rapport à son parent si elle a un Owner.
+            if (this.Owner != null)
             {
-                txtNomAfficherRecette.Text = res.nom;
-                dtTempsPreparationAfficherRecette.Value = DateTime.Today.Add(res.temps_preparation);
-                dtTempsCuissonAfficherRecette.Value = DateTime.Today.Add(res.temps_cuisson);
-                txtdifficulteAfficherRecette.Text = res.difficulte.ToString();
+                var parent = this.Owner;
+                this.Location = new Point(
+                    parent.Location.X + parent.Width + 10, // Place à droite du parent avec un petit espace.
+                    parent.Location.Y
+                );
+            }
 
-                if (res.ingredients != null && res.ingredients.Any())
-                {
-                    rchListIngredientAfficherRecette.Text = string.Join(
-                        Environment.NewLine,
-                        res.ingredients.Select(i => $"{i.quantite}  {i.nom}")
-                    );
-                }
-                else
-                {
-                    rchListIngredientAfficherRecette.Text = "Aucun ingrédient trouvé.";
-                }
-                if (res.etapes != null && res.etapes.Any())
-                {
-                    // On efface tout le contenu du RichTextBox
-                    rtxtListeEtapesAfficherRecette.Clear();
+            try
+            {
+                RecetteDetails(); // Charge les détails de la recette.
+            }
+            finally
+            {
+                Cursor = Cursors.Default; // Réinitialise le curseur.
+            }
+        }
 
-                    foreach (var etape in res.etapes)
+        // Méthode principale pour charger et afficher les détails d'une recette.
+        private async void RecetteDetails()
+        {
+            try
+            {
+                // Récupère la recette via le service métier.
+                res = await _deliceService.GetRecetteByIdAsync(idRecette);
+
+                if (res != null)
+                {
+                    // Affichage du nom, temps de préparation et cuisson, difficulté.
+                    txtNomAfficherRecette.Text = res.nom;
+                    dtTempsPreparationAfficherRecette.Value = DateTime.Today.Add(res.temps_preparation);
+                    dtTempsCuissonAfficherRecette.Value = DateTime.Today.Add(res.temps_cuisson);
+                    txtdifficulteAfficherRecette.Text = res.difficulte.ToString();
+
+                    // Affichage des ingrédients.
+                    if (res.ingredients != null && res.ingredients.Any())
                     {
-                        // ----- TITRE -----
-                        rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Bold);
-                        rtxtListeEtapesAfficherRecette.SelectionColor = Color.FromArgb(42, 124, 204);
-                        rtxtListeEtapesAfficherRecette.AppendText(etape.titre + Environment.NewLine);
+                        rchListIngredientAfficherRecette.Text = string.Join(
+                            Environment.NewLine,
+                            res.ingredients.Select(i => $"{i.quantite}  {i.nom}")
+                        );
+                    }
+                    else
+                    {
+                        rchListIngredientAfficherRecette.Text = "Aucun ingrédient trouvé.";
+                    }
 
-                        // ----- TEXTE -----
+                    // Affichage des étapes.
+                    if (res.etapes != null && res.etapes.Any())
+                    {
+                        rtxtListeEtapesAfficherRecette.Clear();
+
+                        foreach (var etape in res.etapes)
+                        {
+                            // ----- TITRE en gras et couleur bleu -----
+                            rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Bold);
+                            rtxtListeEtapesAfficherRecette.SelectionColor = Color.FromArgb(42, 124, 204);
+                            rtxtListeEtapesAfficherRecette.AppendText(etape.titre + Environment.NewLine);
+
+                            // ----- TEXTE en police normale -----
+                            rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Regular);
+                            rtxtListeEtapesAfficherRecette.AppendText(etape.texte + Environment.NewLine + Environment.NewLine);
+                        }
+
+                        // Revenir au style par défaut à la fin
                         rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Regular);
-                        //rtxtListeEtapesAfficherRecette.SelectionColor = Color.Black;
-                        rtxtListeEtapesAfficherRecette.AppendText(etape.texte + Environment.NewLine + Environment.NewLine);
+                        rtxtListeEtapesAfficherRecette.SelectionColor = Color.Black;
                     }
-
-                    // Revenir au style par défaut à la fin
-                    rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Regular);
-                    rtxtListeEtapesAfficherRecette.SelectionColor = Color.Black;
-                }
-                else
-                {
-                    rtxtListeEtapesAfficherRecette.Clear();
-                    rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Bold);
-                    rtxtListeEtapesAfficherRecette.SelectionColor = Color.Gray;
-                    rtxtListeEtapesAfficherRecette.AppendText("Aucune étape trouvée.");
-                }
-
-
-                txtdifficulteAfficherRecette.Text = res.difficulte.ToString();
-
-                // Avant de charger, on prépare la PictureBox
-                pbxImageRecette.SizeMode = PictureBoxSizeMode.Zoom;
-
-                // Si ton API renvoie un chemin relatif (ex: "/images/recettes/photo.jpg"),
-                // tu peux le compléter ici avec ton URL de base :
-                string baseUrl = "http://localhost:5289"; // <-- adapte cette valeur !
-                string imageUrl = !string.IsNullOrEmpty(res.photo)
-                    ? (res.photo.StartsWith("http") ? res.photo : $"{baseUrl}{res.photo}")
-                    : null;
-
-                if (!string.IsNullOrEmpty(imageUrl))
-                {
-                    try
+                    else
                     {
-                        // Cette méthode est asynchrone et gère automatiquement :
-                        // - InitialImage (pendant le chargement)
-                        // - ErrorImage (si erreur ou fichier introuvable)
-                        pbxImageRecette.LoadAsync(imageUrl);
+                        // Si aucune étape, message par défaut.
+                        rtxtListeEtapesAfficherRecette.Clear();
+                        rtxtListeEtapesAfficherRecette.SelectionFont = new Font(rtxtListeEtapesAfficherRecette.Font, FontStyle.Bold);
+                        rtxtListeEtapesAfficherRecette.SelectionColor = Color.Gray;
+                        rtxtListeEtapesAfficherRecette.AppendText("Aucune étape trouvée.");
                     }
-                    catch
+
+                    // Préparation de la PictureBox pour l'affichage de l'image.
+                    pbxImageRecette.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    // Gestion du chemin de l'image (relatif ou absolu).
+                    string baseUrl = "http://localhost:5289"; // URL de base à adapter.
+                    string imageUrl = !string.IsNullOrEmpty(res.photo)
+                        ? (res.photo.StartsWith("http") ? res.photo : $"{baseUrl}{res.photo}")
+                        : null;
+
+                    if (!string.IsNullOrEmpty(imageUrl))
                     {
-                        // Si le chargement échoue, la PictureBox utilisera automatiquement ErrorImage
-                        pbxImageRecette.Image = pbxImageRecette.ErrorImage;
+                        try
+                        {
+                            pbxImageRecette.LoadAsync(imageUrl); // Charge l'image de manière asynchrone.
+                        }
+                        catch
+                        {
+                            // En cas d'erreur de chargement, utilise l'image d'erreur par défaut.
+                            pbxImageRecette.Image = pbxImageRecette.ErrorImage;
+                        }
+                    }
+                    else
+                    {
+                        // Si pas d'image disponible, utilise l'image initiale par défaut.
+                        pbxImageRecette.Image = pbxImageRecette.InitialImage;
                     }
                 }
-                else
-                {
-                    // Si aucune image n’est définie pour la recette,
-                    // on affiche l’image par défaut (InitialImage)
-                    pbxImageRecette.Image = pbxImageRecette.InitialImage;
-                }
-            }        
+            }
+            finally
+            {
+                Cursor = Cursors.Default; // Réinitialise le curseur.
+            }
         }
 
-        finally
+        // Événement déclenché à la fermeture du formulaire.
+        private void FormRecetteDetails_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Cursor = Cursors.Default;
+            DialogResult res = MessageBox.Show(
+                "Confirmez-vous la fermeture de la fenêtre ?",
+                "Fermeture",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1
+            );
 
+            if (res == DialogResult.No)
+            {
+                e.Cancel = true; // Annule la fermeture si l'utilisateur choisit "Non".
+            }
         }
-    }
-    private void FormRecetteDetails_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        DialogResult res = MessageBox.Show("Confirmez-vous la fermeture de la fenêtre ?", "Fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-        if (res == DialogResult.No)
+
+        // Initialise les bindings entre les contrôles WinForms et l'objet RecetteDTO.
+        private void InitializeBinding()
         {
-            e.Cancel = true;
+            _recette = new(); // Crée un nouvel objet RecetteDTO vide.
+            BSRecetteById.DataSource = _recette;
+
+            txtNomAfficherRecette.DataBindings.Add("Text", BSRecetteById, "nom", false, DataSourceUpdateMode.Never);
+            dtTempsPreparationAfficherRecette.DataBindings.Add("Text", BSRecetteById, "temps_preparation", false, DataSourceUpdateMode.Never);
+            dtTempsCuissonAfficherRecette.DataBindings.Add("Text", BSRecetteById, "temps_cuisson", false, DataSourceUpdateMode.Never);
+            txtdifficulteAfficherRecette.DataBindings.Add("Text", BSRecetteById, "difficulte", false, DataSourceUpdateMode.Never);
         }
     }
-
-    private void InitializeBinding()
-    {
-        _recette = new();
-        BSRecetteById.DataSource = _recette;
-        txtNomAfficherRecette.DataBindings.Add("Text", BSRecetteById, "nom", false, DataSourceUpdateMode.Never);
-        dtTempsPreparationAfficherRecette.DataBindings.Add("Text", BSRecetteById, "temps_preparation", false, DataSourceUpdateMode.Never);
-        dtTempsCuissonAfficherRecette.DataBindings.Add("Text", BSRecetteById, "temps_cuisson", false, DataSourceUpdateMode.Never);
-        txtdifficulteAfficherRecette.DataBindings.Add("Text", BSRecetteById, "difficulte", false, DataSourceUpdateMode.Never);
-
-    }
-
-
 }
-

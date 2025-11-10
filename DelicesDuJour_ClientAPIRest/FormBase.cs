@@ -79,15 +79,7 @@ namespace DelicesDuJour_ClientAPIRest
             // Gestion de la sélection dans le DataGridView recettes
             dgvRecettes.SelectionChanged += DgvRecettes_SelectionChanged;
         }
-
-        // Méthode déclenchée lors d’un changement de sélection dans le DataGridView Recettes
-        private void DgvRecettes_SelectionChanged(object? sender, EventArgs e)
-        {
-            if (detailform is not null)
-            {
-                btDetailsRecette_Click(sender, e); // Ouvre ou rafraîchit le détail de la recette
-            }
-        }
+            
 
         // Confirme la fermeture de l’application
         private void FormBase_FormClosing(object sender, FormClosingEventArgs e)
@@ -555,6 +547,15 @@ namespace DelicesDuJour_ClientAPIRest
             // Repositionne la sélection sur la recette qui était active avant la mise à jour
             if (current is not null)
                 BSRecettes.Position = _recettes.IndexOf(_recettes.Where(r => r.Id == current.Id).FirstOrDefault());
+        }
+
+        // Méthode déclenchée lors d’un changement de sélection dans le DataGridView Recettes
+        private void DgvRecettes_SelectionChanged(object? sender, EventArgs e)
+        {
+            if (detailform is not null && tabControl.SelectedTab == tabRecettes)
+            {
+                btDetailsRecette_Click(sender, e); // Ouvre ou rafraîchit le détail de la recette
+            }
         }
         #endregion Fin Gestion recettes
 
@@ -1190,11 +1191,11 @@ namespace DelicesDuJour_ClientAPIRest
                     res = await _deliceService.UpdateRecetteAsync(updateDTO);
 
                 // Rafraîchissement et sélection de la recette modifiée
+                txtImage.Clear();
                 await ActualiserRecettes();
                 await Task.Delay(100);
-                txtImage.Clear();
-                BSRecettes.Position = _recettes.IndexOf(_recettes.FirstOrDefault(r => r.Id == res.Id));
-                dgvGestionRecette.Refresh();
+                
+                BSRecettes.Position = _recettes.IndexOf(_recettes.FirstOrDefault(r => r.Id == res.Id));                
 
                 MessageBox.Show("La recette a été mise à jour avec succès.", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

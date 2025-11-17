@@ -122,7 +122,7 @@ namespace DelicesDuJour_ClientAPIRest
                     pbxImageRecette.SizeMode = PictureBoxSizeMode.Zoom;
 
                     // Gestion du chemin de l'image (relatif ou absolu).
-                    string baseUrl = "http://localhost:5289"; // URL de base à adapter.
+                    string baseUrl = "http://localhost:8888"; // URL de base à adapter.
                     string imageUrl = !string.IsNullOrEmpty(res.photo)
                         ? (res.photo.StartsWith("http") ? res.photo : $"{baseUrl}{res.photo}")
                         : null;

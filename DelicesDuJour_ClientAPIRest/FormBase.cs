@@ -521,6 +521,7 @@ namespace DelicesDuJour_ClientAPIRest
 
             // Affiche le formulaire de détails
             detailform.Show();
+            modeCategorie = false;
         }
 
         private async Task ActualiserRecettes()
